@@ -16,12 +16,28 @@
       .flexbox-container > div:first-child {
         margin-right: 20px;
       }
+
+      #search {
+        text-align: center;
+      }
+
+      #errors {
+        color: #ff0000;
+        text-align: center;
+      }
+
     </style>
   </head>
   <body>
     <main id="main">
       <div id="errors"></div>
     </main>
+
+    <div id="search">
+      <input type="text" id="searchTerms">
+      <a href="#" onclick="searchRepositories()">Search</a>
+    </div>
+
     <div class="flexbox-container">
       <div>
         <h3>Repositories</h3>
@@ -32,7 +48,31 @@
         <div id="details"></div>
       </div>
     </div>
+
+    <!-- <script id="repository-template" type="text/x-handlebars-template">
+      <div>
+        {{#each this.items}}
+        <h4>{{name}}</h4>
+        <p>Owner: <a href="{{html_url}}">{{owner.login}}</a> - <img src="{{owner.avatar_url}}" height="32" width="32"></p>
+        <p>{{description}}</p>
+        <div>
+          <a href="#" data-username="{{owner.login}}" data-repository="{{name}}" onclick="showCommits(this)" >Show Commits</a>
+        </div>
+        {{/each}}
+      </div>
+    </script> -->
+
+    <!-- <script id="commit-template" type="text/x-handlebars-tempalte">
+      <div>
+        {{#each this}}
+          <p>{{sha}}</p>
+          Author: {{commit.author.name}} <img src="{{author.avatar_url}}" height="32" width="32"><br>
+          Login name: {{author.login}}
+        {{/each}}
+      </div>
+    </script> -->
     <script src="jquery-3.1.0.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script> -->
     <script src="index.js"></script>
   </body>
 </html>
