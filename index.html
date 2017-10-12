@@ -23,16 +23,70 @@
       <div id="errors"></div>
     </main>
     <div class="flexbox-container">
-      <div>
-        <h3>Repositories</h3>
-        <div id="results"></div>
-      </div>
-      <div>
+       <div id="searchRepos">
+         <!-- SEARCH REPOSITORIES --> 
+        <h3>Search Repositories</h3>
+          <input type="text" id="searchTerms"><br>
+          <a href="#" onClick="searchRepositories()">Search Repositories</a><br>
+        <div id="repositories"></div>
+       </div><!--searchRepos-->
+    <div id="resultHolder">
+            <!-- REPOSITORY TEMPLATE -->
+       <script id="repository-template" type="text/x-handlebars-template">
+      <ul>
+       {{#each this}}
+         <li>
+           <h2>{{name}}</h2>
+           <h3>{{description}}</h3>
+           <h3><a href="{{html_url}}">repo link</a></h3>
+           <h3><a href="#" onClick='showCommits({ dataset: {owner: "{{owner.login}}", repository: "{{name}}" } })'>Show Commits</a></h3>
+      <section>
+        <header><h4>Created By {{owner.login}}</h4></header>
+        <img src="{{owner.avatar_url}}" height="32" width="32"><br>
+        <h5><a href="{{owner.html_url}}">creator link</a></h5>
+    </section>
+          </li>
+        {{/each}}
+      </ul>
+    </script>
+    <!-- AUTHOR PARTIAL -->
+    <script id="author-partial-template" type="text/x-handlebars-template">
+      <section>
+        <header><h4>Created By {{login}}</h4></header>
+        <img src="{{avatar_url}}" height="32" width="32"><br>
+        <h5><a href="{{html_url}}">creator link</a></h5>
+    </section>
+ 
+    </script> 
+
+        <h3>Results</h3>
+        <div id="results">
+        </div><!--results-->
+    </div><!--resultHolder-->
+      <div id="detailsHolder">
+    <!-- COMMITS TEMPLATE -->
+        <script id="commits-template" type="text/x-handlebars-template">
+      <ul>
+       {{#each this}}
+         <li>
+           <p>SHA: {{sha}}</p>
+           <p>Date: {{commit.author.date}}</p>
+           <p>Message {{commit.message}}</p>
+           <p>Name: {{commit.author.name}}</p>
+           <p>Login Name: {{author.login}}</p>
+           <img src="{{author.avatar_url}}" height="32" width="32">
+          </li>
+        {{/each}}
+      </ul>
+    </script>
         <h3>Details</h3>
-        <div id="details"></div>
-      </div>
-    </div>
+        <div id="details">
+        
+        </div> <!--details-->
+      </div><!--detailsHolder-->
+    </div><!--flexbox contianer-->
     <script src="jquery-3.1.0.min.js"></script>
+    <script src="handlebars.js"></script>
     <script src="index.js"></script>
   </body>
 </html>
