@@ -21,6 +21,10 @@
   <body>
     <main id="main">
       <div id="errors"></div>
+      <form onsubmit="searchRepositories();">
+        <input type="text" name="searchTerms" id="searchTerms">
+      </form>
+      <a href="#" onclick="searchRepositories()">Search</a>
     </main>
     <div class="flexbox-container">
       <div>
