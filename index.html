@@ -22,6 +22,9 @@
     <main id="main">
       <div id="errors"></div>
     </main>
+
+    <input type="text" id="searchTerms">
+    <a href="#" onclick="searchRepositories();">Search</a>
     <div class="flexbox-container">
       <div>
         <h3>Repositories</h3>
@@ -32,7 +35,19 @@
         <div id="details"></div>
       </div>
     </div>
+
+    <script id="repository-template "type="text/x-handlebars-template">
+      <ul>
+        {{#each this}}
+          <li>
+            {{name}} - {{description}} - <a href="{{html_url}}">Link</a>
+          </li>
+        {{/each}}
+      </ul>
+     </script>
+
     <script src="jquery-3.1.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.amd.js"></script>
     <script src="index.js"></script>
   </body>
 </html>
