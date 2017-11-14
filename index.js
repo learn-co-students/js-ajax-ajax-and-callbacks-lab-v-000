@@ -2,11 +2,16 @@ $(document).ready(function (){
 
 });
 
+function displayError() {
+  $('#errors').html("I'm sorry, there's been an error. Please try again.")
+}
+
+
 function searchRepositories() {
   const searchTerms = $("#searchTerms")[0].value;
   $.get(`https://api.github.com/search/repositories?q=${searchTerms}`, response => {
     $('#results').html(renderSearchResults(response))
-  })
+  }).fail(displayError());
 }
 
 function renderSearchResults(response) {
@@ -27,7 +32,7 @@ function showCommits(link) {
   const owner = link.dataset.owner
   $.get(`https://api.github.com/repos/${owner}/${repo}/commits`, response => {
     $('#details').html(renderCommitsResults(response))
-  })
+  }).fail(displayError());
 }
 
 function renderCommitsResults(response) {
