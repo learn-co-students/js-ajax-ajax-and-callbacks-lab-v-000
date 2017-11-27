@@ -21,6 +21,10 @@
   <body>
     <main id="main">
       <div id="errors"></div>
+      <div>
+        <input id="searchTerms" type="text"/>
+        <a href="#" onclick="searchRepositories();">Search Repositories</a>
+      </div>
     </main>
     <div class="flexbox-container">
       <div>
@@ -32,7 +36,41 @@
         <div id="details"></div>
       </div>
     </div>
+    <script src="handlebars-v4.0.11.js"></script>
     <script src="jquery-3.1.0.min.js"></script>
     <script src="index.js"></script>
+    <!-- Handlebars templates start -->
+    <script id="repository-template" type="text/x-handlebars-template">
+      <ul>
+        {{#each this}}
+          <li>
+            <h2><a href="{{html_url}}">{{name}}</a></h2>
+            {{> authorPartial owner}}
+            <footer>
+              <a name="commit-link" href="#" data-repository="{{name}}" data-owner="{{owner.login}}" onclick="showCommits(this);">Show Commits</a>
+            </footer>
+          </li>
+        {{/each}}
+      </ul>
+    </script>
+    <script id="commit-template" type="text/x-handlebars-template">
+      <ul>
+        {{#each this}}
+        <li>
+          <article>
+            <p>{{sha}}</p>
+          {{> authorPartial author}}
+          </article>
+        </li>
+        {{/each}}
+      </ul>
+    </script>
+    <script id="author-partial-template" type="text/x-handlebars-template">
+      <section>
+          <header><h4>Created by: <a href="{{html_url}}">{{login}}</a></h4></header>
+          <img src="{{avatar_url}}" height="32" width="32">
+        </section>
+    </script>
+    <!-- Handlbars templates end -->
   </body>
 </html>
