@@ -42,12 +42,7 @@
     <script src="jquery-3.1.0.min.js"></script>
     <script src="handlebars.js"></script>
     <script src="index.js"></script>
-    <script id="search-form-template">
-      <form onsubmit="searchRepositories(); return false;">
-        <input type="text" id="searchTerms" placeholder="Search Term">
-        <input type="submit" value="Search">
-      </form>
-    </script>
+
     <script id="search-results-template" type="text/x-handlebars-template">
       <ul>
         {{#each this}}
