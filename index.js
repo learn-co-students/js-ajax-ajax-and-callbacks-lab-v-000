@@ -30,7 +30,13 @@ function searchRepositories() {
       searchResults.push(repoHash);
     }
     displaySearchResults(searchResults);
+  }).fail(function(error){
+    displayError();
   });
+}
+
+function displayError() {
+  document.getElementById("errors").innerHTML = "I'm sorry, there's been an error.";
 }
 
 function displaySearchResults(searchResults) {
@@ -46,6 +52,7 @@ function displaySearchResults(searchResults) {
   }).join('') + "</ul>";
   document.getElementById("results").innerHTML = searchList;
 }
+
 
 // function displaySearchResults() {
 //   const searchResults = JSON.parse(this.responseText).items;
