@@ -35,3 +35,12 @@ function loadSearchTemplate() {
   const searchTerm = document.getElementById("search-form-template").innerHTML;
   document.getElementById("searchBox").innerHTML = searchTerm;
 }
+
+// resp.items.length // 30
+//
+// resp.items[0].name; //react-tetris
+// resp.items[0].description;// use react, redux, immutable to code...
+// resp.items[0].html_url; // 'https://github.com/chvin/react-tetris'
+// resp.items[0].owner.login; //'chvin';
+// resp.items[0].owner.avatar_url; // 'https://avatars2.githubusercontent.com/u/5383506?v=4'
+// resp.items[0].owner.html_url; // 'https://github.com/chvin'
