@@ -48,6 +48,21 @@
         <input type="submit" value="Search">
       </form>
     </script>
+    <script id="search-results-template" type="text/x-handlebars-template">
+      <ul>
+        {{#each this}}
+          <li>
+            <h2>{{name}}</h2>
+            {{description}} <br>
+            {{html_url}} <br>
+            {{owner.login}} <br>
+            {{owner.avatar_url}} <br>
+            {{owner.html_url}}
+          </li>
+        {{/each}}
+      </ul>
+    </script>
+
 
   </body>
 </html>

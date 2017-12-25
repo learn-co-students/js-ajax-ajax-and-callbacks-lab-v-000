@@ -1,6 +1,10 @@
 $(document).ready(function (){
 });
 
+document.addEventListener("DOMContentLoaded", function(event) {
+  Handlebars.registerPartial("authorPartial", document.getElementById("author-partial-template").innerHTML)
+});
+
 function searchRepositories() {
   const searchTerms = $('#searchTerms').val();
   const req = new XMLHttpRequest();
@@ -11,17 +15,9 @@ function searchRepositories() {
 
 function displaySearchResults() {
   const searchResults = JSON.parse(this.responseText).items;
-  const searchList = "<ul>" + searchResults.map(repo => {
-    return(`
-          <li>
-            <h2>${repo.name}</h2>
-            ${repo.description} <br>
-            ${repo.html_url} <br>
-            ${repo.owner.login} <br>
-            ${repo.owner.avatar_url} <br>
-            ${repo.owner.html_url}
-          </li>`)
-  }).join('') + "</ul>";
+  const src = document.getElementById("search-results-template").innerHTML;
+  const template = Handlebars.compile(src);
+  const searchList = template(searchResults);
   document.getElementById("results").innerHTML = searchList;
 }
 
