@@ -19,11 +19,10 @@ function displaySearchResults() {
     return(`
           <li>
             <h2>${repo.name}</h2>
-            ${repo.description} <br>
-            ${repo.html_url} <br>
-            ${repo.owner.login} <br>
-            ${repo.owner.avatar_url} <br>
-            ${repo.owner.html_url}
+            <b>Description: </b>${repo.description} <br>
+            <b>Repo Link: </b><a href= ${repo.html_url}>${repo.html_url}</a> <br>
+            <b>Owner: </b><a href=${repo.owner.html_url}>${repo.owner.login}</a><br>
+            <img src="${repo.owner.avatar_url}" height="32" width="32"> <br>
           </li>`)
   }).join('') + "</ul>";
   document.getElementById("results").innerHTML = searchList;
