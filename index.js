@@ -15,9 +15,17 @@ function searchRepositories() {
 
 function displaySearchResults() {
   const searchResults = JSON.parse(this.responseText).items;
-  const src = document.getElementById("search-results-template").innerHTML;
-  const template = Handlebars.compile(src);
-  const searchList = template(searchResults);
+  const searchList = "<ul>" + searchResults.map(repo => {
+    return(`
+          <li>
+            <h2>${repo.name}</h2>
+            ${repo.description} <br>
+            ${repo.html_url} <br>
+            ${repo.owner.login} <br>
+            ${repo.owner.avatar_url} <br>
+            ${repo.owner.html_url}
+          </li>`)
+  }).join('') + "</ul>";
   document.getElementById("results").innerHTML = searchList;
 }
 

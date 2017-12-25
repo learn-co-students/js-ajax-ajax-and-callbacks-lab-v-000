@@ -55,12 +55,16 @@
             <h2>{{name}}</h2>
             {{description}} <br>
             {{html_url}} <br>
-            {{owner.login}} <br>
-            {{owner.avatar_url}} <br>
-            {{owner.html_url}}
+            {{> authorPartial owner}}
           </li>
         {{/each}}
       </ul>
+    </script>
+
+    <script id="author-partial-template" type="text/x-handlebars-template">
+      {{login}} <br>
+      {{avatar_url}} <br>
+      {{html_url}}
     </script>
 
 
