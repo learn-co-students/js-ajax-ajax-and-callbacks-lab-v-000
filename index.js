@@ -1,18 +1,6 @@
 $(document).ready(function (){
 });
 
-document.addEventListener("DOMContentLoaded", function(event) {
-  Handlebars.registerPartial("authorPartial", document.getElementById("author-partial-template").innerHTML)
-});
-
-// function searchRepositories() {
-//   const searchTerms = $('#searchTerms').val();
-//   const req = new XMLHttpRequest();
-//   req.addEventListener("load", displaySearchResults);
-//   req.open("GET", `https://api.github.com/search/repositories?q=${searchTerms}`);
-//   req.send();
-// }
-
 function searchRepositories() {
   const searchTerms = $('#searchTerms').val();
   const apiRequest = `https://api.github.com/search/repositories?q=${searchTerms}`;
@@ -37,10 +25,8 @@ function searchRepositories() {
 
 function displaySearchResults(searchResults) {
   const searchList = "<ul>" + searchResults.map(repo => {
-    // const dataUserName = 'data-username=${repo.ownerLogin}`;
-    // const dataRepoName = 'data-repository=${repo.name}`;
-    const dataUsername = 'data-username="' + repo.ownerLogin + '"'
-    const dataRepoName = 'data-repository="' + repo.name + '"'
+    const dataUsername = `data-username=${repo.ownerLogin}`;
+    const dataRepoName = `data-repository=${repo.name}`;
     return(`
           <li>
             <h2>${repo.name}</h2>
@@ -49,24 +35,66 @@ function displaySearchResults(searchResults) {
             <b>Owner: </b><a href=${repo.ownerSite}>${repo.ownerLogin}</a><br>
             <img src="${repo.ownerPic}" height="64" width="64"> <br>
             <a href="#" ${dataRepoName} ${dataUsername} onclick="showCommits(this)">Show Commits</a><br>
-            <a href="#" ${dataRepoName} ${dataUsername} onclick="getCommits(this)">Get Commits</a>
           </li>`)
   }).join('') + "</ul>";
-  // $('#results').html(searchList);
-  document.getElementById("results").innerHTML = searchList;
+  $('#results').html(searchList);
 }
 
-function getCommits(el) {
-  debugger;
+function showCommits(el) {
+  const username = el.dataset.username;
+  const repo = el.dataset.repository;
+  const apiRequest = `https://api.github.com/repos/${username}/${repo}/commits`;
+  $.get(apiRequest, function(resp) {
+    const commits = [];
+    for (const commit of resp) {
+      let commitHash = {};
+      commitHash.sha = commit.sha;
+      commitHash.description = commit.commit.message;
+      commitHash.authorName = commit.commit.author.name;
+      if (commit.author) {
+        commitHash.authorLogin = commit.author.login; //null??
+        commitHash.authorPic = commit.author.avatar_url;
+      }
+      commits.push(commitHash);
+    }
+    displayCommits(commits);
+  }).fail(function(error){
+    displayError();
+  });
 }
 
-
-
+function displayCommits(commits) {
+  const commitList = "<ul>" + commits.map(commit => {
+    return(`
+          <li>
+            <b>sha: </b> ${commit.sha} <br>
+            <b>description: </b> ${commit.description} <br>
+            <b>commit by: </b> ${commit.authorName} <br>
+            <b>aka: </b> ${commit.authorLogin} </br>
+            <img src="${commit.authorPic}" height="64" width="64">
+          </li>
+          `)
+  }).join('') + "</ul>";
+  $('#details').html(commitList);
+}
 
 function displayError() {
   $('#errors').html("I'm sorry, there's been an error.");
 }
 
+function loadSearchTemplate() {
+  const searchTerm = document.getElementById("search-form-template").innerHTML;
+  document.getElementById("searchBox").innerHTML = searchTerm;
+}
+
+// ALTERNATE METHOD VIA XMLHttpRequest and JSON parsing.
+// function searchRepositories() {
+//   const searchTerms = $('#searchTerms').val();
+//   const req = new XMLHttpRequest();
+//   req.addEventListener("load", displaySearchResults);
+//   req.open("GET", `https://api.github.com/search/repositories?q=${searchTerms}`);
+//   req.send();
+// }
 
 // function displaySearchResults() {
 //   const searchResults = JSON.parse(this.responseText).items;
@@ -82,38 +110,3 @@ function displayError() {
 //   }).join('') + "</ul>";
 //   document.getElementById("results").innerHTML = searchList;
 // }
-
-function showCommits(el) {
-
-  //document.getElementById("details").innerHTML = something;
-}
-
-// function getRepositories() {
-//   const username = document.getElementById("username").value;
-//   const req = new XMLHttpRequest();
-//   req.addEventListener("load", displayRepositories);
-//   req.open("GET", `https://api.github.com/users/${username}/repos`);
-//   req.send();
-// }
-//
-// function displayRepositories() {
-//   const repos = JSON.parse(this.responseText)
-//   const repoList = "<ul>" + repos.map(repo => {
-//     const dataUsername = 'data-username="' + repo.owner.login + '"'
-//     const dataRepoName = 'data-repository="' + repo.name + '"'
-//     return(`
-//           <li>
-//             <h2>${repo.name}</h2>
-//             <a href="${repo.html_url}">${repo.html_url}</a><br>
-//             <a href="#" ${dataRepoName} ${dataUsername} onclick="getCommits(this)">Get Commits</a><br>
-//             <a href="#" ${dataRepoName} ${dataUsername} onclick="getBranches(this)">Get Branches</a></li>
-//           </li>`
-//           )
-//   }).join('') + "</ul>";
-//   document.getElementById("repositories").innerHTML = repoList
-// }
-
-function loadSearchTemplate() {
-  const searchTerm = document.getElementById("search-form-template").innerHTML;
-  document.getElementById("searchBox").innerHTML = searchTerm;
-}
