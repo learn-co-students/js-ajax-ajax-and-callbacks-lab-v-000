@@ -20,7 +20,7 @@
   </head>
   <body>
     <main id="main">
-      <div id="errors">i'm in error</div>
+      <div id="errors"></div>
     </main>
     <div class="flexbox-container">
       <div>
@@ -40,28 +40,7 @@
       </div>
     </div>
     <script src="jquery-3.1.0.min.js"></script>
-    <script src="handlebars.js"></script>
     <script src="index.js"></script>
-
-    <script id="search-results-template" type="text/x-handlebars-template">
-      <ul>
-        {{#each this}}
-          <li>
-            <h2>{{name}}</h2>
-            {{description}} <br>
-            {{html_url}} <br>
-            {{> authorPartial owner}}
-          </li>
-        {{/each}}
-      </ul>
-    </script>
-
-    <script id="author-partial-template" type="text/x-handlebars-template">
-      {{login}} <br>
-      {{avatar_url}} <br>
-      {{html_url}}
-    </script>
-
 
   </body>
 </html>

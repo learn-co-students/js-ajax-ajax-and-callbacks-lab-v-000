@@ -18,7 +18,7 @@ function searchRepositories() {
   const apiRequest = `https://api.github.com/search/repositories?q=${searchTerms}`;
 
   $.get(apiRequest, function(resp) {
-      const searchResults = [];
+    const searchResults = [];
     for (const repo of resp.items) {
       let repoHash = {};
       repoHash.name = repo.name;
@@ -35,22 +35,36 @@ function searchRepositories() {
   });
 }
 
-function displayError() {
-  document.getElementById("errors").innerHTML = "I'm sorry, there's been an error.";
-}
-
 function displaySearchResults(searchResults) {
   const searchList = "<ul>" + searchResults.map(repo => {
+    // const dataUserName = 'data-username=${repo.ownerLogin}`;
+    // const dataRepoName = 'data-repository=${repo.name}`;
+    const dataUsername = 'data-username="' + repo.ownerLogin + '"'
+    const dataRepoName = 'data-repository="' + repo.name + '"'
     return(`
           <li>
             <h2>${repo.name}</h2>
             <b>Description: </b>${repo.description} <br>
             <b>Repo Link: </b><a href= ${repo.html_url}>${repo.html_url}</a> <br>
             <b>Owner: </b><a href=${repo.ownerSite}>${repo.ownerLogin}</a><br>
-            <img src="${repo.ownerPic}" height="32" width="32"> <br>
+            <img src="${repo.ownerPic}" height="64" width="64"> <br>
+            <a href="#" ${dataRepoName} ${dataUsername} onclick="showCommits(this)">Show Commits</a><br>
+            <a href="#" ${dataRepoName} ${dataUsername} onclick="getCommits(this)">Get Commits</a>
           </li>`)
   }).join('') + "</ul>";
+  // $('#results').html(searchList);
   document.getElementById("results").innerHTML = searchList;
+}
+
+function getCommits(el) {
+  debugger;
+}
+
+
+
+
+function displayError() {
+  $('#errors').html("I'm sorry, there's been an error.");
 }
 
 
