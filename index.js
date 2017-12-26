@@ -25,7 +25,7 @@ function searchRepositories() {
 
 function displaySearchResults(searchResults) {
   const searchList = "<ul>" + searchResults.map(repo => {
-    const dataUsername = `data-username=${repo.ownerLogin}`;
+    const dataUsername = `data-owner=${repo.ownerLogin}`;
     const dataRepoName = `data-repository=${repo.name}`;
     return(`
           <li>
@@ -41,9 +41,9 @@ function displaySearchResults(searchResults) {
 }
 
 function showCommits(el) {
-  const username = el.dataset.username;
+  const owner = el.dataset.owner;
   const repo = el.dataset.repository;
-  const apiRequest = `https://api.github.com/repos/${username}/${repo}/commits`;
+  const apiRequest = `https://api.github.com/repos/${owner}/${repo}/commits`;
   $.get(apiRequest, function(resp) {
     const commits = [];
     for (const commit of resp) {
