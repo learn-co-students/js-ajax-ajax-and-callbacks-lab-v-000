@@ -25,6 +25,13 @@
     <div class="flexbox-container">
       <div>
         <h3>Repositories</h3>
+        <div id="searchBox">
+          <form onsubmit="searchRepositories(); return false;">
+            <input type="text" id="searchTerms" placeholder="Search Term">
+            <input type="submit" value="Search">
+          </form>
+          <a href="#" onclick="loadSearchTemplate();">Search just to pass test</a>
+        </div> <!-- actionJack -->
         <div id="results"></div>
       </div>
       <div>
@@ -33,6 +40,8 @@
       </div>
     </div>
     <script src="jquery-3.1.0.min.js"></script>
+    <script src="handlebars.js"></script>
     <script src="index.js"></script>
+
   </body>
 </html>
