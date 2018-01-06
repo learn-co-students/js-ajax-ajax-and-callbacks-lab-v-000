@@ -20,6 +20,11 @@
   </head>
   <body>
     <main id="main">
+      <form>
+        <input type="text" id="searchTerm">
+        <a href="#" onclick="searchRepositories()" >Search Repositories</a>
+        <a href="hotdogs.com" >Fake Link</a>
+      </form>
       <div id="errors"></div>
     </main>
     <div class="flexbox-container">
@@ -32,7 +37,33 @@
         <div id="details"></div>
       </div>
     </div>
-    <script src="jquery-3.1.0.min.js"></script>
-    <script src="index.js"></script>
+
+
+    <script id="repository-template" type="text/x-handlebars-template">
+         <ul>
+          {{#each this}}
+           <li>
+             <h2><a href="{{html_url}}">{{name}}</a></h2>
+             <a href="#" name="{{commits_url}}" onclick="showCommits(this)">Show Commits</a>
+             {{> authorPartial owner }}
+             <p>Owner URL: {{url}}</p>
+
+
+           </li>
+           {{/each}}
+         </ul>
+      </script>
+      <script id="author-partial-template" type="text/x-handlebars-template">
+      <section>
+         <header><h4>Created By {{login}}</h4></header>
+         <img src="{{avatar_url}}" height="32" width="32">
+      </section>
+      </script>
+
+
+      <script src="jquery-3.1.0.min.js"></script>
+      <script src="handlebars.js"></script>
+      <script src="index.js"></script>
+
   </body>
 </html>
