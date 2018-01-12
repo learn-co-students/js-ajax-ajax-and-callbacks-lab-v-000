@@ -27,3 +27,19 @@ function displayRepositories() {
   }).join('') + "</ul>";
   document.getElementById("repositories").innerHTML = repoList
 }
+
+
+/*Display the collection of repositories inside the results div.
+Include repository name, description, and a link to the HTML URL.
+Also include repository owner login, repository owner avatar as an image,
+and a link to the owner's profile page.
+Hint: Pay close attention to the structure of the search results!
+Add a "Show Commits" link to each repository result that will call a
+showCommits function that gets the repository's commits from the
+GitHub API and display them in the details div.
+For each commit, list the SHA, the author, the author's login,
+and the author's avatar as an image.
+Handle errors on each API call. If $.get fails,
+call a function displayError and display
+"I'm sorry, there's been an error. Please try again." in the errors div.
+Hint: You can test your error callbacks by turning off Wi-Fi or temporarily changing the URL you use in the $.get request.*/
