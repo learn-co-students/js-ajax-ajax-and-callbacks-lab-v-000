@@ -19,6 +19,14 @@
     </style>
   </head>
   <body>
+    <form onsubmit="searchRepositories();return false;">
+     Search Terms: 
+     <input type="text" id="searchTerms">
+     <!-- <a href="#" onclick="$(this).closest('form').submit()">Search</a> -->
+     <input type="submit">
+    </form>
+    <a href=".">Search again</a>
+    <!-- <a href="#" onclick="searchRepositories()">Search Repositories</a> -->
     <main id="main">
       <div id="errors"></div>
     </main>
@@ -26,6 +34,7 @@
       <div>
         <h3>Repositories</h3>
         <div id="results"></div>
+        
       </div>
       <div>
         <h3>Details</h3>
