@@ -21,6 +21,10 @@
   <body>
     <main id="main">
       <div id="errors"></div>
+      <div id="search-form">
+        <input type="text" name="searchTerms" id="searchTerms">
+        <a href="#" onclick="searchRepositories();return false;">Search Repositories</a>
+      </div>
     </main>
     <div class="flexbox-container">
       <div>
@@ -32,6 +36,41 @@
         <div id="details"></div>
       </div>
     </div>
+
+    <!-- <script id="results-template" type="text/x-handlebars-template">
+      <ul>
+        {{# each this}}
+          <li>
+            <h2><a href="{{html_url}}">{{name}}</a></h2>
+            <p>Description: {{description}}</p>
+            {{>authorPartial owner}}
+            <a href="#" onclick="showCommits(this)" data-repository="{{name}}" data-owner="{{owner.login}}">Show Commits</a>
+          </li>
+        {{/ each}}
+      </ul>
+    </script>
+
+    <script id="author-partial-template" type="text/x-handlebars-template">
+      <section>
+        <h3>Created by {{login}}</h3>
+        <img src="{{avatar_url}}" height="32" width="32">
+      </section>
+    </script> -->
+
+    <!-- <script id="details-template" type="text/x-handlebars-template">
+      <ul>
+        {{# each this}}
+          <li>
+            <h3>{{sha}}</h3>
+            <p>{{commit.author.name}}</p>
+            <p>{{author.login}}</p>
+            <img src="{{author.avatar_url}}" height="32" width="32">
+          </li>
+        {{/ each}}
+      </ul>
+    </script> -->
+
+    <script src="handlebars.js"></script>
     <script src="jquery-3.1.0.min.js"></script>
     <script src="index.js"></script>
   </body>
