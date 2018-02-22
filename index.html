@@ -20,13 +20,12 @@
   </head>
   <body>
     <main id="main">
+      <input id="searchTerms" type="text">
+      <a class="search" href="#">Search Repositories</a>
       <div id="errors"></div>
     </main>
     <div class="flexbox-container">
       <div>
-        <form onsubmit="searchRepositories();return false;">
-         Search Terms: <input type="text" id="searchTerms">
-         <input type="submit">
         <h3>Repositories</h3>
         <div id="results"></div>
       </div>
