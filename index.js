@@ -25,7 +25,6 @@ function displayError() {
 function getCommits(url) {
   $(document).ready(function () {
     $.get(`${url}/commits`, function(response) {
-      console.log(url);
       showCommits(response);
     }).fail(function(error) {
       displayError();
@@ -34,7 +33,6 @@ function getCommits(url) {
 }
 
 function showCommits(commits) {
-  console.log(commits)
   let commitData = `<ul>${commits.map(commit => '<li><strong>' + commit.sha + "<br>" + commit.commit.author.name + " - " + commit.author.login +
   '</strong><br>' + "<br>" + `<img src=${commit.author.avatar_url} width="100px">` + "<br><br>" + '</li>').join('')}</ul>`
   document.getElementById("details").innerHTML = commitData
