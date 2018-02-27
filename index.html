@@ -16,16 +16,26 @@
       .flexbox-container > div:first-child {
         margin-right: 20px;
       }
+      #errors {
+        color: red;
+        font-weight: bold;
+      }
     </style>
   </head>
   <body>
     <main id="main">
-      <div id="errors"></div>
+      <div id="errors"></div><br>
+
+      <div>
+        Please enter your search terms: <input id="searchTerms" type="text">
+        <a href="#" onclick="searchRepositories(event)">Search</a>
+      </div>
+
     </main>
     <div class="flexbox-container">
       <div>
         <h3>Repositories</h3>
-        <div id="results"></div>
+        <div id="results">Here are the results of the search:<br></div>
       </div>
       <div>
         <h3>Details</h3>
@@ -33,6 +43,16 @@
       </div>
     </div>
     <script src="jquery-3.1.0.min.js"></script>
+    <script src="handlebars.js"></script>
     <script src="index.js"></script>
+
+    <script id="display-template" type="text/x-handlebars-template">
+      <h2><a href="{{url}}">{{name}}</a></h2>
+      <p>Description: {{description}}</p>
+      <p>Owner login: {{owner.login}}</p>
+      <p>Owner profile: <a href="{{owner.url}}">{{owner.url}}</a></p>
+      <p><img src="{{owner.avatar_url}}" width="100px"></p>
+    </script>
+
   </body>
 </html>
