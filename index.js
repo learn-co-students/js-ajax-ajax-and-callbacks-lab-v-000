@@ -1,3 +1,7 @@
+function displayError() {
+  $("#errors").text("error")
+}
+
 function showCommits(clickedElement) {
   const jqXhr = $.get(`https://api.github.com/repos/${clickedElement.dataset.owner}/${clickedElement.dataset.repository}/commits`)
 
@@ -7,6 +11,7 @@ function showCommits(clickedElement) {
       .join("")
     $("#details").html(`<ul>${commitsHtml}</ul>`)
   })
+  jqXhr.fail(displayError)
 }
 
 function searchRepositories(event) {
@@ -21,6 +26,7 @@ function searchRepositories(event) {
       .join("")
     $("#results").html(`<ul>${resultsHtml}</ul>`)
   })
+  jqXhr.fail(displayError)
 }
 
 $(document).ready(() => {
