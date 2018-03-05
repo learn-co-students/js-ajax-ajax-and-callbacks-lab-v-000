@@ -1,3 +1,14 @@
+function showCommits(clickedElement) {
+  const jqXhr = $.get(`https://api.github.com/repos/${clickedElement.dataset.owner}/${clickedElement.dataset.repository}/commits`)
+
+  jqXhr.done(function (data) {
+    const commitsHtml = data
+      .map(commit => `<li>${commit.sha}</li>`)
+      .join("")
+    $("#details").html(`<ul>${commitsHtml}</ul>`)
+  })
+}
+
 function searchRepositories(event) {
   const q = $("#searchTerms").val()
 
@@ -5,10 +16,16 @@ function searchRepositories(event) {
     q
   })
   jqXhr.done(function (data) {
-    const resultsHtml = data.items.map(repo => `${repo.name}: ${repo.description}`).join("<br>")
-    $("#results").html(resultsHtml)
+    const resultsHtml = data
+      .items.map(repo => `<li data-repository="${repo.name}" data-owner="${repo.owner.login}">${repo.name}: ${repo.description}</li>`)
+      .join("")
+    $("#results").html(`<ul>${resultsHtml}</ul>`)
   })
 }
+
 $(document).ready(() => {
   $("#search").click(searchRepositories)
+  $("#results").on('click', "li", function (event) {
+    showCommits(event.target)
+  })
 });
