@@ -25,14 +25,42 @@
     <div class="flexbox-container">
       <div>
         <h3>Repositories</h3>
+        <p><label for="searchTerms">Find Repositories by Search Term: </label><input id="searchTerms" type="text"></p>
+        <a href="#" onclick="searchRepositories()">Search Repositories</a>
         <div id="results"></div>
       </div>
       <div>
         <h3>Details</h3>
         <div id="details"></div>
+
       </div>
     </div>
     <script src="jquery-3.1.0.min.js"></script>
+    <script src="handlebars.js"></script>
     <script src="index.js"></script>
+    <script id="repository-template" type="text/x-handlebars-template">
+      <ul>
+      {{#each this}}
+        <li>
+          <a href="{{html_url}}" target="_blank">{{name}}</a> -- {{description}}
+          <footer>Created By: <a href="{{owner.html_url}}" target="_blank">{{owner.login}}</a>
+            <p><img src="{{owner.avatar_url}}" height="50 "width="50"> <span><a href="#" data-owner="{{owner.login}}" data-repository="{{name}}" onclick="showCommits(this)">Show Commits</a></span></p>
+          </footer>
+        </li>
+      {{/each}}
+      </ul>
+    </script>
+    <script id="commits-template" type="text/x-handlebars-template">
+      <ul>
+      {{#each this}}
+        <li>
+          <p>{{sha}}</p>
+          <footer>Commit By: {{author.login}}
+            <p><img src="{{author.avatar_url}}" height="50 "width="50"></p>
+          </footer>
+        </li>
+      {{/each}}
+      </ul>
+    </script>
   </body>
 </html>
