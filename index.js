@@ -15,7 +15,7 @@ function displayError (error) {
 }
 
 function searchRepositories () {
-  const searchTerm = document.getElementById("searchTerms").value;
+  const searchTerm = $("#searchTerms").val();
   const url = `https://api.github.com/search/repositories?q=${searchTerm}`;
   $.get(url, function (data) {
     const templateSrcCode = document.getElementById("repository-template").innerHTML;
