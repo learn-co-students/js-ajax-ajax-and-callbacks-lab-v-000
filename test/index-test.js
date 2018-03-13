@@ -50,7 +50,7 @@ describe('index.js', () => {
       xhr.restore()
     })
 
-    xdescribe('searchRepositories', () => {
+    describe('searchRepositories', () => {
       it('calls out to the github search API and displays results', () => {
         window.$('#searchTerms').val('tetris')
         searchRepositories()
@@ -60,7 +60,7 @@ describe('index.js', () => {
       })
     })
 
-    xdescribe('showCommits', () => {
+    describe('showCommits', () => {
       it('calls the github commits api and displays results', () => {
         const el = { dataset: { repository: "repo", owner: "owner" } }
         showCommits(el)
