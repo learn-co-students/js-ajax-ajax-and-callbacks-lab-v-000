@@ -1,3 +1,6 @@
+$(document).ready(function (){
+});
+
 function searchRepositories() {
   const search = $('#searchTerms').val();
   $.get(`https://api.github.com/search/repositories?q=${search}`, displayRepositories)
