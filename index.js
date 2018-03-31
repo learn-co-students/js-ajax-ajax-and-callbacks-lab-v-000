@@ -8,7 +8,7 @@ function searchRepositories() {
 }
 
 function displayRepositories(response) {
-  const responseList = response.items.map(r => `<h3><a href="${r.html.url}">${r.name}</a></h3>
+  const responseList = response.items.map(r => `<h3><a href="${r.html_url}">${r.name}</a></h3>
   <ul>
     <li>${r.description}</li>
     <li><a href="${r.owner.html_url}">${r.owner.login}</a></li>
@@ -27,7 +27,6 @@ function displayCommits(response) {
     `<ul>${response.map(r => '<li>' + r.sha + ' - ' + r.commit.author.name + ' - ' + r.author.login + '</li><li><img src="' + r.author.avatar_url + '"></li>').join('')}</ul>`;
     $('#details').html(commitList);
 }
-
 
 $(document).ready(function (){
 });
