@@ -4,6 +4,22 @@
     <title>Ajax Lab</title>
 
     <style>
+      * {
+        font-family: Arial, sans-serif;
+        text-decoration: none;
+      }
+      .res {
+        padding: .5rem;
+        /*background-color: GhostWhite;*/
+        display: inline-block;
+        margin-bottom: 1rem;
+        border: .1rem solid lavender;
+      }
+
+      img {
+        max-width: 5rem;
+        height: auto;
+      }
       .flexbox-container {
         display: -ms-flex;
         display: -webkit-flex;
@@ -20,6 +36,8 @@
   </head>
   <body>
     <main id="main">
+      <input type="text" id="searchTerms" placeholder="Enter repository...">
+      <a href="javascript:searchRepositories()">Search</a>
       <div id="errors"></div>
     </main>
     <div class="flexbox-container">
