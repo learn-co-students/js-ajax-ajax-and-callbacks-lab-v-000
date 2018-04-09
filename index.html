@@ -25,6 +25,8 @@
     <div class="flexbox-container">
       <div>
         <h3>Repositories</h3>
+          <input type="text" id="searchTerms"><br>
+          <a href="#" onclick="searchRepositories();">Search Repositories</a>
         <div id="results"></div>
       </div>
       <div>
@@ -32,6 +34,16 @@
         <div id="details"></div>
       </div>
     </div>
+    <script id="repo-template" type="text/x-handlebars-template">
+      <ul>
+        {{#each this}}
+          <li>
+            <h2><a href="{{html_url}}">{{name}}</a></h2>
+            <p>{{description}}</p>
+          </li>
+        {{/each}}
+      </ul>
+    </script>
     <script src="jquery-3.1.0.min.js"></script>
     <script src="index.js"></script>
   </body>
