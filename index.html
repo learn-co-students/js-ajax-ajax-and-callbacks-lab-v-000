@@ -21,6 +21,11 @@
   <body>
     <main id="main">
       <div id="errors"></div>
+      <form class="">
+        Search Terms: <input id="searchTerms" type="text" name="searchTerms" value="">
+        <a href="#" onclick="searchRepositories();return false;">Search Repositories</a>
+      </form>
+
     </main>
     <div class="flexbox-container">
       <div>
@@ -32,6 +37,7 @@
         <div id="details"></div>
       </div>
     </div>
+    
     <script src="jquery-3.1.0.min.js"></script>
     <script src="index.js"></script>
   </body>
