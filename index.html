@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Ajax Lab</title>
-
+    <link href="https://npmcdn.com/basscss@8.0.1/css/basscss.min.css" rel="stylesheet">
     <style>
       .flexbox-container {
         display: -ms-flex;
@@ -21,6 +21,8 @@
   <body>
     <main id="main">
       <div id="errors"></div>
+      <input type="text" id="searchTerms"><br>
+      <a href="#" onclick="searchRepositories();">Search Repositories</a>
     </main>
     <div class="flexbox-container">
       <div>
