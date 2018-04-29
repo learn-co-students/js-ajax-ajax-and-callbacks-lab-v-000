@@ -43,5 +43,5 @@ function showCommits(el) {
 }
 
 function displayError(error) {
-    $("#errors").append('error');
+    $("#errors").append('Oops: an error has occurred.');
 }
