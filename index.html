@@ -11,15 +11,23 @@
       }
       .flexbox-container > div {
         width: 50%;
-        padding: 10px;
+        border-bottom:2px;
       }
       .flexbox-container > div:first-child {
-        margin-right: 20px;
+        margin-right: 10px;
+      }
+      .img {
+        border-radius:10%;
       }
     </style>
   </head>
   <body>
     <main id="main">
+      <form onsubmit="searchRepositories()">
+        <input type="text" id="searchTerms">
+        <input type="submit" value="Search">
+      </form>
+      <a href="#" onclick="searchRepositories()">Search</a>
       <div id="errors"></div>
     </main>
     <div class="flexbox-container">
