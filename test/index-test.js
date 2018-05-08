@@ -55,7 +55,7 @@ describe('index.js', () => {
         window.$('#searchTerms').val('tetris')
         searchRepositories()
         requests[0].respond(200, contentType, resultsData())
-        expect(requests[0].url).toMatch(/https:\/\/api.github.com\/search\/repositories\?q=tetris/)
+        expect(requests[0].url).toMatch("https://api.github.com/search/repositories?q=tetris") //changed regex to string literal because escape characters weren't escaping in the tests and AAQ was down
         expect(window.$('#results').html()).toMatch(/Tetris/)
       })
     })
@@ -65,7 +65,7 @@ describe('index.js', () => {
         const el = { dataset: { repository: "repo", owner: "owner" } }
         showCommits(el)
         requests[0].respond(200, contentType, commitsData())
-        expect(requests[0].url).toMatch(/https:\/\/api.github.com\/repos\/owner\/repo\/commits/)
+        expect(requests[0].url).toMatch("https://api.github.com/repos/owner/repo/commits") //changed regex to string literal because escape characters weren't escaping in the tests and AAQ was down
         expect(window.$('#details').html()).toMatch(/6dcb09b5b57875f334f61aebed695e2e4193db5e/)
       })
     })
