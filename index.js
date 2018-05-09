@@ -7,13 +7,13 @@ function searchRepositories() {
   const searchTerms = $('#searchTerms').val()
   $.get(`https://api.github.com/search/repositories?q=${searchTerms}`, data => {
       //Display the collection of repositories inside the results div.
-      $('#results').html(displaySearchResults(data))
+      $('#results').html(renderSearchResults(data))
     }).fail(error => {
       displayError()
     })
 }
 
-function displaySearchResults(data) {
+function renderSearchResults(data) {
   if (data.total_count > 0) {
     return data.items.map(result => {
       return `
