@@ -1,14 +1,14 @@
 $(document).ready(function (){
-
 });
 
 function searchRepositories() {
   const searchTerms = document.getElementById('searchTerms').value
   $.get(`https://api.github.com/search/repositories?q=${searchTerms}`, function(response) {
-
     $("#results").html(showRepositories(response));
   })
-}
+}.fail(error => {
+  displayError()
+})
 
 function showRepositories(response) {
   const repoList =
@@ -29,11 +29,14 @@ function showRepositories(response) {
 
 
 function getCommits(repo) {
+  debugger
   url = repo.id.slice(0, -6)
   $.get(url, function(response) {
     $("#details").html(showCommits(response));
   })
-}
+}.fail(error => {
+  displayError()
+})
 
 function showCommits(response) {
   const commitsList = response.map(commit => {
