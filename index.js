@@ -5,10 +5,10 @@ function searchRepositories() {
   const searchTerms = document.getElementById('searchTerms').value
   $.get(`https://api.github.com/search/repositories?q=${searchTerms}`, function(response) {
     $("#results").html(showRepositories(response));
+  }).fail(error => {
+    displayError()
   })
-}.fail(error => {
-  displayError()
-})
+}
 
 function showRepositories(response) {
   const repoList =
@@ -27,25 +27,20 @@ function showRepositories(response) {
   return repoList
 }
 
-
-function getCommits(repo) {
-  debugger
-  url = repo.id.slice(0, -6)
-  $.get(url, function(response) {
-    $("#details").html(showCommits(response));
+function showCommits(el) {
+  $.get(`https://api.github.com/repos/${el.dataset.owner}/${el.dataset.repository}/commits`, function(response) {
+    $("#details").html(displayCommits(response));
   })
-}.fail(error => {
-  displayError()
-})
+}
 
-function showCommits(response) {
+function displayCommits(response) {
   const commitsList = response.map(commit => {
-    return showCommit(commit)
+    return displayCommit(commit)
   }).join('')
   return `<ul>${commitsList}</ul>`
 }
 
-function showCommit(commit) {
+function displayCommit(commit) {
   return `<li><p>${commit.sha}</p><p>${commit.commit.message}</p></li>`
 }
 
