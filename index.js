@@ -21,7 +21,7 @@ function showRepositories(response) {
         <p>${repo.owner.login}</p>
         <img src="${repo.owner.avatar_url}" height="32" width="32">
         <a href="${repo.owner.url}">${repo.owner.url}</a>
-        <a href="#" id="${repo.commits_url}" onClick="getCommits(this)">Show Commits</a>
+        <a href="#" onClick="getCommits(this)">Show Commits</a>
       </li>`)}).join('')}
   </ul>`
   return repoList
