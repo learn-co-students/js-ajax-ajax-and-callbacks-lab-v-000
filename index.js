@@ -1,7 +1,10 @@
 $(document).ready(function (){
 });
 
-var displayError = () => $('#errors').html("I'm sorry, there's been an error. Please try again.")
+function displayError () { 
+  return $('#errors').html("I'm sorry, there's been an error. Please try again.")
+}
+
 
 function searchRepositories() {
   const term = document.getElementById('searchTerms').value;
@@ -9,15 +12,22 @@ function searchRepositories() {
   $.get(url, data => {
     // console.log(data);
     $('#results').html(renderResults(data))
+  }).fail(error => {
+    displayError()
   })
 }
 
 function showCommits(result) {
-  const owner = document.getElementById("repo-results")
-  const url = `https://api.github.com/repos/${owner.dataset.owner}/${owner.dataset.repository}/commits`
+  const stuff = document.getElementById("repo-results")
+  const owner = stuff.dataset.owner
+  console.log(owner);
+  const repo = stuff.dataset.repository
+  console.log(repo);
+  const url = `https://api.github.com/repos/${owner}/${repo}/commits`
   $.get(url, data => {
-    console.log(data);
     $('#details').html(renderCommits(data))
+  }).fail(error => {
+    displayError()
   })
 }
 
