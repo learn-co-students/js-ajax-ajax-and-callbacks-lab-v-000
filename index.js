@@ -18,11 +18,8 @@ function searchRepositories() {
 }
 
 function showCommits(result) {
-  const stuff = document.getElementById("repo-results")
-  const owner = stuff.dataset.owner
-  console.log(owner);
-  const repo = stuff.dataset.repository
-  console.log(repo);
+  const owner = result.dataset.owner
+  const repo = result.dataset.repository
   const url = `https://api.github.com/repos/${owner}/${repo}/commits`
   $.get(url, data => {
     $('#details').html(renderCommits(data))
@@ -35,10 +32,10 @@ function showCommits(result) {
 function renderResults(data) {
   return data.items.map(result => {
     return `
-    <div id="repo-results" data-owner="${result.owner.login}" data-repository="${result.name}">
+    <div id="repo-results">
     <img src="${result.owner.avatar_url}" width="45 px"><br>
     <h2><a href="${result.html_url}">${result.name}</a><h2>
-    <p><a href="#" onClick="showCommits(this)">Show Commits</a></p>
+    <p><a href="#" data-owner="${result.owner.login}" data-repository="${result.name}" onClick="showCommits(this)">Show Commits</a></p>
     Description: ${result.description}<br>
     URL: <a href="${result.html_url}">${result.html_url}</a><br>
     Owner: ${result.owner.login}<br>
@@ -51,6 +48,7 @@ function renderResults(data) {
 function renderCommits(data) {
   return data.map(result => {
     return `
+    <p>SHA: ${result.sha}</p>
      <img src="${result.author.avatar_url}" width="45px"<br>
      <h2><a href="${result.author.html_url}">${result.author.login}</a></h2><br>
     `
