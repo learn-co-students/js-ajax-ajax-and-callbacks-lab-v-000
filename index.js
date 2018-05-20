@@ -1,6 +1,7 @@
 $(document).ready(function (){
 });
 
+var displayError = () => $('#errors').html("I'm sorry, there's been an error. Please try again.")
 
 function searchRepositories() {
   const term = document.getElementById('searchTerms').value;
@@ -38,7 +39,7 @@ function renderResults(data) {
 }
 
 function renderCommits(data) {
-  return data.items.map(result => {
+  return data.map(result => {
     return `
      <img src="${result.author.avatar_url}" width="45px"<br>
      <h2><a href="${result.author.html_url}">${result.author.login}</a></h2><br>
