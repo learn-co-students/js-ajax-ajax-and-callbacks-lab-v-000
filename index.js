@@ -21,7 +21,7 @@ function showRepositories(response) {
         <p>${repo.owner.login}</p>
         <img src="${repo.owner.avatar_url}" height="32" width="32">
         <a href="${repo.owner.url}">${repo.owner.url}</a>
-        <a href="#" onClick="getCommits(this)">Show Commits</a>
+        <a href="#" data-owner="${repo.owner.login}" data-repository="${repo.name}" onClick="showCommits(this)">Show Commits</a>
       </li>`)}).join('')}
   </ul>`
   return repoList
@@ -30,6 +30,8 @@ function showRepositories(response) {
 function showCommits(el) {
   $.get(`https://api.github.com/repos/${el.dataset.owner}/${el.dataset.repository}/commits`, function(response) {
     $("#details").html(displayCommits(response));
+  }).fail(error => {
+    displayError()
   })
 }
 
@@ -41,7 +43,7 @@ function displayCommits(response) {
 }
 
 function displayCommit(commit) {
-  return `<li><p>${commit.sha}</p><p>${commit.commit.message}</p></li>`
+  return `<li><p>SHA: ${commit.sha}</p><p>Commit message: ${commit.commit.message}</p></li>`
 }
 
 function displayError() {
