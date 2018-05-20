@@ -11,9 +11,8 @@ function searchRepositories() {
 }
 
 var renderResults = (data) => data.items.map( result => {
-  
+  result.name
 })
 
 
 
-var renderSearchResults = (data) => data.items.map( result => renderSearchResult(result))
