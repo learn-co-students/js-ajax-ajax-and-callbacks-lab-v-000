@@ -10,8 +10,10 @@ function searchRepositories() {
   })
 }
 
-function renderResults(data) {
+var renderResults = (data) => data.items.map( result => {
   
-}
+})
 
-(data) => data.items.map( result => renderSearchResult(result))
+
+
+var renderSearchResults = (data) => data.items.map( result => renderSearchResult(result))
