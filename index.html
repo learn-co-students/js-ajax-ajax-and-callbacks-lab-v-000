@@ -24,6 +24,10 @@
     </main>
     <div class="flexbox-container">
       <div>
+        <form id="search" onsubmit="searchRepositories();return false;">
+           Search: <input type="text" id="searchTerms"><br>
+           <input type="submit">
+         </form>
         <h3>Repositories</h3>
         <div id="results"></div>
       </div>
