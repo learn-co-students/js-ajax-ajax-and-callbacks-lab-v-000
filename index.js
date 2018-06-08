@@ -18,14 +18,12 @@ var showCommits = (el) => {
 }
 
 var renderSearchResult = (result) => {
-  return `
-      <div>
-        <h2><a href="${result.html_url}">${result.name}</a></h2>
+  return `<div>
+        <h3><a href="${result.html_url}">${result.name}</a></h3>
         <p><a href="#" data-repository="${result.name}" data-owner="${result.owner.login}" onclick="showCommits(this)">Show Commits</a></p>
         <p>${result.description}</p>
       </div>
-      <hr>
-    `
+      <hr>`
 }
 
 var renderSearchResults = (data) => data.items.map( result => renderSearchResult(result))
@@ -75,7 +73,7 @@ var searchRepositories = () => {
   //   $(".details").html(response);
   // }
 
-//} 
+//}
 
 
 $(document).ready(function (){
