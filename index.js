@@ -3,8 +3,9 @@ function searchRepositories() {
         const q = $("#searchTerms").val();
         console.log(q);
         $.get(`https://api.github.com/search/repositories?q=${q}`, function(data) {
-            $("#results").html(data.items.map(r => renderRepoData(r)));
-        });
+                $("#results").html(data.items.map(r => renderRepoData(r)));
+            })
+            .fail(displayError());
     });
 }
 
@@ -28,8 +29,9 @@ function showCommits(el) {
     const repo = el.dataset.repo;
     $(document).ready(function() {
         $.get(`https://api.github.com/repos/${owner}/${repo}/commits`, function(data) {
-            $("#details").html(data.map(c => renderCommitData(c)));
-        });
+                $("#details").html(data.map(c => renderCommitData(c)));
+            })
+            .fail(displayError());
     });
 }
 
@@ -39,4 +41,8 @@ function renderCommitData(commits) {
     <p>Author: ${commits.author.login}</p>
     <p>Avatar: <img src="${commits.author.avatar_url}"></p>
     `
+}
+
+function displayError() {
+    $("#errors").html("I'm sorry, there's been an error. Please try again.")
 }
