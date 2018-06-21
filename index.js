@@ -1,12 +1,12 @@
 function searchRepositories() {
-    //$(document).ready(function() {
-    const q = $('#searchTerms').val();
-    console.log(q);
-    $.get(`https://api.github.com/search/repositories?q=${q}`, function(data) {
-            $("#results").html(data.items.map(r => renderRepoData(r)));
-        })
-        .fail(displayError());
-    //});
+    $(document).ready(function() {
+        const q = $('#searchTerms').val();
+        console.log(q);
+        $.get(`https://api.github.com/search/repositories?q=${q}`, function(data) {
+                $("#results").html(data.items.map(r => renderRepoData(r)));
+            })
+            .fail(error => { displayError() });
+    });
 }
 
 
@@ -27,12 +27,12 @@ function renderRepoData(repo) {
 function showCommits(el) {
     const owner = el.dataset.owner;
     const repo = el.dataset.repository;
-    //$(document).ready(function() {
-    $.get(`https://api.github.com/repos/${owner}/${repo}/commits`, function(data) {
-            $("#details").html(data.map(c => renderCommitData(c)));
-        })
-        .fail(displayError());
-    //});
+    $(document).ready(function() {
+        $.get(`https://api.github.com/repos/${owner}/${repo}/commits`, function(data) {
+                $("#details").html(data.map(c => renderCommitData(c)));
+            })
+            .fail(error => { displayError() });
+    });
 }
 
 function renderCommitData(commits) {
