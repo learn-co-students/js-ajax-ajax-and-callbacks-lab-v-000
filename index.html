@@ -21,6 +21,11 @@
   <body>
     <main id="main">
       <div id="errors"></div>
+
+      <form onsubmit="searchRepositories(); return false;">
+        <input type="text" id="searchTerms"><br>
+        <input type="submit">
+      </form>
     </main>
     <div class="flexbox-container">
       <div>
@@ -32,6 +37,7 @@
         <div id="details"></div>
       </div>
     </div>
+
     <script src="jquery-3.1.0.min.js"></script>
     <script src="index.js"></script>
   </body>
