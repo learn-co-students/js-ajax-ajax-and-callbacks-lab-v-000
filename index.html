@@ -20,18 +20,37 @@
   </head>
   <body>
     <main id="main">
+      <form onsubmit="searchRepositories();return false";>
+        <input type="text" id="searchTerms"><br>
+        <input type="submit">
+      </form>
       <div id="errors"></div>
     </main>
     <div class="flexbox-container">
       <div>
         <h3>Repositories</h3>
-        <div id="results"></div>
+        <div id="results">
+          <script id="repository-template" type="test/x-handlebars-template">
+            <ul>
+              {{#each this}}
+              <li>
+                <h2><a href="{{html_url}}">{{name}}</a></h2>
+
+                <p>Watchers: {{watchers_count}}</p>
+                <p>Forks: {{forks_count}}</p>
+                <p>Issues: {{issues_count}}</p>
+              </li>
+              {{/each}}
+            </ul>
+          </script>
+        </div>
       </div>
       <div>
         <h3>Details</h3>
         <div id="details"></div>
       </div>
     </div>
+    <script src="handlebars.js"></script>
     <script src="jquery-3.1.0.min.js"></script>
     <script src="index.js"></script>
   </body>
