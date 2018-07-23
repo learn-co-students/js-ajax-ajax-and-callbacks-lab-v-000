@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <title>Ajax Lab</title>
 
@@ -9,23 +10,33 @@
         display: -webkit-flex;
         display: flex;
       }
-      .flexbox-container > div {
+
+      .flexbox-container>div {
         width: 50%;
         padding: 10px;
       }
-      .flexbox-container > div:first-child {
+
+      .flexbox-container>div:first-child {
         margin-right: 20px;
       }
     </style>
   </head>
+
   <body>
     <main id="main">
       <div id="errors"></div>
     </main>
+    <!--Create a "Search Repositories" link that calls a searchRepositories function on click, 
+      takes the value of a searchTerms text input, 
+      and queries the GitHub repository search API.-->
+    <input type="text" name="search" id="searchTerms">
+    <a href="#" onclick="searchRepositories();">Search Repositories</a>
     <div class="flexbox-container">
       <div>
         <h3>Repositories</h3>
-        <div id="results"></div>
+        <div id="results">
+
+        </div>
       </div>
       <div>
         <h3>Details</h3>
@@ -35,4 +46,5 @@
     <script src="jquery-3.1.0.min.js"></script>
     <script src="index.js"></script>
   </body>
+
 </html>
