@@ -36,6 +36,9 @@ var createResultDiv = (result) => {
   return `
       <div>
         <h2><a href="${result.html_url}">${result.name}</a></h2>
+        <p>Owner Login: ${result.owner.login} </p>
+        <p><a href="${result.owner.url}"> Profile Page </a> </p>
+        <img src ="${result.owner.avatar_url}" alt="avatar" height="42" width="42">
         <p><a href="#" data-repository="${result.name}" data-owner="${result.owner.login}" onclick="showCommits(this)">Show Commits</a></p>
         <p>${result.description}</p>
       </div>
