@@ -12,17 +12,20 @@
 
   var displayError = () => $('#errors').html("I'm sorry, there's been an error. Please try again.")
 
-var renderCommit = (commit) => {
-  return `<li><h3>${commit.sha}</h3><p>${commit.commit.message}</p></li>`
+var createCommit = function(commit) {
+
+  return `<li><h3>${commit.sha}</h3><p>${commit.commit.message}</p>
+  <p>Author: ${commit.commit.author.name}</p> <p> Author login:${commit.author.login} </p><img src="${commit.author.avatar_url}" alt="avatar" height="42" width="42"> </li>`
 }
 
-var renderCommits = (data) => {
-  let result = data.map((commit)=>renderCommit(commit)).join('')
+var renderCommits = function(data) {
+  console.log(data)
+  let result = data.map((commit)=>createCommit(commit)).join('')
   return `<ul>${result}</ul>`
 }
 
-var showCommits = (el) => {
-  $.get(`https://api.github.com/repos/${el.dataset.owner}/${el.dataset.repository}/commits`, data => {
+var showCommits = (arg) => {
+  $.get(`https://api.github.com/repos/${arg.dataset.owner}/${arg.dataset.repository}/commits`, function(data) {
     $('#details').html(renderCommits(data))
   }).fail(error => {
     displayError()
