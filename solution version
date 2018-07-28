@@ -1,0 +1,41 @@
+let displayError = () => $('#errors').html("I'm sorry, there's been an error. Please try again.")
+//set displayError equal to a function that uses jQuery to set the html value of <div id="errors">
+
+let renderCommit = (commit) => {
+  return `<li><h3>${commit.sha}</h3><p>${commit.commit.message}</p></li>` //return an interpolated string giving the sha (branch to start listing commits from, usually the default of 'master') and the commit message
+}
+
+let renderCommits = (data) => { //this calls the renderCommit function for each commit in the data set. this has the <ul> tags, and then the <li> tags are done with the renderCommit function
+  let result = data.map((commit) => renderCommit(commit)).join('')
+  return `<ul>${result}</ul>`
+}
+
+let showCommits = (el) => {
+  $.get(`https://api.github.com/repos/${el.dataset.owner}/${el.dataset.repository}/commits`, data => {
+    $('#details').html(renderCommits(data))
+  }).fail(error => {
+    displayError()
+  })
+}
+
+let renderSearchResult = (result) => {
+  return `
+    <div>
+      <h2><a href="${result.html_url}">${result.name}</a></h2>
+      <p><a href="#" data-repository="${result.name}" data-owner="${result.owner.login}" onclick="showCommits(this)">Show Commits</a></p>
+      <p>${result.description}</p>
+      </div>
+      <hr>
+    `
+}
+
+let renderSearchResults = (data) => data.items.map( result => renderSeachResult(result))
+
+let searchRepositories = () => {
+  const searchItems = $('#searchTerms').val()
+  $.get(`https://api.github.com/search/repositories?q=#{searchTerms}`, data => {
+    $('#results').html(renderSearchResults(data))
+  }).fail(error => {
+    displayError()
+  })
+}
