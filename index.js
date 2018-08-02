@@ -1,8 +1,8 @@
 $(document).ready(function (){
-  $.get('https://api.github.com/users/octocat/repos', searchRepositories(searchTermstext) {
+  $.get('https://api.github.com/users/octocat/repos', searchRepositories(searchTerms) {
     // Here we are getting the element on the page with the id of sentences and
     // inserting the response
-    $("#results").html(searchTermstext);
+    $("#results").html(searchTerms);
   });
 });
 
