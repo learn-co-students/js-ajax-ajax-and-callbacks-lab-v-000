@@ -19,19 +19,59 @@
     </style>
   </head>
   <body>
+
     <main id="main">
-      <div id="errors"></div>
+
+
+      <div id="errors">
+        <!--Empty Errors Div Displays Error if API call fails-->
+      </div>
+
+      <br />
+
+      <!--Search Repositories Link Calls to API with Search Term in Input Below-->
+      <a href="#" onclick="searchRepositories()">Search Repositories</a><br /><br />
+
+
+      <!--Text Input for Search Term-->
+      <input id="searchTerms" type="text" />
+
     </main>
+
+
     <div class="flexbox-container">
+
       <div>
+
         <h3>Repositories</h3>
-        <div id="results"></div>
+
+        <div id="results">
+          <!--Repos Found in Search Displayed Here ✓-->
+          <!--Name ✓-->
+          <!--Description ✓-->
+          <!--HTML URL Link ✓ -->
+          <!--Show Commits Link Calls showCommits function ✓ -->
+        </div>
+
       </div>
+
       <div>
+
         <h3>Details</h3>
-        <div id="details"></div>
+
+        <div id="details">
+          <!--Commits for Each Repo Displayed Here -->
+          <!--SHA-->
+          <!--Author-->
+          <!--Authors login-->
+          <!--Avatar as image-->
+
+        </div>
+
       </div>
+
     </div>
+
     <script src="jquery-3.1.0.min.js"></script>
     <script src="index.js"></script>
   </body>
