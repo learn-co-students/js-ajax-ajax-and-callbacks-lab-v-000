@@ -4,12 +4,12 @@ function displayError(){
 
 function listCommits(results){
   return results.map (commit =>{
-		return `<ul><li> ${commit.sha}</li><li> ${commit.commit.message} </li></ul>`})
+		return `<ul><li>${commit.sha}</li><li>${commit.commit.message}</li></ul>`})
 }
 
 function showRepositories(results) {
   return results.items.map (repo =>{
-    return `<div><h4><a href="test">${repo.name}</a><h4><p><a href="#" data-repository="${repo.name}" data-owner="${repo.owner.login}" onclick = "showCommits(this)"> Show Commits</a></p><p>${repo.description}</p></div>`})
+    return `<div><h4>${repo.name}<h4><p><a href="#" data-repository="${repo.name}" data-owner="${repo.owner.login}" onclick = "showCommits(this)">Show Commits</a></p><p>${repo.description}</p></div>`})
 }
 
 function searchRepositories(){
