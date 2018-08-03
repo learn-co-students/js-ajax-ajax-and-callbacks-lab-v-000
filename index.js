@@ -24,4 +24,4 @@ function showCommits(commit){
 }
 
 $(document).ready(function (){
-});
+})
