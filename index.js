@@ -3,7 +3,15 @@ function displayError() {
 }
 
 function renderCommit(commit) {
-  return `<li><h3>${commit.sha}</h3><p>${commit.commit.message}</p></li>`;
+  return `
+    <li>
+      <h3>${commit.sha}</h3>
+      <p>${commit.commit.author.name}</p>
+      <p>${commit.author.login}</p>
+      <img src="${commit.author.avatar_url}">
+      <p>${commit.commit.message}</p>
+    </li>
+  `;
 }
 
 function renderCommits(data) {
@@ -23,6 +31,8 @@ function renderSearchResult(result) {
   return `
     <div>
       <h2><a href="${result.html_url}">${result.name}</a></h2>
+      <p>${result.owner.login}</p><br>
+      <img src="${result.owner.avatar_url}"><br>
       <p><a href="#" data-repository="${result.name}" data-owner="${result.owner.login}" onclick="showCommits(this)">Show Commits</a></p>
       <p>${result.description}</p>
     </div>
