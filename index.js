@@ -2,19 +2,6 @@ function displayError(){
   $('#errors').html(`<p>Oops... there's been an error...</p>`)
 }
 
-// function searchRepositories(){
-//   search = $("#searchTerms")[0].value
-//   $.get(`https://api.github.com/search/repositories?q=${search}`, function(data){
-//     console.log("Yeah it worked!")
-//     $('#results').html("searching")
-//     showRepositories(data)
-//   }).fail(function(error){
-//     console.log("Erruurrrr")
-//     displayError()
-//     $('#results').html("erroring")
-//   })
-// }
-
 function searchRepositories() {
   const searchTerms = $('#searchTerms').val()
   $.get(`https://api.github.com/search/repositories?q=${searchTerms}`, function(data) {
@@ -32,14 +19,29 @@ function displayRepository(repo){
   return `<div>
             <h2> <a href=${repo.html_url}>${repo.name}</a></h2>
             <p> <img src=${repo.owner.avatar_url} width=30px height=30px> ${repo.owner.login} <p>
-            <p> <a href="#" data-commits_url="${repo.commits_url}" onclick="showCommits(this)"> See commits </a></p>
+            <p> <a href="#" data-repository="${repo.name}" data-owner="${repo.owner.login}" onclick="showCommits(this)"> See commits </a></p>
           </div>`
 }
 
 function showCommits(link){
-  $.get(link.dataset.commits_url), data => {
-    $('details').html(`here they are, the commits`)
-  }
+  let url = `https://api.github.com/repos/${link.dataset.owner}/${link.dataset.repository}/commits/`
+  console.log(url)
+  $.get(url, data => {
+    $('#details').html(iterateOverCommits(data))
+  }).fail(error => {
+    displayError()
+  })
+}
+
+function iterateOverCommits(commits) {
+  $('#details').html(commits.map(c => displayCommit(c)))
+}
+
+function displayCommit(c) {
+  return `<div>
+            <p><img src=${c.author.avatar_url} width=30px height=30px> <strong>${c.commit.author.name}</strong></p>
+            <p>${c.author.login} // ${c.sha}</p>
+          </div>`
 }
 
 $(document).ready(function (){
