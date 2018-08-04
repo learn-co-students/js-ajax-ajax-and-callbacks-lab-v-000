@@ -18,13 +18,18 @@
       }
     </style>
   </head>
+
   <body>
     <main id="main">
       <div id="errors"></div>
+      <div id="search">
+        <input type="text" id="searchTerms" placeholder="Username">
+        <a href="#" onclick="searchRepositories()">Search</a>
+      </div>
     </main>
     <div class="flexbox-container">
       <div>
-        <h3>Repositories</h3>
+        <h3>Results blahblah</h3>
         <div id="results"></div>
       </div>
       <div>
@@ -34,5 +39,9 @@
     </div>
     <script src="jquery-3.1.0.min.js"></script>
     <script src="index.js"></script>
+
+    <script id="repo-template" type="text/x-handlebars-template">
+
+    </script>
   </body>
 </html>
