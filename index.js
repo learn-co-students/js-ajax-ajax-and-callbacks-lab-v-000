@@ -10,78 +10,35 @@ function searchRepositories(){
       return (
         `<li>
           <h2><a href="${r.url}">${repository}</a></h2>
-          <p>Description:${r.description}</p>
+          <p>Description: ${r.description}</p>
           <a href="#" data-repository="${repository}" data-owner="${owner}" onclick="showCommits(this);">Show Commits</a>
           <h3>Owner: <a href="${r.owner.url}">${owner}</a></h3>
           <img src="${r.owner.avatar_url}">
         </li>`
       )
     }).join('') + "</ul>";
-    document.getElementById("results").innerHTML = repoList
-  })
+    $("#results").html(repoList)
+  }).fail(displayError());
 }
 
-
-//  function searchRepositories(){
-//     let terms = $("#searchTerms").val();
-//     const req = new XMLHttpRequest()
-//     req.addEventListener("load", showRepositories)
-//     req.open("GET", `https://api.github.com/search/repositories?q=${terms}`)
-//     req.send()
-//   }
-  
-  // function showRepositories(event,data){
-  //   let repos = JSON.parse(this.responseText).items
-  //   const repoList = "<ul>" + repos.map(r => {
-  //     const repository = r.name
-  //     const description = r.description
-  //     const repoUrl = r.url
-  //     const owner = r.owner.login
-  //     const ownerAvatar = r.owner.avatar_url
-  //     const ownerUrl = r.owner.url
-  
-  //     return (
-  //       `<li>
-  //         <h2><a href="${repoUrl}">${repository}</a></h2>
-  //         <p>Description:${description}</p>
-  //         <a href="#" data-repository="${repository}" data-owner="${owner}" onclick="showCommits(this);">Show Commits</a>
-  //         <h3>Owner: <a href="${ownerUrl}">${owner}</a></h3>
-  //         <img src="${ownerAvatar}">
-  //       </li>`
-  //     )
-  //   }).join('') + "</ul>";
-  //   document.getElementById("results").innerHTML = repoList
-  // }
-  
-  function showCommits(data){
-    const repository = data.dataset.repository
-    const owner = data.dataset.owner
-    const req = new XMLHttpRequest();
-    req.addEventListener("load", displayCommits)
-    req.open("GET", `https://api.github.com/repos/${owner}/${repository}/commits`)
-    req.send();
-  }
-  
-  function displayCommits(event,data){
-    const commits = JSON.parse(this.responseText)
+function showCommits(repoData){
+  let repository = repoData.dataset.repository
+  let owner = repoData.dataset.owner
+  $.get(`https://api.github.com/repos/${owner}/${repository}/commits`, function(commits){
     const commitList = "<ul" + commits.map(c =>{
-      const commitUrl = c.url
-      const commitAuthor = c.committer.name
-      const commitAuthorLogin = c.committer.login
-      const authorAvatar = c.committer.avatar_url
       return (
         `<li>
-        <h2>${commitUrl}</h2>
-        <p>SHA: ${c.sha}<p>
-        <p>Author: ${commitAuthor}</p>
-        <p>Login: ${commitAuthorLogin}</p>
-        <img src="${authorAvatar}">
+          <h4>SHA: <a href="${c.url}">${c.sha}</a><h4>
+          <p>Author: ${c.committer.name}</p>
+          <p>Login: ${c.committer.login}</p>
+          <img src="${c.committer.avatar_url}">
         </li>`
       )
     }).join('') + "</ul>";
-    document.getElementById("details").innerHTML = commitList;
-  }
-  
-  function displayError(){
-    $('#errors').html("I'm sorry, there's been an error. Please try again;")
-  }
+    $("#details").html(commitList);
+  }).fail(displayError());
+}
+
+function displayError(){
+  $('#errors').html("I'm sorry, there's been an error. Please try again;")
+}
