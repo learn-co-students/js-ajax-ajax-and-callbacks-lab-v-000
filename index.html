@@ -22,16 +22,52 @@
     <main id="main">
       <div id="errors"></div>
     </main>
+    <!-- <input type="text" id="searchTerms" />
+    <a href="#" onclick="searchRepositories()"> Search</a>
+    <div id="repositories"></div> -->
     <div class="flexbox-container">
+      <div id="repositories">
+        <div class="user-form">
+          <h3>Enter Search Term</h3><!-- <form onsubmit="searchRepositories(); return false;"> -->
+          search term:<input type="text" id="searchTerms" /><br>
+            <a href="#" onclick="searchRepositories()">Search</a>
+
+            <!-- <input type="submit" /> -->
+          </form>
+        </div>
+      </div>
       <div>
         <h3>Repositories</h3>
-        <div id="results"></div>
+        <div id="results">
+          
+
+        </div>
       </div>
       <div>
         <h3>Details</h3>
         <div id="details"></div>
       </div>
     </div>
+    <script id="repository-template" type="text/x-handlebars-template">
+      <ul>
+       {{#each this}}
+         <li>
+           <h2><a href="{{html_url}}">{{name}}</a></h2>
+           {{> authorPartial owner }}
+           <p>Watchers: {{watchers_count}}</p>
+           <p>Forks: {{forks_count}}</p>
+           <p>Issues: {{open_issues_count}}</p>
+         </li>
+        {{/each}}
+      </ul>
+    </script>
+    <script id="author-partial-template" type="text/x-handlebars-template">
+      <section>
+        <header><h4>Created By {{login}}</h4></header>
+        <img src="{{avatar_url}}" height="32" width="32">
+      </section>
+    </script>
+    <script src="handlebars.js"></script>
     <script src="jquery-3.1.0.min.js"></script>
     <script src="index.js"></script>
   </body>
