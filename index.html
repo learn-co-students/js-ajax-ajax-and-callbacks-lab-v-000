@@ -20,6 +20,8 @@
   </head>
   <body>
     <main id="main">
+      <input type="text" id="searchTerms">
+      <a href="#" onclick="searchRepositories();">Search Repositories</a>
       <div id="errors"></div>
     </main>
     <div class="flexbox-container">
@@ -32,6 +34,39 @@
         <div id="details"></div>
       </div>
     </div>
+    <script id="repos-template" type="text/x-handlebars-template">
+      <ul>
+        {{#each this}}
+          <li>
+          <h2><a href="{{html_url}}">{{name}}</a></h2>
+          {{> authorPartial owner }}
+          <p>Watchers: {{watchers_count}}</p>
+          <p>Forks: {{forks_count}}</p>
+          <p>Issues: {{open_issues_count}}</p>
+          <a href="#" onclick="showCommits('{{url}}')">Show Commits</a>
+        </li>
+        {{/each}}
+      </ul>
+    </script>
+     <script type="text/x-handlebars-template" id="author-partial-template">
+      <section>
+        <header><h4>Created by <a href="{{html_url}}">{{login}}</a></h4></header>
+        <img src="{{avatar_url}}" height="32" width="32">
+      </section>
+  </script>
+  <script type="text/x-handlebars-template" id="details-template">
+    <ul>
+      {{#each this}}
+        <li>
+        <h2>{{author.login}}</h2>
+        <img src="{{author.avatar_url}}" alt="" height="32" width="32">
+        <p>{{commit.message}}</p>
+        <footer>{{sha}}</footer>
+      </li>
+      {{/each}}
+    </ul>
+  </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
     <script src="jquery-3.1.0.min.js"></script>
     <script src="index.js"></script>
   </body>
