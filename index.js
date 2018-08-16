@@ -1,8 +1,8 @@
 $(document).ready(function (){
-  $.get('https://api.github.com/search/repositories?q=tetris', function(response) {
+  $.get('https://api.github.com/search/repositories?q=tetris', searchRepositories(searchTerms) {
     // Here we are getting the element on the page with the id of sentences and
     // inserting the response
-    $("#results").html(response);
+    $("#results").html(searchTerms);
   });
 });
 
@@ -17,12 +17,8 @@ $(document).ready(function (){
 //   });
 // });
 //
-// function searchRepositories() {
-//   const req = new XMLHttpRequest()
-//   req.addEventListener("load", showRepositories);
-//   req.open("GET", 'https://api.github.com/users/octocat/repos')
-//   req.send()
-// }
+function searchRepositories(searchTerms) {
+}
 //
 // <main id="main">
 //     <a href="#" onclick="searchRepositories()">Search Repositories</a>
