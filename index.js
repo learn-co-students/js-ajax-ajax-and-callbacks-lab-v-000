@@ -2,7 +2,7 @@ $(document).ready(function (){
   $.get("https://api.github.com/search/repositories?q=tetris", function(data) {
     // Here we are getting the element on the page with the id of sentences and
     // inserting the response
-    $(".results").html(data);
+    searchRepositories();
   }).fail(function(errors){
     displayError();
   });
