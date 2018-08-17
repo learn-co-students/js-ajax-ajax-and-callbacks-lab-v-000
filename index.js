@@ -6,19 +6,29 @@ function searchRepositories() {
   var searchValue = document.getElementById("searchTerms").value
   var url = "http://api.github.com/search/repositories?q=";
   $.get((url+searchValue), function(data) {
-    console.log(data);
-    // $('#results').html(formatFunction(data));
-  })
+    console.log(data.items[0])
+    console.log(data.items[0].name)
+    $('#results').append("Name: " + data.items[0].name); //test line
+    // $("#results").html(data.items[0].name);
+
+    displayRepositories();
+  }).fail(function(error) {
+  // This is called when an error occurs
+  console.log('Something went wrong: ', error);
+  $('#errorMessage').html('Something went wrong.', error.statusText);
+});
 }
 
-// formatFunction(data) {
-//   return ``
-// }
+function displayRepositories() {
+  $('#results').append("Name: "); //username?
+}
 
+$( document ).ajaxSuccess(function( event, request, settings ) {
+  $( "#details" ).append( "<li>Successful Request!</li>" );
+});
 
-// function getRepositories() {
-//   const req = new XMLHttpRequest()
-//   req.addEventListener("load", showRepositories);
-//   req.open("GET", 'https://api.github.com/users/octocat/repos')
-//   req.send()
-// }
+// $.get( "test.php", function( data ) {
+//   $( "body" )
+//     .append( "Name: " + data.name ) // John
+//     .append( "Time: " + data.time ); //  2pm
+// }, "json" );
