@@ -4,7 +4,7 @@ $(document).ready(function (){
     // inserting the response
     searchRepositories();
   }).fail(function(errors){
-    displayError();
+    alert( "error" );
   });
 });
 
@@ -40,16 +40,25 @@ function searchRepositories(searchTerms) {
   var repos = JSON.parse(this.responseText)
   console.log(repos)
   const repoList = `<ul>${
-    repos.map(r => `<li> <a href="https://github.com/${r.owner.login}/${r.name}">` + r.name + '</a> - <a href="#" data-repository="' +
-    r.name + '" onclick="getCommits(this)">Get Commits</a> - <a href="#" data-username="' + r.name +
-      '" onclick="getBranches(this)">Get Branches</a></li>')
+    repos.map(r => `<li> <a href="https://github.com/${r.items.name}${r.items.description}${r.items.owner.login}${r.items.owner.avatar_url}${r.items.owner.url}">` + r.name + '</a>- <a href="#" data-repository="' +
+ + '" onclick="searchRepositories(this)">Search Repositories</a></li>')
     .join('')
     }</ul>`
   document.getElementById("results").innerHTML = repoList
 }
 
+//Include repository name, description, and a link to the HTML URL. Also include repository owner login,
+//repository owner avatar as an image, and a link to the owner's profile page.
+// function searchRepositories(searchTerms) {
+//   var repos = JSON.parse(this.responseText)
+//   console.log(repos)
+//   const repoList = `<ul>${
+//     repos.map(r => '<li> + r.items.name + r.items.description + r.items.owner.login + r.items.owner.avatar_url + r.items.owner.url</li>').join('')}</ul>`
+//   document.getElementById("results").innerHTML = repoList
+// }
+
 function displayError(){
-console.log("I'm sorry, there's been an error. Please try again.")
+alert('error');
 };
 //
 // <main id="main">
