@@ -23,9 +23,14 @@
       <div id="errors"></div>
     </main>
     <div class="flexbox-container">
+      Search Terms: <input type="text" name="searchTerms" id="searchTerms">
+      <a href="#" onclick="searchRepositories();">Search Repositories</a>
+      <!-- Create a "Search Repositories" link that calls a searchRepositories function on click,
+      takes the value of a searchTerms text input, and queries the GitHub repository search API. -->
       <div>
         <h3>Repositories</h3>
         <div id="results"></div>
+        <!-- Insert HERE search results -->
       </div>
       <div>
         <h3>Details</h3>
