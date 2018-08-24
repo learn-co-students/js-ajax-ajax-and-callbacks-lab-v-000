@@ -20,6 +20,11 @@
   </head>
   <body>
     <main id="main">
+      <form>
+        <input id="searchTerms" type="text">
+        <a id= "search" href="#"  onclick="searchRepositories()"> Search Repositories</a>
+      </form>
+
       <div id="errors"></div>
     </main>
     <div class="flexbox-container">
@@ -32,7 +37,12 @@
         <div id="details"></div>
       </div>
     </div>
+    <script src="handlebars.js"></script>
     <script src="jquery-3.1.0.min.js"></script>
     <script src="index.js"></script>
+    <script id="repository-template" type="text/x-handlebars-template">
+          <h3>{{terms}}</h3>
+    </script>
   </body>
 </html>
+<h3></h3>
