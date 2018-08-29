@@ -50,6 +50,7 @@ describe('index.js', () => {
       xhr.restore()
     })
 
+
     describe('searchRepositories', () => {
       it('calls out to the github search API and displays results', () => {
         window.$('#searchTerms').val('tetris')

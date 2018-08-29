@@ -24,6 +24,12 @@
     </main>
     <div class="flexbox-container">
       <div>
+        <form action="#" onsubmit="showReps(); return false">
+        Search Term: <input type="text" id="searchTerm1" name="searchTerm1">
+      <input type="submit" value="Submit">
+      </form>
+        <a href="#" onclick="searchRepositories()">Search Terms</a>
+        <div id="searchTerms"></div>
         <h3>Repositories</h3>
         <div id="results"></div>
       </div>
@@ -31,6 +37,7 @@
         <h3>Details</h3>
         <div id="details"></div>
       </div>
+      <div id="errors">Errors</div>
     </div>
     <script src="jquery-3.1.0.min.js"></script>
     <script src="index.js"></script>
