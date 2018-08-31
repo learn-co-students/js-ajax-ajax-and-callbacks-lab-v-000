@@ -1,12 +1,31 @@
+$('a').on('click', function() {
+  const searchTerms = $("#user-input").val()
+
 $(document).ready(function (){
   $.get("https://api.github.com/search/repositories?q=tetris", function(data) {
-    // Here we are getting the element on the page with the id of sentences and
-    // inserting the response
     searchRepositories();
   }).fail(function(errors){
-    alert( "error" );
-  });
+    displayError();
 });
+
+function searchRepositories(){
+  $("#results").html(data)
+  data.forEach(r => {
+    $('#results').append('<ul><li>' + r.items.name + r.items.description + r.items.owner.login + r.items.avatar_url + r.items.owner.url'</li></ul>')
+  })
+}
+
+
+// // We should wait for the page to load before running our Ajax request
+// $(document).ready(function(){
+//   // Now we start the Ajax GET request. The first parameter is the URL with the data.
+//   // The second parameter is a function that handles the response.
+//   $.get("sentence.html", function(response) {
+//     // Here we are getting the element on the page with the id of sentences and
+//     // inserting the response
+//     $("#sentences").html(response);
+//   });
+// });
 
 
 // $.get("this_doesnt_exist.html", function(data) {
@@ -50,12 +69,19 @@ $(document).ready(function (){
 //   document.getElementById("results").innerHTML = repoList
 // }
 
-function searchRepositories(searchTerms) = reposArray => {
-  $('#results').empty()
-  reposArray.forEach(r => {
-    $('#results').append('<li>' + r.items.name + r.items.description + r.items.owner.login + r.items.avatar_url + r.items.owner.url'</li>')
-  })
-}
+// function searchRepositories(){
+//   $("#results").html(data)
+//   data.forEach(r => {
+//     $('#results').append('<li>' + r.items.name + r.items.description + r.items.owner.login + r.items.avatar_url + r.items.owner.url'</li>')
+//   })
+// }
+
+// addFollowersToDom = followersArray => {
+//   $('.followers').empty()
+//   followersArray.forEach(follower => {
+//     $('.followers').append('<li>' + follower.login + '</li>')
+//   })
+// }
 
 //Include repository name, description, and a link to the HTML URL. Also include repository owner login,
 //repository owner avatar as an image, and a link to the owner's profile page.
@@ -68,7 +94,7 @@ function searchRepositories(searchTerms) = reposArray => {
 // }
 
 function displayError(){
-alert('error');
+  $("#errors").alert("I'm sorry, there's been an error. Please try again.");
 };
 //
 // <main id="main">
