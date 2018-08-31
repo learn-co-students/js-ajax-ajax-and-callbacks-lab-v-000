@@ -8,6 +8,7 @@ $(document).ready(function (){
   });
 });
 
+
 // $.get("this_doesnt_exist.html", function(data) {
 //   // This will not be called because the .html file request doesn't exist
 //   doSomethingGood();
@@ -15,7 +16,6 @@ $(document).ready(function (){
 //   // This is called when an error occurs
 //   console.log('Something went wrong: ' + error);
 // });
-
 
 // $.get( "ajax/test.html", function( data ) {
 //   $( ".result" ).html( data );
@@ -36,15 +36,25 @@ $(document).ready(function (){
 // function searchRepositories(searchTerms) {
 // }
 
-function searchRepositories(searchTerms) {
-  var repos = JSON.parse(this.responseText)
-  console.log(repos)
-  const repoList = `<ul>${
-    repos.map(r => `<li> <a href="https://github.com/${r.items.name}${r.items.description}${r.items.owner.login}${r.items.owner.avatar_url}${r.items.owner.url}">` + r.name + '</a>- <a href="#" data-repository="' +
- + '" onclick="searchRepositories(this)">Search Repositories</a></li>')
-    .join('')
-    }</ul>`
-  document.getElementById("results").innerHTML = repoList
+//   1.	Create a "Search Repositories" link that calls a searchRepositories function on click, takes the value of a searchTerms text input,
+//   and queries the GitHub repository search API.
+
+// function searchRepositories(searchTerms) {
+//   var repos = JSON.parse(this.responseText)
+//   console.log(repos)
+//   const repoList = `<ul>${
+//     repos.map(r => `<li> <a href="https://github.com/${r.items.name}${r.items.description}${r.items.owner.login}${r.items.owner.avatar_url}${r.items.owner.url}">` + r.name + '</a>- <a href="#" data-repository="' +
+//  + '" onclick="searchRepositories(this)">Search Repositories</a></li>')
+//     .join('')
+//     }</ul>`
+//   document.getElementById("results").innerHTML = repoList
+// }
+
+function searchRepositories(searchTerms) = reposArray => {
+  $('#results').empty()
+  reposArray.forEach(r => {
+    $('#results').append('<li>' + r.items.name + r.items.description + r.items.owner.login + r.items.avatar_url + r.items.owner.url'</li>')
+  })
 }
 
 //Include repository name, description, and a link to the HTML URL. Also include repository owner login,
@@ -65,33 +75,3 @@ alert('error');
 //     <a href="#" onclick="searchRepositories()">Search Repositories</a>
 //     <div id="repositories"></div>
 //   </main>
-//   1.	Create a "Search Repositories" link that calls a searchRepositories function on click, takes the value of a searchTermstext input,
-//   and queries the GitHub repository search API.
-
-
-// function getRepositories() {
-//   const req = new XMLHttpRequest()
-//   req.addEventListener("load", displayRepositories);
-//   req.open("GET", 'https://api.github.com/users/octocat/repos')
-//   req.send()
-// }
-//
-// function displayRepositories(event, data) {
-//   var repos = JSON.parse(this.responseText)
-//   console.log(repos)
-//   const repoList = `<ul>${
-//     repos.map(r => `<li> <a href="https://github.com/${r.owner.login}/${r.name}">` + r.name + '</a> - <a href="#" data-repository="' +
-//     r.name + '" onclick="getCommits(this)">Get Commits</a> - <a href="#" data-username="' + r.name +
-//       '" onclick="getBranches(this)">Get Branches</a></li>')
-//     .join('')
-//     }</ul>`
-//   document.getElementById("repositories").innerHTML = repoList
-// }
-
-
-// function showRepositories(event, data) {
-//   var repos = JSON.parse(this.responseText)
-//   console.log(repos)
-//   const repoList = `<ul>${repos.map(r => '<li>' + r.name + ' - <a href="#" data-repo="' + r.name + '" onclick="getCommits(this)">Get Commits</a></li>').join('')}</ul>`
-//   document.getElementById("repositories").innerHTML = repoList
-// }
