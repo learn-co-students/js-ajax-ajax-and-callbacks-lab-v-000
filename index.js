@@ -3,22 +3,29 @@ $(document).ready(function (){
 
 
 
-searchRepositories() {
+function searchRepositories() {
+	debugger
 	const repoSearch = "https://api.github.com/search/repositories?q="
-	let searchTerm = $('#searchTerm')
-	let url = repoSearch + searchTerm
+	let searchTerms = $('#searchTerms').val()
+	let url = repoSearch + searchTerms
 
 
 	$.get(url, function(response) {
+		debugger
 	    // Here we are getting the element on the page with the id of sentences and
 	    // inserting the response
 	    $('#details').html(response);
 	}).fail(function(error) {
 	    // This is called when an error occurs
-	    console.log('Something went wrong: ' + error.statusText);
+	    displayError(error)
 	});
 
 
+}
+
+
+function displayError(error){
+	$('#errors').html('Something went wrong: ' + error.statusText);
 }
 
 
