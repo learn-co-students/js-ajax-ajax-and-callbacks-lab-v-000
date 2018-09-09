@@ -34,7 +34,17 @@
         <div id="details"></div>
       </div>
     </div>
+    <script src="handlebars-v4.0.12.js"></script>
     <script src="jquery-3.1.0.min.js"></script>
+    <script id="repository-list-template" type="text/x-handlebars-template">
+      <ul>
+        {{#each this}}
+            <li>
+                <p><a target="blank" href="{{html_url}}">{{name}}</a></p>
+            </li>
+        {{/each}}
+      </ul>
+    </script>
     <script src="index.js"></script>
   </body>
 </html>
