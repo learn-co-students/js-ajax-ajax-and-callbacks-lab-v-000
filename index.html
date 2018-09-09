@@ -40,10 +40,16 @@
       <ul>
         {{#each this}}
             <li>
-                <p><a target="blank" href="{{html_url}}">{{name}}</a></p>
+                <h4><a target="blank" href="{{html_url}}">{{name}}</a></h4>
+                <p>{{description}}</p>
+                {{>authorPartial owner}}
             </li>
         {{/each}}
       </ul>
+    </script>
+    <script id="author-partial-template" type="text/x-handlebars-template">
+      <p><a target="blank" href="{{html_url}}">{{login}}</a></p>
+      <p><img src="{{avatar_url}}"></p>
     </script>
     <script src="index.js"></script>
   </body>

@@ -1,4 +1,6 @@
 $(document).ready(function (){
+    Handlebars.registerPartial('authorPartial', $('#author-partial-template').html());
+
     $('#search').on("click", searchRepositories);
 });
 
