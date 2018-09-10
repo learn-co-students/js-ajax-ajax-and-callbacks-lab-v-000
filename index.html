@@ -40,7 +40,7 @@
       <ul>
         {{#each this}}
             <li>
-                <h4><a target="blank" href="{{html_url}}">{{name}}</a></h4>
+                <h4><a target="blank" href="{{html_url}}">{{name}}</a> | <a href="#" onclick="showCommits('{{name}}')">show commits</a></h4>
                 <p>{{description}}</p>
                 {{>authorPartial owner}}
             </li>

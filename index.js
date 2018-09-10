@@ -4,7 +4,7 @@ $(document).ready(function (){
     $('#search').on("click", searchRepositories);
 });
 
-
+// AJAX HANDLERS
 function searchRepositories(){
     const query = $('#searchTerms').val();
     console.log(`Query: "${query}"`);
@@ -13,6 +13,10 @@ function searchRepositories(){
     .done(showMatchingRepositories)
     .fail(displayError); 
 };
+
+function showCommits(repoName){
+    console.log(repoName);
+}
 
 // AJAX CALLBACKS
 function showMatchingRepositories(response){
