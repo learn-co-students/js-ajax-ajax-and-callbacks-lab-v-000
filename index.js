@@ -27,7 +27,7 @@ function searchRepositories(){
 // and a link to the owner's profile page. **Hint:** Pay close attention to the structure of the search results!
 
 function displayRepo() {
-  $("#results").empty().forEach(r => {
+  $("#results").forEach(r => {
     $('#results').append('<li>' + r.items.name + r.items.description + r.items.owner.login + r.items.avatar_url + r.items.owner.url + '</li>')
   })
 }
