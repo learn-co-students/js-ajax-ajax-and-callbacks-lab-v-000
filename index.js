@@ -18,7 +18,7 @@ function searchRepositories(){
       // The type of data we expect back
       dataType : "json"
   }).done(function(response){
-      displayRepo();
+      displayRepo(response);
   })
 }
 
@@ -27,7 +27,7 @@ function searchRepositories(){
 // and a link to the owner's profile page. **Hint:** Pay close attention to the structure of the search results!
 
 function displayRepo() {
-    $('#results').append('<li>' + r.items.name + r.items.description + r.items.owner.login + r.items.avatar_url + r.items.owner.url + '</li>')
+    $('#results').append('<ul>''<li>' + r.items.name + r.items.description + r.items.owner.login + r.items.avatar_url + r.items.owner.url + '</li>''</ul>')
   })
 }
 
