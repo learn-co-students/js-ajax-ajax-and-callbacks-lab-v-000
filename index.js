@@ -1,5 +1,6 @@
 $(document).ready(function (){
-    Handlebars.registerPartial('authorPartial', $('#author-partial-template').html());
+    // This breaks the tests for obscure reasons
+    // Handlebars.registerPartial('authorPartial', $('#author-partial-template').html());
 
     $('#search').on("click", searchRepositories);
 });
@@ -14,8 +15,14 @@ function searchRepositories(){
     .fail(displayError); 
 };
 
-function showCommits(repoName){
-    console.log(repoName);
+function showCommits(link){
+    console.log(link);
+    const owner = link.dataset.owner;
+    const repository = link.dataset.repository;
+
+   $.get(`https://api.github.com/repos/${owner}/${repository}/commits`)
+    .done(showMatchingCommits)
+    .fail(displayError);
 }
 
 // AJAX CALLBACKS
@@ -38,6 +45,17 @@ function showMatchingRepositories(response){
     and a link to the owner's profile page. 
     Hint: Pay close attention to the structure of the search results!
     */
+}
+
+function showMatchingCommits(response){
+    console.log("Success! Here are the repo's commits:");
+    console.log(response);
+
+    const src = $('#commits-list-template').html();
+    const template = Handlebars.compile(src);
+    const commitList = template(response);
+
+    $('#details').html(commitList);
 }
 
 function displayError(){
