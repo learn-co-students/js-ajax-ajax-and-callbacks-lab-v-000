@@ -18,7 +18,7 @@ function searchRepositories(){
       // The type of data we expect back
       dataType : "json"
   }).done(function(response){
-      displayRepo(response);
+      displayRepo();
   })
 }
 
@@ -26,8 +26,8 @@ function searchRepositories(){
 // and a link to the HTML URL. Also include repository owner login, repository owner avatar as an image,
 // and a link to the owner's profile page. **Hint:** Pay close attention to the structure of the search results!
 
-function displayRepo() {
-  $("#results").forEach(r => {
+function displayRepo(response) {
+  response.forEach(r => {
     $('#results').append('<li>' + r.items.name + r.items.description + r.items.owner.login + r.items.avatar_url + r.items.owner.url + '</li>')
   })
 }
