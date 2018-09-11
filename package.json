@@ -4,7 +4,7 @@
   "description": "practice jquery ajax",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -R mocha-multi --reporter-options nyan=-,json=.results.json"
+    "test": "mocha --timeout 10000 -R mocha-multi --reporter-options nyan=-,json=.results.json"
   },
   "repository": {
     "type": "git",
@@ -29,6 +29,7 @@
     "mocha": "^5.2.0",
     "mocha-jsdom": "~1.1.0",
     "mocha-multi": "^1.0.1",
-    "sinon": "^1.17.7"
+    "sinon": "^1.17.7",
+    "handlebars": "4.0.12"
   }
 }
