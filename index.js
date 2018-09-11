@@ -26,9 +26,8 @@ function searchRepositories(){
 // and a link to the HTML URL. Also include repository owner login, repository owner avatar as an image,
 // and a link to the owner's profile page. **Hint:** Pay close attention to the structure of the search results!
 
-displayRepo = followersArray => {
-  $("#results").empty()
-  followersArray.forEach(r => {
+function displayRepo() {
+  $("#results").empty().forEach(r => {
     $('#results').append('<li>' + r.items.name + r.items.description + r.items.owner.login + r.items.avatar_url + r.items.owner.url + '</li>')
   })
 }
@@ -39,7 +38,7 @@ displayRepo = followersArray => {
 //     $('.followers').append('<li>' + follower.login + '</li>')
 //   })
 // }
-//
+// //
 // function displayRepo(){
 //   $("#results").html(data)
 //   data.forEach(r => {
