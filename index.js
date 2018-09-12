@@ -25,7 +25,7 @@ function searchRepositories(){
 function displayRepo(){
   $("#results").html(data)
   data.forEach(r => {
-    $('#results').append('<li>' + r.items.name + r.items.description + r.items.owner.login + r.items.avatar_url + r.items.owner.url'</li>')
+    $('#results').append('<li>' + r.items.name + r.items.description + r.items.owner.login + r.items.avatar_url + r.items.owner.url + '</li>')
   })
 }
 
