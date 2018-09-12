@@ -18,7 +18,14 @@ function searchRepositories(){
       // The type of data we expect back
       dataType : "json"
   }).done(function(response){
-      $('#results').append('<ul>''<li>' + response.items.name  + '</li>''</ul>')
+      displayRepo(response)
+  })
+}
+
+function displayRepo(){
+  $("#results").html(data)
+  data.forEach(r => {
+    $('#results').append('<li>' + r.items.name + r.items.description + r.items.owner.login + r.items.avatar_url + r.items.owner.url'</li>')
   })
 }
 
