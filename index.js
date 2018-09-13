@@ -7,6 +7,8 @@ function searchRepositories(){
     $.get(url, function(response){
         $("#results").html(showRepositories(response));
         // we pass the response to a new function (the callback), so that we can begin handling the response in another seperate function. 
+    }).fail(function(error) {
+        displayError();
     });
 }
 
@@ -28,6 +30,8 @@ function showCommits(el){
     const url = `https://api.github.com/repos/${owner}/${repo}/commits`
     $.get(url, function(response){
         $("#details").html(displayCommits(response))
+    }).fail(function(error) {
+        displayError();
     });
 
 }
@@ -36,12 +40,18 @@ function displayCommits(response){
     const commits = response;
     debugger;
     return commits.map(com=>
-        `<ul>
+        `<img src=${com.author.avatar_url} </li>
+        <ul>
             <li>Sha: ${com.sha}</li>
             <li> Author: ${com.commit.author.name} </li>
-             
+            <li> Author's Login: ${com.author.login} </li>
         </ul>`
     );
 }
 
-//<li> Author's Login: ${com.author.login} </li>
+function displayError(){
+    // This is called when an error occurs
+    //You can test your error callbacks by turning off Wi-Fi or temporarily changing the URL you use in the $.get request.
+    $("#errors").html(`I'm sorry, there's been an error. Please try again.`);
+}
+
