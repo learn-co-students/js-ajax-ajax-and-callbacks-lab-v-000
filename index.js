@@ -23,7 +23,7 @@ function searchRepositories(){
 }
 
 function displayRepos() {
-  var repos = JSON.parse(this);
+  var repos = JSON.parse(this.response);
   console.log(repos);
   const repoList = `<ul>${repos
     .map(r => '<li>' + r.items.name + r.items.description + r.items.html_url + r.items.owner.login + r.items.owner.avatar_url + r.items.owner.url + '</li>')
