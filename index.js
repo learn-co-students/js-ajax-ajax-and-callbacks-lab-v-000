@@ -18,17 +18,25 @@ function searchRepositories(){
       // The type of data we expect back
       dataType : "json"
   }).done(function(response){
-      displayRepo(response)
+      displayRepos(response)
   })
 }
 
-function displayRepo(){
-  $("#results").html(data)
-  data.forEach(r => {
-    $('#results').append('<li>' + r.items.name + r.items.description + r.items.owner.login + r.items.avatar_url + r.items.owner.url + '</li>')
-  })
+function displayRepos() {
+  var repos = JSON.parse(this.responseText);
+  console.log(repos);
+  const repoList = `<ul>${repos
+    .map(r => '<li>' + r.items.name + r.items.description + r.items.owner.login + r.items.avatar_url + r.items.owner.url + '</li>')
+    .join('')}</ul>`;
+  document.getElementById('results').innerHTML = repoList;
 }
 
+// function displayRepo(){
+//   $("#results").html(data)
+//   data.forEach(r => {
+//     $('#results').append('<li>' + r.items.name + r.items.description + r.items.owner.login + r.items.avatar_url + r.items.owner.url + '</li>')
+//   })
+// }
 // 2. Display the collection of repositories inside the `results` div. Include repository name, description,
 // and a link to the HTML URL. Also include repository owner login, repository owner avatar as an image,
 // and a link to the owner's profile page. **Hint:** Pay close attention to the structure of the search results!
