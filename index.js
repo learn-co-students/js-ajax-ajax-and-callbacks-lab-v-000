@@ -17,13 +17,13 @@ function searchRepositories(){
       type: "GET",
       // The type of data we expect back
       dataType : "json"
-  }).done(function(response){
+  }).success(function(response){
       displayRepos(response);
   })
 }
 
 function displayRepos() {
-  var repos = JSON.parse(this.response);
+  var repos = JSON.parse(this.responseText);
   console.log(repos);
   const repoList = `<ul>${repos
     .map(r => '<li>' + r.items.name + r.items.description + r.items.html_url + r.items.owner.login + r.items.owner.avatar_url + r.items.owner.url + '</li>')
