@@ -1,6 +1,8 @@
 $(document).ready(function (){
 });
 
+// open index.html in browser, enter search word, click on link.
+
 function searchRepositories(){
     const searchTerms = $('#searchTerms').val();
     const url = `https://api.github.com/search/repositories?q=${searchTerms}/`
