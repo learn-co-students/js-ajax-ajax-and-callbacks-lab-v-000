@@ -19,18 +19,19 @@ function searchRepositories(){
       // The type of data we expect back
       dataType : "json"
   }).done(function(response){
-      displayRepos(response);
+    console.log(response);
+      // displayRepos(response);
   })
 }
 
-function displayRepos() {
-  var repos = JSON.parse(this.responseText);
-  console.log(repos);
-  const repoList = `<ul>${repos
-    .map(r => '<li>' + r.items.name + r.items.description + r.items.html_url + r.items.owner.login + r.items.owner.avatar_url + r.items.owner.url + '</li>')
-    .join('')}</ul>`;
-  document.getElementById('results').innerHTML = repoList;
-}
+// function displayRepos() {
+//   var repos = JSON.parse(this.responseText);
+//   console.log(repos);
+//   const repoList = `<ul>${repos
+//     .map(r => '<li>' + r.items.name + r.items.description + r.items.html_url + r.items.owner.login + r.items.owner.avatar_url + r.items.owner.url + '</li>')
+//     .join('')}</ul>`;
+//   document.getElementById('results').innerHTML = repoList;
+// }
 
 // function showRepositories() {
 //   var repos = JSON.parse(this.responseText);
