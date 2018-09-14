@@ -11,7 +11,7 @@ function searchRepositories(){
   debugger
   $.ajax({
       // The URL for the request
-      url: `https://api.github.com/search/repositories?q=${input}`,
+      url: "https://api.github.com/search/repositories?q=${input}",
 
       // Whether this is a POST or GET request
       type: "GET",
