@@ -31,7 +31,7 @@ function searchRepositories(){
 }
 
 function displayRepos() {
-  response = this.responseText
+  const response
   var repos = JSON.parse(this.responseText);
   console.log(repos);
   const repoList = `<ul>${repos
