@@ -9,24 +9,30 @@ function searchRepositories(){
   const input = $("#searchTerms").val()
   // })
   //debugger
-  $.ajax({
-      // The URL for the request
-      url: `https://api.github.com/search/repositories?q=${input}`,
+  $.get(`https://api.github.com/search/repositories?q=${input}`, function(response) {
+          // Here we are getting the element on the page with the id of sentences and
+          // inserting the response
+          displayRepos(response);
+      });
 
-      // Whether this is a POST or GET request
-      type: "GET",
-
-      // // The type of data we expect back
-      // dataType : "JSON"
-  }).done(function(response){
-    // console.log(response);
-      displayRepos(response);
-  })
+  // $.ajax({
+  //     // The URL for the request
+  //     url: `https://api.github.com/search/repositories?q=${input}`,
+  //
+  //     // Whether this is a POST or GET request
+  //     type: "GET",
+  //
+  //     // // The type of data we expect back
+  //     // dataType : "JSON"
+  // }).done(function(response){
+  //   // console.log(response);
+  //     displayRepos(response);
+  // })
 }
 
 function displayRepos() {
   var repos = JSON.parse(this.responseText);
-  //console.log(repos);
+  console.log(repos);
   const repoList = `<ul>${repos
     .map(r => '<li>' + r.items.name + r.items.description + r.items.html_url + r.items.owner.login + r.items.owner.avatar_url + r.items.owner.url + '</li>')
     .join('')}</ul>`;
