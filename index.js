@@ -27,11 +27,11 @@ function searchRepositories(){
   }).done(function(response){
     // console.log(response);
       displayRepos(response);
-    
+
   })
 }
 
-function displayRepos(response) {
+function displayRepos() {
   //debugger
   // var repos = JSON.parse(response);
   //console.log(repos);
