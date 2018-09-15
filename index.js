@@ -9,25 +9,25 @@ function searchRepositories(){
   const input = $("#searchTerms").val()
   // })
   //debugger
-  $.get(`https://api.github.com/search/repositories?q=${input}`, function(response) {
-          // Here we are getting the element on the page with the id of sentences and
-          // inserting the response
-          displayRepos(response);
-      });
+  // $.get(`https://api.github.com/search/repositories?q=${input}`, function(response) {
+  //         // Here we are getting the element on the page with the id of sentences and
+  //         // inserting the response
+  //         displayRepos(response);
+  //     });
 
-  // $.ajax({
-  //     // The URL for the request
-  //     url: `https://api.github.com/search/repositories?q=${input}`,
-  //
-  //     // Whether this is a POST or GET request
-  //     type: "GET",
-  //
-  //     // // The type of data we expect back
-  //     // dataType : "JSON"
-  // }).done(function(response){
-  //   // console.log(response);
-  //     displayRepos(response);
-  // })
+  $.ajax({
+      // The URL for the request
+      url: `https://api.github.com/search/repositories?q=${input}`,
+
+      // Whether this is a POST or GET request
+      type: "GET",
+
+      // // The type of data we expect back
+      // dataType : "JSON"
+  }).done(function(response){
+    // console.log(response);
+      displayRepos(response);
+  })
 }
 
 function displayRepos() {
