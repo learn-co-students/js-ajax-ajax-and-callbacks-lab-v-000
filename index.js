@@ -32,9 +32,10 @@ function searchRepositories(){
 }
 
 function displayRepos(response) {
-  //debugger
+  debugger
+  // (these two lines of code right below were not needed as the 'response' from the server was already parsed to JSON)
   // var repos = JSON.parse(response);
-  //console.log(repos);
+  // console.log(repos);
   const repoList = `<ul>${response.items
     .map(repo => '<li>' + repo.name + repo.description + repo.html_url + repo.owner.login + repo.owner.avatar_url + repo.owner.url + '</li>')
     .join('')}</ul>`;
