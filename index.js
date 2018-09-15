@@ -31,10 +31,11 @@ function searchRepositories(){
 }
 
 function displayRepos(response) {
-  var repos = JSON.parse(response);
-  console.log(repos);
-  const repoList = `<ul>${repos
-    .map(r => '<li>' + r.items.name + r.items.description + r.items.html_url + r.items.owner.login + r.items.owner.avatar_url + r.items.owner.url + '</li>')
+  //debugger
+  // var repos = JSON.parse(response);
+  //console.log(repos);
+  const repoList = `<ul>${response.items
+    .map(repo => '<li>' + repo.name + repo.description + repo.html_url + repo.owner.login + repo.owner.avatar_url + repo.owner.url + '</li>')
     .join('')}</ul>`;
   document.getElementById('results').innerHTML = repoList;
 }
