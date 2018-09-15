@@ -26,12 +26,11 @@ function searchRepositories(){
       // dataType : "JSON"
   }).done(function(response){
     // console.log(response);
-      displayRepos(response);
+      displayRepos();
   })
 }
 
 function displayRepos() {
-  const response
   var repos = JSON.parse(this.responseText);
   console.log(repos);
   const repoList = `<ul>${repos
