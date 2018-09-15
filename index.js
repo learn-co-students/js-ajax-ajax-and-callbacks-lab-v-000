@@ -31,7 +31,7 @@ function searchRepositories(){
   })
 }
 
-function displayRepos() {
+function displayRepos(response) {
   //debugger
   // var repos = JSON.parse(response);
   //console.log(repos);
