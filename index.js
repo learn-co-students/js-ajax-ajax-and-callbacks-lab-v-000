@@ -25,9 +25,9 @@ function searchRepositories(){
       // // The type of data we expect back
       // dataType : "JSON"
   }).done(function(response){
-    debugger
     // console.log(response);
       displayRepos(response);
+    
   })
 }
 
