@@ -8,7 +8,7 @@ function searchRepositories(){
   // $('a').on('click', function() {
   const input = $("#searchTerms").val()
   // })
-  debugger
+  //debugger
   $.ajax({
       // The URL for the request
       url: `https://api.github.com/search/repositories?q=${input}`,
@@ -26,7 +26,7 @@ function searchRepositories(){
 
 function displayRepos() {
   var repos = JSON.parse(this.responseText);
-  console.log(repos);
+  //console.log(repos);
   const repoList = `<ul>${repos
     .map(r => '<li>' + r.items.name + r.items.description + r.items.html_url + r.items.owner.login + r.items.owner.avatar_url + r.items.owner.url + '</li>')
     .join('')}</ul>`;
