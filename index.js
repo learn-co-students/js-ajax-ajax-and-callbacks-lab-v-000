@@ -17,7 +17,7 @@ function searchRepositories(){
       type: "GET",
 
       // The type of data we expect back
-      dataType : "JSON"
+      dataType : "text"
   }).done(function(response){
     // console.log(response);
       displayRepos(response);
