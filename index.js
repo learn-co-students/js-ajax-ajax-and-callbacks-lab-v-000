@@ -45,7 +45,8 @@ function displayRepos(response) {
 }
 
 function displayError(error) {
-  $("#errors").alert("I'm sorry, there's been an error. Please try again.");
+  const errormessg = alert("I'm sorry, there's been an error. Please try again.");
+  document.getElementById('errors').innerHTML = errormessg;
 };
 
 
