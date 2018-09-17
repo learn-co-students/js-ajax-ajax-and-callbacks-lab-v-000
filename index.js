@@ -8,7 +8,7 @@ function searchRepositories(){
   // $('a').on('click', function() {
   const input = $("#searchTerms").val()
   // })
-  debugger
+  //debugger
   // $.get(`https://api.github.com/search/repositories?q=${input}`, function(response) {
   //         // Here we are getting the element on the page with the id of sentences and
   //         // inserting the response
@@ -34,7 +34,7 @@ function searchRepositories(){
 }
 
 function displayRepos(response) {
-  debugger
+  //debugger
   // (these two lines of code right below were not needed as the 'response' from the server was already parsed to JSON)
   // var repos = JSON.parse(response);
   // console.log(repos);
@@ -45,6 +45,7 @@ function displayRepos(response) {
 }
 
 function displayError(error) {
+  debugger
   const message = console.log("I'm sorry, there's been an error. Please try again." + error);
   //$('#errors').html(message);
   document.getElementById('errors').innerHTML = message;
