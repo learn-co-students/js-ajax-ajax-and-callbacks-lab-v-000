@@ -49,7 +49,7 @@ function displayError(error) {
   //debugger
   error = alert("I'm sorry, there's been an error. Please try again.")
   //$('#errors').html(message);
-  document.getElementById('errors').innerHTML = message;
+  document.getElementById('errors').innerHTML = console.error();;
 };
 
 
