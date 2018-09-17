@@ -8,7 +8,7 @@ function searchRepositories(){
   // $('a').on('click', function() {
   const input = $("#searchTerms").val()
   // })
-  //debugger
+  debugger
   // $.get(`https://api.github.com/search/repositories?q=${input}`, function(response) {
   //         // Here we are getting the element on the page with the id of sentences and
   //         // inserting the response
