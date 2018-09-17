@@ -26,7 +26,7 @@ function searchRepositories(){
       // dataType : "JSON"
   }).done(function(response){
     // console.log(response);
-      displayRepos();
+      displayRepos(response);
 
   }).fail(function(error) {
       displayError(error);
