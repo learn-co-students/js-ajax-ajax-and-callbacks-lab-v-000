@@ -28,6 +28,8 @@ function searchRepositories(){
     // console.log(response);
       displayRepos(response);
 
+  }).fail(function(error) {
+      displayError(error);
   })
 }
 
@@ -41,6 +43,11 @@ function displayRepos(response) {
     .join('')}</ul>`;
   document.getElementById('results').innerHTML = repoList;
 }
+
+function displayError(error) {
+  $("#errors").alert("I'm sorry, there's been an error. Please try again.");
+};
+
 
 // function showRepositories() {
 //   var repos = JSON.parse(this.responseText);
