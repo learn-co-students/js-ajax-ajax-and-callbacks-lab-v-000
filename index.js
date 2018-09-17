@@ -28,7 +28,7 @@ function searchRepositories(){
     // console.log(response);
       displayRepos(response);
 
-  }).fail(function(error) {
+  }).fail(function() {
       displayError();
   })
 
