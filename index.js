@@ -32,6 +32,8 @@ function searchRepositories(){
       displayError(error);
   })
 
+}
+
 function displayRepos(response) {
   //debugger
   // (these two lines of code right below were not needed as the 'response' from the server was already parsed to JSON)
