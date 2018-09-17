@@ -29,7 +29,7 @@ function searchRepositories(){
       displayRepos(response);
 
   }).fail(function(error) {
-      displayError(error);
+      displayError();
   })
 
 }
