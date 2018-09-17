@@ -34,7 +34,7 @@ function searchRepositories(){
 
 }
 
-function displayRepos() {
+function displayRepos(response) {
   //debugger
   // (these two lines of code right below were not needed as the 'response' from the server was already parsed to JSON)
   // var repos = JSON.parse(response);
