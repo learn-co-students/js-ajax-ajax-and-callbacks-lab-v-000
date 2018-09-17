@@ -17,8 +17,8 @@ function searchRepositories(){
 
   $.ajax({
       // The URL for the request
+      //url: 'https://www.runnersworld.com/',
       url: `https://api.github.com/search/repositories?q=${input}`,
-
       // Whether this is a POST or GET request
       type: "GET",
 
@@ -46,8 +46,8 @@ function displayRepos(response) {
 }
 
 function displayError(error) {
-  debugger
-  const message = console.log("I'm sorry, there's been an error. Please try again." + error);
+  //debugger
+  const message = alert("I'm sorry, there's been an error. Please try again.")
   //$('#errors').html(message);
   document.getElementById('errors').innerHTML = message;
 };
