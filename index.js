@@ -45,7 +45,7 @@ function displayRepos(response) {
   document.getElementById('results').innerHTML = repoList;
 }
 
-function displayError(error) {
+function displayError() {
   //debugger
   error = "I'm sorry, there's been an error. Please try again."
   $('#errors').html(error);
