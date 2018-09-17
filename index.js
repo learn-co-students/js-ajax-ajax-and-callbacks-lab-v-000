@@ -28,7 +28,7 @@ function searchRepositories(){
     // console.log(response);
       displayRepos(response);
 
-  }).fail(function() {
+  }).fail(function(error) {
       displayError();
   })
 
@@ -47,7 +47,7 @@ function displayRepos(response) {
 
 function displayError(error) {
   //debugger
-  error = "I'm sorry, there's been an error. Please try again."
+  "I'm sorry, there's been an error. Please try again."
   $('#errors').html(error);
   //document.getElementById('errors').innerHTML = error;
 };
