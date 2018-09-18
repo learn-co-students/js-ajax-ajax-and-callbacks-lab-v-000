@@ -24,35 +24,60 @@ function searchRepositories(){
 
       // // The type of data we expect back
       // dataType : "JSON"
-  }).done(function(){
+  }).done(function(response){
     // console.log(response);
       displayRepos(response);
 
-  }).fail(function(error) {
+  }).fail(function(error){
       displayError(error);
   })
 
 }
 
 function displayRepos(response) {
-  //debugger
+  // debugger
   // (these two lines of code right below were not needed as the 'response' from the server was already parsed to JSON)
   // var repos = JSON.parse(response);
   // console.log(repos);
   const repoList = `<ul>${response.items
-    .map(repo => '<li>' + repo.name + repo.description + repo.html_url + repo.owner.login + repo.owner.avatar_url + repo.owner.url + '</li>')
+    .map(repo => '<li>' + repo.name + repo.description + repo.html_url + repo.owner.login + repo.owner.avatar_url + repo.owner.url + '<a href="#" onclick="showCommits(this)"> Show Commits</a>' + '</li>')
     .join('')}</ul>`;
   document.getElementById('results').innerHTML = repoList;
 }
 
 function displayError(error) {
   //debugger
-  error = "I'm sorry, there's been an error. Please try again." + error
-  $('#errors').html(error);
-  //document.getElementById('errors').innerHTML = error;
+  error = "I'm sorry, there's been an error. Please try again."
+  //$('#errors').html(error);
+  document.getElementById('errors').innerHTML = error;
 };
 
+// 3. Add a "Show Commits" link to each repository result that will call a `showCommits` function that
+// gets the repository's commits from the GitHub API and display them in the `details` div.
+// For each commit, list the SHA, the author, the author's login, and the author's avatar as an image.
 
+
+function showCommits(el) {
+  $.get('https://api.github.com/repos/owner/repo/commits', function(response){
+    const commitsList = `<ul>${response.items.map(commit => '<li>' + commit.SHA + commit.author + commit.author.login + commit.commit.author.avatar + '</li>').join('')}</ul>`
+    document.getElementById("details").innerHTML = commitsList
+  })
+
+}
+//
+// function getCommits(el) {
+//   const name = el.dataset.repository
+//   const req = new XMLHttpRequest()
+//   req.addEventListener("load", displayCommits)
+//   req.open("GET", 'https://api.github.com/repos/octocat/Spoon-Knife/commits')
+//   req.send()
+// }
+//
+// function displayCommits() {
+//   const commits = JSON.parse(this.responseText)
+//   const commitsList = `<ul>${commits.map(commit => '<li>' + commit.author.login + ' <strong>' + commit.commit.author.name + '</strong> - ' + commit.commit.message + '</li>').join('')}</ul>`
+//   document.getElementById("details").innerHTML = commitsList
+// }
 // function showRepositories() {
 //   var repos = JSON.parse(this.responseText);
 //   console.log(repos);
