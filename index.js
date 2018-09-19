@@ -58,9 +58,10 @@ function displayError(error) {
 
 
 function showCommits(el) {
+  //const name = el.dataset.repository
   $.get('https://api.github.com/repos/owner/repo/commits', function(response){
-    const commitsList = `<ul>${el.items.map(commit => '<li>' + commit.SHA + commit.author + commit.author.login + commit.commit.author.avatar + '</li>').join('')}</ul>`
-    document.getElementById("details").innerHTML = commitsList
+    const commitsList = `<ul>${response.map(commit => '<li>' + commit.SHA + commit.author + commit.author.login + commit.commit.author.avatar + '</li>').join('')}</ul>`
+    document.getElementById('details').innerHTML = commitsList
   })
 }
 // function getCommits(el) {
