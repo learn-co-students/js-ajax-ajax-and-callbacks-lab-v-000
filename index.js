@@ -58,12 +58,16 @@ function displayError(error) {
 
 
 function showCommits(el) {
+  //debugger
   //const name = el.dataset.repository
-  $.get('https://api.github.com/repos/owner/repo/commits', function(response){
+  $.get('https://api.github.com/repos/owner/repo/commits/', function(response){
+    debugger
+    //addEventListener("load", showCommits)
     const commitsList = `<ul>${response.map(commit => '<li>' + commit.SHA + commit.author + commit.author.login + commit.commit.author.avatar + '</li>').join('')}</ul>`
     document.getElementById('details').innerHTML = commitsList
   })
 }
+
 // function getCommits(el) {
 //   const name = el.dataset.repository
 //   const req = new XMLHttpRequest()
@@ -77,6 +81,7 @@ function showCommits(el) {
 //   const commitsList = `<ul>${commits.map(commit => '<li>' + commit.author.login + ' <strong>' + commit.commit.author.name + '</strong> - ' + commit.commit.message + '</li>').join('')}</ul>`
 //   document.getElementById("details").innerHTML = commitsList
 // }
+
 // function showRepositories() {
 //   var repos = JSON.parse(this.responseText);
 //   console.log(repos);
