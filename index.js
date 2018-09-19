@@ -8,7 +8,7 @@ function searchRepositories(){
   // $('a').on('click', function() {
   const input = $("#searchTerms").val()
   // })
-  //debugger
+  debugger
   // $.get(`https://api.github.com/search/repositories?q=${input}`, function(response) {
   //         // Here we are getting the element on the page with the id of sentences and
   //         // inserting the response
@@ -58,15 +58,22 @@ function displayError(error) {
 
 
 function showCommits(el) {
-  //debugger
-  //const name = el.dataset.repository
-  $.get('https://api.github.com/repos/owner/repo/commits/', function(response){
-    debugger
+  var url = 'https://api.github.com/repos/owner/repo/commits?sha=6dcb09b5b57875f334f61aebed695e2e4193db5e';
+  debugger
+  $.get(url).done(function(data){
     //addEventListener("load", showCommits)
-    const commitsList = `<ul>${response.map(commit => '<li>' + commit.SHA + commit.author + commit.author.login + commit.commit.author.avatar + '</li>').join('')}</ul>`
+    const commitsList = `<ul>${data.map(commit => '<li>' + commit.SHA + commit.author + commit.author.login + commit.commit.author.avatar + '</li>').join('')}</ul>`
     document.getElementById('details').innerHTML = commitsList
   })
 }
+
+// var url =
+//     'https://api.github.com/repos/rails/rails/commits?sha=82885325e04d78fb7ec608a4670164d842d23078';
+//
+// $.get(url).done(function(data) {
+//     console.log('Done');
+//     console.log(data);
+// });
 
 // function getCommits(el) {
 //   const name = el.dataset.repository
