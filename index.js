@@ -8,7 +8,7 @@ var searchRepositories = () => {
       <img class="avatar" src="${r.owner.avatar_url}" alt="${r.owner.login}'s Avatar Image">
         <div>
         <h2><a href="${r.html_url}">${r.name}</a></h2>
-        <p>${r.description} | <a href="#" onclick="showCommits(${r.owner.login}, ${r.name})">Show Commits</a></p>
+        <p>${r.description} | <a href="#" data-repository="${r.name}" data-owner="${r.owner.login}" onclick="showCommits(this)">Show Commits</a></p>
         <p><a href="${r.owner.html_url}">Owner: ${r.owner.login}</a></p>
         </div>
       </div><br></br>`).join("")
@@ -19,11 +19,18 @@ var searchRepositories = () => {
   })
 }
 
-var showCommits = (owner, repo) => {
-    $.get(`https://api.github.com/repos/${owner}/${repo}`, data => {
-    const commitsData = "Hello World!"
+var showCommits = (el) => {
+    debugger
+    $.get(`https://api.github.com/repos/${el.dataset.owner}/${el.dataset.repository}/commits`, data => {
+      const commitsData = data.map(c =>
+        `<div>
+          <img class="avatar" src="${c.author.avatar_url}" alt="${c.author.login}'s Avatar Image">
+          <p>Author: ${c.commit.author.name} , AKA: ${c.author.login}</p>
+          <p>SHA: ${c.sha}</p>
+        </div>
+        <br></br>`).join("")
+   $("#details").html(commitsData);
   })
-  $("#details").html(commitsData);
 }
 
 $(document).ready(function (){
