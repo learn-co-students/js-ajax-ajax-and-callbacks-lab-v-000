@@ -16,9 +16,22 @@
       .flexbox-container > div:first-child {
         margin-right: 20px;
       }
+
+      .avatar {
+        vertical-align: middle;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+      }
+
     </style>
   </head>
   <body>
+    <form>
+      <input type="text" id="searchTerms"/>
+      <a href="#" onclick="searchRepositories(searchTerms)">Search Repositories</a>
+    </form>
+
     <main id="main">
       <div id="errors"></div>
     </main>
@@ -32,6 +45,7 @@
         <div id="details"></div>
       </div>
     </div>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="jquery-3.1.0.min.js"></script>
     <script src="index.js"></script>
   </body>
