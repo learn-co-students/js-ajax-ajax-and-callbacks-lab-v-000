@@ -63,6 +63,7 @@ describe('index.js', () => {
     describe('showCommits', () => {
       it('calls the github commits api and displays results', () => {
         const el = { dataset: { repository: "repo", owner: "owner" } }
+        debugger
         showCommits(el)
         requests[0].respond(200, contentType, commitsData())
         expect(requests[0].url).toMatch(/https:\/\/api.github.com\/repos\/owner\/repo\/commits/)
