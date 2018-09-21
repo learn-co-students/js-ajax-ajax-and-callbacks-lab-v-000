@@ -4,9 +4,9 @@ $(document).ready(function (){
 
 function searchRepositories() {
   let searchTerm = document.getElementById("searchTerms").value
-  let url = 'https://api.github.com/users/' + searchTerm + '/repos'
+  let url = 'https://api.github.com/search/repositories?q=' + searchTerm
   $.get(url).done(function (info) {
-    let repoList = info.map(function (element) {
+    let repoList = info.items.map(function (element) {
       let description = "No Data"
       if (element.description !== null) {
         description = element.description
@@ -19,7 +19,7 @@ function searchRepositories() {
         <li><a href="#" data-repository="${element.name}" data-owner="${element.owner.login}" onclick="showCommits(this)">Show Commits</a></li>
       </ul>`
     })
-    $('#results').html(repoList.join(""))
+    $('#results').html(searchTerm + "<br><br>" + repoList.join(""))
   }).fail(function (error) {
     displayError(error)
   })
@@ -59,3 +59,5 @@ function showCommits(element) {
     displayError(error)
   })
 }
+
+// --------------------
