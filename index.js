@@ -38,7 +38,8 @@ function displayRepos(response) {
   // var repos = JSON.parse(response);
   // console.log(repos);
   const repoList = `<ul>${response.items
-    .map(repo => '<li>' + repo.name + repo.description + repo.html_url + repo.owner.login + repo.owner.avatar_url + repo.owner.url + '</li>')
+    .map(repo => '<li>' + repo.name + repo.description + repo.html_url + repo.owner.login + repo.owner.avatar_url + repo.owner.url +
+    '<a href="#" onclick="showCommits()"> Show Commits</a>' + '</li>')
     .join('')}</ul>`;
   document.getElementById('results').innerHTML = repoList;
 }
@@ -57,10 +58,11 @@ function displayError(error) {
 //https://api.github.com/repos/owner/repo/commits/
 
 function showCommits(data) {
-  //debugger  https://api.github.com/search/repositories?q=${input}
-  $.get('https://api.github.com/repos/owner/repo/commits/', function(data){
+  //debugger
+  //'https://api.github.com/repos/owner/repo/commits/'
+  $.get('https://api.github.com/search/repositories?q=${input}', function(data){
     //addEventListener("load", showCommits)
-    const commitsList = `<ul>${data.map(commit => '<li>' + commit.SHA + commit.author + commit.author.login + commit.commit.author.avatar + '</li>').join('')}</ul>`
+    const commitsList = `<ul>${data.items.map(commit => '<li>' + commit.SHA + commit.author + commit.author.login + commit.commit.author.avatar + '</li>').join('')}</ul>`
     document.getElementById('details').innerHTML = commitsList
   })
 }
