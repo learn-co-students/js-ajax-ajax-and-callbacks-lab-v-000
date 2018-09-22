@@ -46,7 +46,7 @@ function displayRepos(response) {
 
 function displayError(error) {
   //debugger
-  error = "I'm sorry, there's been an error. Please try again."
+  error = "I'm sorry, there's been an error. Please try again.";
   //$('#errors').html(error);
   document.getElementById('errors').innerHTML = error;
 };
@@ -61,9 +61,8 @@ function showCommits(el) {
   //debugger
   //'https://api.github.com/search/repositories?q=${input}'
   $.get('https://api.github.com/repos/owner/repo/commits/', function(response){
-    //addEventListener("load", showCommits)
-    const commitsList = `<ul>${response.map(com => '<li>' + com.sha + com.author + com.author.login + com.author.avatar + '</li>').join('')}</ul>`
-    document.getElementById('details').innerHTML = commitsList
+    const commitsList = `<ul>${response.map(com => '<li>' + com.sha + com.author + com.author.login + com.author.avatar + '</li>').join('')}</ul>`;
+    document.getElementById('details').innerHTML = commitsList;
   })
 }
 
