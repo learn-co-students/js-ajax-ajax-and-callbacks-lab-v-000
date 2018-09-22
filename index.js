@@ -57,10 +57,9 @@ function displayError(error) {
 //https://api.github.com/repos/owner/repo/commits/
 
 function showCommits(data) {
-  //var url = '6dcb09b5b57875f334f61aebed695e2e4193db5e';
-  debugger
+  //debugger
   $.get('https://api.github.com/repos/owner/repo/commits/', function(data){
-    //addEventListener("load", showCommits)
+    addEventListener("load", showCommits)
     const commitsList = `<ul>${data.map(commit => '<li>' + commit.SHA + commit.author + commit.author.login + commit.commit.author.avatar + '</li>').join('')}</ul>`
     document.getElementById('details').innerHTML = commitsList
   })
