@@ -59,7 +59,7 @@ function displayError(error) {
 function showCommits(data) {
   //debugger
   $.get('https://api.github.com/repos/owner/repo/commits/', function(data){
-    addEventListener("load", showCommits)
+    //addEventListener("load", showCommits)
     const commitsList = `<ul>${data.map(commit => '<li>' + commit.SHA + commit.author + commit.author.login + commit.commit.author.avatar + '</li>').join('')}</ul>`
     document.getElementById('details').innerHTML = commitsList
   })
