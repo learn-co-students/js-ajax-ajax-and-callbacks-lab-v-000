@@ -59,7 +59,6 @@ function displayError(error) {
 
 function showCommits() {
   //debugger
-  //
   //'https://api.github.com/search/repositories?q=${input}'
   $.get('https://api.github.com/repos/owner/repo/commits/', function(response){
     //addEventListener("load", showCommits)
