@@ -57,13 +57,13 @@ function displayError(error) {
 
 //https://api.github.com/repos/owner/repo/commits/
 
-function showCommits(data) {
+function showCommits(event, data) {
   //debugger
   //
   //'https://api.github.com/search/repositories?q=${input}'
-  $.get('https://api.github.com/repos/owner/repo/commits/', function(data){
+  $.get('https://api.github.com/repos/owner/repo/commits/', function(response){
     //addEventListener("load", showCommits)
-    const commitsList = `<ul>${data.items.map(commit => '<li>' + commit.SHA + commit.author + commit.author.login + commit.commit.author.avatar + '</li>').join('')}</ul>`
+    const commitsList = `<ul>${response.map(commit => '<li>' + commit.SHA + commit.author + commit.author.login + commit.commit.author.avatar + '</li>').join('')}</ul>`
     document.getElementById('details').innerHTML = commitsList
   })
 }
