@@ -33,12 +33,12 @@ function searchRepositories(){
 }
 
 function displayRepos(response) {
-  // debugger
+   debugger
   // (these two lines of code right below were not needed as the 'response' from the server was already parsed to JSON)
   // var repos = JSON.parse(response);
   // console.log(repos);
   const repoList = `<ul>${response.items
-    .map(repo => '<li>' + repo.name + repo.description + repo.html_url + repo.owner.login + repo.owner.avatar_url + repo.owner.url + '<a href="#" onclick="showCommits(this)"> Show Commits</a>' + '</li>')
+    .map(repo => '<li>' + repo.name + repo.description + repo.html_url + repo.owner.login + repo.owner.avatar_url + repo.owner.url + '<a href="#" onclick="showCommits(data)"> Show Commits</a>' + '</li>')
     .join('')}</ul>`;
   document.getElementById('results').innerHTML = repoList;
 }
@@ -57,7 +57,7 @@ function displayError(error) {
 //https://api.github.com/repos/owner/repo/commits/
 
 function showCommits(data) {
-  //debugger
+  //debugger  https://api.github.com/search/repositories?q=${input}
   $.get('https://api.github.com/repos/owner/repo/commits/', function(data){
     //addEventListener("load", showCommits)
     const commitsList = `<ul>${data.map(commit => '<li>' + commit.SHA + commit.author + commit.author.login + commit.commit.author.avatar + '</li>').join('')}</ul>`
