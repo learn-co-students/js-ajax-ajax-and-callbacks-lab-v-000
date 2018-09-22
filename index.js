@@ -56,11 +56,12 @@ function displayError(error) {
 // gets the repository's commits from the GitHub API and display them in the `details` div.
 // For each commit, list the SHA, the author, the author's login, and the author's avatar as an image.
 
+//https://api.github.com/repos/owner/repo/commits/
 
 function showCommits(el) {
-  var url = 'https://api.github.com/repos/owner/repo/commits?sha=6dcb09b5b57875f334f61aebed695e2e4193db5e';
+  //var url = '6dcb09b5b57875f334f61aebed695e2e4193db5e';
   debugger
-  $.get(url).done(function(data){
+  $.get('https://api.github.com/repos/owner/repo/commits/', function(data){
     //addEventListener("load", showCommits)
     const commitsList = `<ul>${data.map(commit => '<li>' + commit.SHA + commit.author + commit.author.login + commit.commit.author.avatar + '</li>').join('')}</ul>`
     document.getElementById('details').innerHTML = commitsList
