@@ -61,9 +61,9 @@ function showCommits(el) {
   //debugger
   //
   //'https://api.github.com/search/repositories?q=${input}'
-  $.get('https://api.github.com/repos/owner/repo/commits/', function(data){
+  $.get('https://api.github.com/repos/owner/repo/commits/', function(response){
     //addEventListener("load", showCommits)
-    const commitsList = `<ul>${data.map(com => '<li>' + com.SHA + com.author + com.author.login + com.commit.author.avatar + '</li>').join('')}</ul>`
+    const commitsList = `<ul>${response.map(com => '<li>' + com.SHA + com.author + com.author.login + com.commit.author.avatar + '</li>').join('')}</ul>`
     document.getElementById('details').innerHTML = commitsList
   })
 }
