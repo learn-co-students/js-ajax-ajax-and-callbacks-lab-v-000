@@ -38,7 +38,7 @@ function displayRepos(response) {
   // var repos = JSON.parse(response);
   // console.log(repos);
   const repoList = `<ul>${response.items
-    .map(repo => '<li>' + repo.name + repo.description + repo.html_url + repo.owner.login + repo.owner.avatar_url + repo.owner.url + '<a href="#" onclick="showCommits(data)"> Show Commits</a>' + '</li>')
+    .map(repo => '<li>' + repo.name + repo.description + repo.html_url + repo.owner.login + repo.owner.avatar_url + repo.owner.url + '</li>')
     .join('')}</ul>`;
   document.getElementById('results').innerHTML = repoList;
 }
