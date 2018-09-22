@@ -57,7 +57,7 @@ function displayError(error) {
 
 //https://api.github.com/repos/owner/repo/commits/
 
-function showCommits(el) {
+function showCommits() {
   //debugger
   //
   //'https://api.github.com/search/repositories?q=${input}'
