@@ -14,7 +14,6 @@ function searchRepositories(){
   //         // inserting the response
   //         displayRepos(response);
   //     });
-
   $.ajax({
       // The URL for the request
       //url: 'https://www.runnersworld.com/',
@@ -31,7 +30,6 @@ function searchRepositories(){
   }).fail(function(error){
       displayError(error);
   })
-
 }
 
 function displayRepos(response) {
@@ -58,7 +56,7 @@ function displayError(error) {
 
 //https://api.github.com/repos/owner/repo/commits/
 
-function showCommits(el) {
+function showCommits(data) {
   //var url = '6dcb09b5b57875f334f61aebed695e2e4193db5e';
   debugger
   $.get('https://api.github.com/repos/owner/repo/commits/', function(data){
@@ -67,14 +65,6 @@ function showCommits(el) {
     document.getElementById('details').innerHTML = commitsList
   })
 }
-
-// var url =
-//     'https://api.github.com/repos/rails/rails/commits?sha=82885325e04d78fb7ec608a4670164d842d23078';
-//
-// $.get(url).done(function(data) {
-//     console.log('Done');
-//     console.log(data);
-// });
 
 // function getCommits(el) {
 //   const name = el.dataset.repository
