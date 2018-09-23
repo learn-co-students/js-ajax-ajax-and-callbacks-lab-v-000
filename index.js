@@ -1,5 +1,4 @@
 function searchRepositories() {
-  debugger
   let searchterm = document.getElementById('searchTerms').value
   $.get(`https://api.github.com/search/repositories?q=${searchterm}`, data => {
     $("#results").html(displaySearchResults(data))
@@ -26,7 +25,7 @@ function displaySearchResults(searchResults) {
            <p> Owner login: ${searchResult.owner.login}</p><br>
            <img src="${searchResult.owner.avatar_url}" height="32" width="32"><br>
            <a href="${searchResult.owner.html_url}">${searchResult.owner.html_url}</a><br>
-           <a href="#" ${dataRepoName} ${dataUsername} onclick="getCommits(this)">Get Commits</a><br>
+           <a href="#" ${dataRepoName} ${dataUsername} onclick="showCommits(this)">Show Commits</a><br>
          </li>`
 
     })
@@ -34,19 +33,19 @@ function displaySearchResults(searchResults) {
     return results
 }
 
-function getCommits(el) {
+function showCommits(el) {
 
-  let repoName = el.dataset.repo
-  let userName = el.dataset.username
+  let repoName = el.dataset.repository
+  let userName = el.dataset.owner
 
   $.get(`https://api.github.com/repos/${userName}/${repoName}/commits`, data => {
-    $("#details").html(showCommits(data))
+    $("#details").html(showCommitsDetails(data))
   }).fail(error => {
     displayError()
   })
 }
 
-function showCommits(commits) {
+function showCommitsDetails(commits) {
   console.log(commits)
   debugger
   const results = '<ul>' +
