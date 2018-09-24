@@ -9,7 +9,7 @@ $(document).ready(function (){
       console.log(repoData)
       $('#results').html(
         repoData.items.map(function(repo) {
-          return `<p><a href="${repo.html_url}">${repo.name}</a> - ${repo.description}</p>` 
+          return `<p><img src="${repo.owner.avatar_url}", style="width:100px;height=100px;"><a href="${repo.html_url}">${repo.name}</a> - ${repo.description} - <a href="${repo.owner.html_url}">${repo.owner.login}</a></p>` 
         })
         );
 	  });
