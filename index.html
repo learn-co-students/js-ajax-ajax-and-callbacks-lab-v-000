@@ -20,7 +20,13 @@
   </head>
   <body>
     <main id="main">
-      <div id="errors"></div>
+        <form onclick="searchRepositories(); return false">
+            <input type="text" id="searchTerms">
+            <button type="submit">/Search/</button>
+        </form>
+        <a href="#" onclick="searchRepositories();">Search</a>
+        <div id="searchTerms"></div>
+      <div id="errors"><p>errors</p></div>
     </main>
     <div class="flexbox-container">
       <div>
