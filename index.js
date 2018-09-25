@@ -21,8 +21,12 @@ $(document).ready(function (){
    console.log(repoName)
    console.log(repoOwner)
     $.get(`https://api.github.com/repos/${repoOwner}/${repoName}/commits`, function(repoData) {
-      console.log(repoData)
-        $('#results').html(repoData)
+        console.log(repoData)
+        $('#details').html(
+          repoData.map(function(commit) {
+             return `<ul><li>${commit.sha} - ${commit.commit.author.name} - ${commit.author.login}</li></ul>`
+          })
+          )
     })
   }
   
