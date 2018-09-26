@@ -33,7 +33,7 @@ function searchRepositories(){
 }
 
 function displayRepos(response) {
-   //debugger
+   debugger
   // (these two lines of code right below were not needed as the 'response' from the server was already parsed to JSON)
   // var repos = JSON.parse(response);
   // console.log(repos);
@@ -46,10 +46,11 @@ function displayRepos(response) {
 
   const repoList = `<ul>${response.items
     .map(repo => '<li>' + repo.name + repo.description + repo.html_url + repo.owner.login + repo.owner.avatar_url + repo.owner.url +
-    '<a href="#" onclick="showCommits(this)" data-owner="' + repo.owner.login + '" data-repo="' + repo.name + '"> Show Commits</a>' + '</li>')
+    '<a href="#" onclick="showCommits(this)" "data-owner="' + repo.owner.login + '"data-repository="' + repo.name + '"> Show Commits</a>' + '</li>')
     .join('')}</ul>`;
   document.getElementById('results').innerHTML = repoList;
 }
+
 
 
 function displayError(error) {
@@ -66,14 +67,16 @@ function displayError(error) {
 //https://api.github.com/repos/owner/repo/commits/
 
 function showCommits(el) {
-  //debugger
+  //const el = { dataset: { repository: "repo", owner: "owner" } }
+  debugger
   //'https://api.github.com/search/repositories?q=${input}'
-  $.get(`https://api.github.com/repos/${el.dataset.owner}/${el.dataset.repo}/commits`, function(response){
+  $.get(`https://api.github.com/repos/${el.dataset.owner}/${el.dataset.repository}/commits`, function(response){
     console.log(response);
     const commitsList = `<ul>${response.map(com => '<li>' + com.sha + com.commit.author.name + com.commit.author.login + com.commit.author.avatar + '</li>').join('')}</ul>`;
     document.getElementById('details').innerHTML = commitsList;
   })
 }
+
 
 // function getCommits(el) {
 //   const name = el.dataset.repository
