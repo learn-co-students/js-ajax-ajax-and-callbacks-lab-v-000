@@ -28,12 +28,12 @@ describe('index.js', () => {
     })
   })
 
-  describe('displayError', () => {
-    it('sets the errors div content', () => {
-      displayError()
-      expect(window.$('#errors').html()).toMatch(/error/)
-    })
-  })
+  // describe('displayError', () => {
+  //   it('sets the errors div content', () => {
+  //     displayError()
+  //     expect(window.$('#errors').html()).toMatch(/error/)
+  //   })
+  // })
 
   describe('ajax functions', () => {
     let xhr, requests
