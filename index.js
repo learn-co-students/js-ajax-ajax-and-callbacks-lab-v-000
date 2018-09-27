@@ -5,8 +5,9 @@
 //https://api.github.com/search/repositories?q=tetris
 
 function searchRepositories(){
-  // $('a').on('click', function() {
   const input = $("#searchTerms").val()
+  // $('a').on('click', function() {
+
   // })
   //debugger
   // $.get(`https://api.github.com/search/repositories?q=${input}`, function(response) {
