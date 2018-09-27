@@ -30,6 +30,13 @@ function searchRepositories(){
   }).fail(function(error){
       displayError(error);
   })
+
+    // Another option to get the URL is to use GET function instead of the AJAX function
+  // $.get(`https://api.github.com/search/repositories?q=${input}`, function(response){
+  //     displayRepos(response);
+  // }).fail(function(error){
+  //     displayError(error);
+  // })
 }
 
 function displayRepos(response) {
@@ -50,8 +57,6 @@ function displayRepos(response) {
     .join('')}</ul>`;
   document.getElementById('results').innerHTML = repoList;
 }
-
-
 
 function displayError(error) {
   //debugger
