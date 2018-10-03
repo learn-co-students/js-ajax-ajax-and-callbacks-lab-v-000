@@ -25,7 +25,7 @@ describe('index.js', () => {
       expect(document.getElementById('searchTerms')).toExist()
       expect(document.getElementById('results')).toExist()
       expect(document.getElementById('details')).toExist()
-    })
+    }).timeout(10000);
   })
 
   describe('displayError', () => {
