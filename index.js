@@ -2,16 +2,17 @@ $(document).ready(function (){
 });
 
 function searchRepositories(){
-  let req = new XMLHttpRequest();
   let params = document.getElementById('searchTerms').value.split(" ").join("+");
-  req.addEventListener('load', displayRepositories);
-  req.open('GET', `https://api.github.com/search/repositories?q=${params}`);
-  req.send();
+  // console.log($.get(`https://api.github.com/search/repositories?q=${params}`));
+  $.get(`https://api.github.com/search/repositories?q=${params}`)
+    .done(displayRepositories)
+    .fail(displayError);
 }
 
-function displayRepositories(){
-  let results = JSON.parse(this.responseText).items;
-  console.log(results);
+function displayRepositories(data){
+  console.log(data);
+  let results = data.items;
+  // console.log(results);
   const resultList = `<ul>${results.map(r =>
     '<li>' + r.name + '<br>' +
     r.description + '<br>' +
@@ -19,25 +20,28 @@ function displayRepositories(){
     'Owner:' + r.owner.login + '<br>' +
     '<img src="' + r.owner.avatar_url + '" style="width=20px; height:20px;"/>'+
     '<a href="'+r.owner.html_url+'">Visit Profile</a>'+ '<br>'+
-    '<a href="#" data-url="' + r.commits_url.slice(0, r.commits_url.length - 6) +
+    '<a href="#" data-url="' + r.commits_url +
     '" onclick="showCommits(this);">Show Commits</a>' +
      '</li>'
   ).join('')}</ul>`;
   // results.innerHTML =
-  document.getElementById('results').innerHTML = resultList;
+  $("#results").html(resultList);
 }
 
 function showCommits(el){
-  let url = el.dataset.url;
-  let req = new XMLHttpRequest();
-  req.addEventListener('load',displayCommits);
-  req.open('GET', url );
-  req.send();
+  let url = `https://api.github.com/repos/${el.dataset.owner}/${el.dataset.repository}/commits`;
+  $.get(url)
+    .done(displayCommits)
+    .fail(displayError);
+  // let req = new XMLHttpRequest();
+  // req.addEventListener('load',displayCommits);
+  // req.open('GET', url );
+  // req.send();
 }
 
-function displayCommits(){
-  let commits = JSON.parse(this.responseText);
-  const commitList = `<ul>${commits.map(c =>
+function displayCommits(data){
+  // let commits = data;
+  const commitList = `<ul>${data.map(c =>
     '<li>'+
     c.committer.login + '<br>' +
     c.commit.author.name + '<br>' +
@@ -46,9 +50,9 @@ function displayCommits(){
     c.commit.message + '<hr>'+
     '</li>'
   ).join('')}</ul>`;
-  document.getElementById('details').innerHTML = commitList;
+  $('#details').html(commitList);
 }
 
 function displayError(){
-
+ $('#errors').html("I'm sorry, there's been an error. Please try again.");
 }
