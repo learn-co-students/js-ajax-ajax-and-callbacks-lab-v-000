@@ -14,7 +14,7 @@ function displayError() {
 };
 
 function showCommits(el) {
-    // let url = repo.dataset.commits.slice(0,-6).toString(); //getting rid of the {/sha}
+    // let url = repo.dataset.commits.slice(0,-6).toString(); //getting rid of the {/sha} (WORKS, but DOES NOT CORRESPOND TO TESTS)
     $.get(`https://api.github.com/repos/${el.dataset.owner}/${el.dataset.repository}/commits`, function(response){
         console.log(response);
         displayCommits(response);
