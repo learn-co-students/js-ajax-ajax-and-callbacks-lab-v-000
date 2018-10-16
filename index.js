@@ -1,27 +1,24 @@
-// We should wait for the page to load before running our Ajax request
-$(document).ready(function() {
-
-});
-
 function displayError(error) {
+  //jQuery
   $("#errors").html("I'm sorry, there's been an error. Please try again.");
 }
+// document.getElementById("errors").innerHTML = "I'm sorry, there's been an error. Please try again.";
+// }
 
 
 function showCommits(el) {
   const repo = el.dataset.repository;
   const user = el.dataset.owner;
-  const url = `https://api.github.com/repos/${user}/${repo}/commits`;
+  const url = `https://api.github.com/repos/${user}/${repo}/commits`
 
   $.get(url, function(data){
-    const commitList = `<ul>${data
+    const results = `<ul>${data
     .map(r => '<li>' + r.commit.author.name + ', ' + r.sha + '</li>')
     .join('')}</ul>`;
-
-    document.getElementById("details").innerHTML = commitList;
+    document.getElementById("details").innerHTML = results;
   })
-}
 
+}
 
 
 function showRepositories(result)  {
@@ -50,3 +47,10 @@ function searchRepositories() {
     .done(showRepositories)
     .fail(displayError);
 }
+
+
+
+
+$(document).ready(function() {
+
+});
