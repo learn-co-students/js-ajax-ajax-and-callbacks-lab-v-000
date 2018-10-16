@@ -1,4 +1,4 @@
-function displayError(error) {
+function displayError() {
   //jQuery
   $("#errors").html("I'm sorry, there's been an error. Please try again.");
 }
@@ -6,49 +6,47 @@ function displayError(error) {
 // }
 
 
+
 function showCommits(el) {
   const repo = el.dataset.repository;
   const user = el.dataset.owner;
+
   const url = `https://api.github.com/repos/${user}/${repo}/commits`
 
   $.get(url, function(data){
-    const results = `<ul>${data
-    .map(r => '<li>' + r.commit.author.name + ', ' + r.sha + '</li>')
-    .join('')}</ul>`;
-    document.getElementById("details").innerHTML = results;
-  })
 
-}
+    const commitResults =
+    `<ul>${data.map(repo =>
+      '<li>' +
+      repo.commit.author.name +
+      ', ' + repo.sha +
+      '</li>').join('')}
+    </ul>`;
 
-
-function showRepositories(result)  {
-  const repos = result.items;
-  const repoList = `<ul>${repos
-       .map(
-         repo =>
-           '<li>' +
-           '<strong>' +  repo.name + '</strong> -' +
-           repo.description + '<br>' +
-           '<a href="' + repo.html_url + '">' + repo.html_url + '</a>' + '<br>' +
-           '<a href="#" onclick="showCommits(this)" data-repository="' + repo.name + '" data-owner="' + repo.owner.login + '">Show Commits</a>' +
-           '</li>'
-       )
-       .join('')}</ul>`;
-
-  document.getElementById("results").innerHTML = repoList;
+    document.getElementById("details").innerHTML = commitResults;
+  }).fail(displayError())
 }
 
 
 function searchRepositories() {
-  const searchTerms = $("#searchTerms").val();
-  const url = "https://api.github.com/search/repositories?q=";
 
-  $.get(`${url}${searchTerms}`)
-    .done(showRepositories)
-    .fail(displayError);
+  const searchTerms = document.getElementById("searchTerms").value
+  const url = `https://api.github.com/search/repositories?q=${searchTerms}`
+
+  $.get(url, function(data){
+    const searchResults =
+    `<ul>${data.items.map(repo =>
+      '<li>' + repo.name +
+      ', ' +
+      repo.html_url +
+      '</li>' +
+      `<ahref="#"data-repository="${repo.name}"data-owner="${repo.owner.login}"onclick="showCommits(this)">Show Commits</a>`
+    ).join('')}
+    </ul>`;
+
+    document.getElementById("results").innerHTML = searchResults;
+  }).fail(displayError())
 }
-
-
 
 
 $(document).ready(function() {
