@@ -11,9 +11,9 @@ function showCommits(el) {
   const repo = el.dataset.repository;
   const user = el.dataset.owner;
 
-  const url = `https://api.github.com/repos/${user}/${repo}/commits`
+  const uri = `https://api.github.com/repos/${user}/${repo}/commits`
 
-  $.get(url, function(data){
+  $.get(uri, function(data){
 
     const commitResults =
     `<ul>${data.map(repo =>
@@ -31,14 +31,14 @@ function showCommits(el) {
 function searchRepositories() {
 
   const searchTerms = document.getElementById("searchTerms").value
-  const url = `https://api.github.com/search/repositories?q=${searchTerms}`
+  const uri = `https://api.github.com/search/repositories?q=${searchTerms}`
 
-  $.get(url, function(data){
+  $.get(uri, function(data){
     const searchResults =
     `<ul>${data.items.map(repo =>
       '<li>' + repo.name +
       ', ' +
-      repo.html_url +
+      repo.html_uri +
       '</li>' +
       `<ahref="#"data-repository="${repo.name}"data-owner="${repo.owner.login}"onclick="showCommits(this)">Show Commits</a>`
     ).join('')}
