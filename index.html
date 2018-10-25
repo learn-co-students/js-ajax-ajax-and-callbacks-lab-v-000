@@ -20,7 +20,8 @@
   </head>
   <body>
     <main id="main">
-      <form onsubmit="searchRepositories()">
+      <a href="#">Search</a>
+      <form onsubmit="searchRepositories(); return false;">
         <input type="text" id="searchTerms">
         <input type="submit">
       </form>
@@ -38,6 +39,5 @@
     </div>
     <script src="jquery-3.1.0.min.js"></script>
     <script src="index.js"></script>
-    <script type="text/javascript" src="js/jquery.ajax-cross-origin.min.js"></script>
   </body>
 </html>
