@@ -2,8 +2,8 @@ function displayError(){
     $('#errors').html("Sorry, there was an error. Please try again.")
 }
 function searchRepositories(){
-    const searchTerms = $('#searchTerms').val();
-    const url = `https://api.github.com/search/repositories?q=${searchTerms}/`
+    let searchTerms = $('#searchTerms').val();
+    let url = `https://api.github.com/search/repositories?q=${searchTerms}/`
     $.get(url, function(response){
         $("#results").html(showRepositories(response))
     }).fail(error =>{
@@ -12,7 +12,7 @@ function searchRepositories(){
 }
 
 function showRepositories(response){
-    const repos = response.items.map(repo => renderRespositories(repo))
+    let repos = response.items.map(repo => renderRespositories(repo))
     return `<ul>${repos}</ul>`
 }
 
@@ -34,7 +34,7 @@ function showCommits(repo){
   }
 
 function renderCommits(data){
-    const commits = data.map(commit => addHtml(commit))
+    let commits = data.map(commit => addHtml(commit))
     return `<ul>${commits}</ul>`
 }
 
