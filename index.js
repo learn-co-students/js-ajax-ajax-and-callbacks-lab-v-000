@@ -4,10 +4,12 @@ function displayError() {
 }
 
 var renderCommit = (commit) => {
+  // Shows how each commit will be displayed
   return `<li><h3>${commit.sha}</h3><p>${commit.commit.message}</p></li>`
 }
 
 var renderCommits = (data) => {
+  // Iterate through the input data of the commits and show under results id
   let result = data.map((commit)=>renderCommit(commit)).join('')
   return `<ul>${result}</ul>`
 }
@@ -23,7 +25,6 @@ var showCommits = (el) => {
 
 var renderSearchResult = (result) => {
   // Print outs the repositories API information with the specific data we want.
-  debugger;
   return `
       <div>
         <h2><a href="${result.html_url}">${result.name}</a></h2>
