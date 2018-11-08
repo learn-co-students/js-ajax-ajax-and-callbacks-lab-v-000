@@ -1,7 +1,7 @@
 
 
 var searchRepositories = () => {
-  const searchWord = $('#searchTerms').val()
+  let searchWord = $('#searchTerms').val()
   // console.log($('#results').html());
   $.get(`https://api.github.com/search/repositories?q=${searchWord}`,repositories => {
     $('#results').html(renderSearchResults(repositories) )
