@@ -52,7 +52,7 @@ var showCommits = (r) => {
 
 
 var displayError = () => {
-  $('#errors')html('There is a error: ')
+  $('#errors').html('There is a error: ')
 }
 
 $(document).ready(function (){
