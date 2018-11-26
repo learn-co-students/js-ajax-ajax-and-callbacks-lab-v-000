@@ -6,22 +6,18 @@ function displayError() {
 }
 
 function individualCommit(result) {
-  return `<div>
-    <p>SHA: ${result.sha}</p>
-    <p>Author: ${result.author.login}</p>
-    <p><img src="${result.author.avatar_url}" alt="avatar"></p>
-  </div>`
+  return `<div><p>SHA: ${result.sha}</p><p>Author: ${result.author.login}</p><p><img src="${result.author.avatar_url}" alt="avatar"></p></div>`
 }
 
 function displayCommits(data) {
-  return data.items.map( (result) => individualCommit(result) );
+  return data.map( (result) => individualCommit(result) ).join('');
 }
 
 function showCommits(el) {
-  debugger
-  const username = el.dataset.username;
+  const owner = el.dataset.owner;
   const name = el.dataset.repository;
-  $.get(`https://api.github.com/repos/${username}/${name}/commits`, function(data) {
+  const url = `https://api.github.com/repos/${owner}/${name}/commits`
+  $.get(url, function(data) {
     $("#details").html(displayCommits(data));
   }).fail(function(error) {
     displayError();
@@ -29,7 +25,7 @@ function showCommits(el) {
 }
 
 function individualRepository(result) {
-  return `<div><p><a href="${result.html_url}">${result.name}</a></p><p>Repository Owner: <a href="${result.owner.url}">${result.owner.login}</a></p><p><img src="${result.owner.avatar_url}" alt="Image avatar"></p><p><a href="#" onclick="showCommits(this);return false" data-username="${result.owner.login}" data-repository="${result.name}">Get Commits</a></p></div>`
+  return `<div><p><a href="${result.html_url}">${result.name}</a></p><p>Repository Owner: <a href="${result.owner.url}">${result.owner.login}</a></p><p><img src="${result.owner.avatar_url}" alt="Image avatar"></p><p><a href="#" onclick="showCommits(this);return false" data-owner="${result.owner.login}" data-repository="${result.name}">Get Commits</a></p></div>`
 }
 
 function displayRepositories(data) {
