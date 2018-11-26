@@ -20,6 +20,10 @@
   </head>
   <body>
     <main id="main">
+      <form onsubmit="searchRepositories(); return false">
+        <input type="text" id="searchTerms"><br>
+        <input type="submit">
+      </form>
       <div id="errors"></div>
     </main>
     <div class="flexbox-container">
@@ -32,7 +36,21 @@
         <div id="details"></div>
       </div>
     </div>
+
+    <script id="repository-template" type="text/x-handlebars-template">
+      <ul>
+        {{#each this}}
+          <li>
+            <p>{{name}}, {{description}}, {{html_url}}</p>
+          </li>
+        {{/each}}
+      </ul>
+    </script>
     <script src="jquery-3.1.0.min.js"></script>
     <script src="index.js"></script>
   </body>
 </html>
+
+<!-- // Include repository name
+// description
+// a link to the HTML URL. -->
