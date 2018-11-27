@@ -20,6 +20,10 @@
   </head>
   <body>
     <main id="main">
+      <form id="search" onsubmit="searchRepositories(); return false">
+        <input type="text" id="searchTerms" placeholder="search"><br>
+        <input type="submit">
+      </form>
       <div id="errors"></div>
     </main>
     <div class="flexbox-container">
@@ -36,3 +40,7 @@
     <script src="index.js"></script>
   </body>
 </html>
+
+<!-- // Include repository name
+// description
+// a link to the HTML URL. -->
