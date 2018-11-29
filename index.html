@@ -1,3 +1,6 @@
+  <script src="jquery-3.1.0.min.js"></script>
+    <script src="handlebars.js"></script>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -21,6 +24,10 @@
   <body>
     <main id="main">
       <div id="errors"></div>
+      <div>
+      <input id="searchTerms" type="text">
+      <a href="#" onclick="searchRepositories()">Search Repositories</a>
+    </div>
     </main>
     <div class="flexbox-container">
       <div>
@@ -32,7 +39,15 @@
         <div id="details"></div>
       </div>
     </div>
+
+    <script id='repository-template' type='text/x-handlebars-template'>
+      {{#each this}}
+      <li>{{name}}</li>
+    </script>
+
     <script src="jquery-3.1.0.min.js"></script>
+    <script src="handlebars.js"></script>
     <script src="index.js"></script>
+
   </body>
 </html>
