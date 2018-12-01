@@ -16,11 +16,21 @@
       .flexbox-container > div:first-child {
         margin-right: 20px;
       }
+        
+      a.none {
+        text-decoration: none;     
+      }
     </style>
   </head>
   <body>
     <main id="main">
       <div id="errors"></div>
+      <form onsubmit="searchRepositories();return false;">
+        <a href="#" class="none">Search: </a>
+        <input type="text" id="searchTerms">
+        <input type="submit">
+      </form>
+
     </main>
     <div class="flexbox-container">
       <div>
