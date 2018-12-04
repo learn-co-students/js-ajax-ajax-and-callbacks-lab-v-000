@@ -20,6 +20,10 @@
   </head>
   <body>
     <main id="main">
+      <form>
+        <input type="text" id="searchTerms">
+        <a href="#" onclick="searchRepositories();return false;">Search Repositories</a>
+      </form>
       <div id="errors"></div>
     </main>
     <div class="flexbox-container">
@@ -32,7 +36,37 @@
         <div id="details"></div>
       </div>
     </div>
+    <script src="handlebars.js"></script>
     <script src="jquery-3.1.0.min.js"></script>
     <script src="index.js"></script>
+    <script id="repository-template" type="text/x-handlebars-template">
+      <ul>
+       {{#each this}}
+         <li>
+           <h2><a href="{{html_url}}">{{name}}</a></h2>
+           <p>Description: {{description}}</p>
+           <p><a href="#" data-repository={{name}} data-owner={{owner.login}} onclick="showCommits(this)">Show Commits</a></p>
+           <section>
+             <header><h4>Created By <a href="{{owner.html_url}}">{{owner.login}}</a></h4></header>
+             <img src="{{owner.avatar_url}}" height="32" width="32">
+           </section>
+         </li>
+        {{/each}}
+      </ul>
+    </script>
+    <script id="commit-template" type="text/x-handlebars-template">
+      <ul>
+       {{#each this}}
+         <li>
+           <p><a href="{{html_url}}">{{commit.message}}</a></p>
+           <p>SHA: {{sha}}</p>
+           <section>
+             <header><h4>Created By <a href="{{author.html_url}}">{{author.login}}</a></h4></header>
+             <img src="{{author.avatar_url}}" height="32" width="32">
+           </section>
+         </li>
+        {{/each}}
+      </ul>
+    </script>
   </body>
 </html>
