@@ -20,6 +20,9 @@ function searchRepositories() {
         '<a href="#" data-repo="' + r.name + '" onclick="showCommits(this)">Get Commits</a></li>')
         .join('')}</ul>`;
       document.getElementById('results').innerHTML = repoList;
+  }).fail(function(error) {
+      // This is called when an error occurs
+      console.log('Something went wrong: ' + error.statusText);
   });
   //debugger
   //req.open('GET', 'https://api.github.com/search/repositories?q=' + term);
