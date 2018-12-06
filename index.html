@@ -26,6 +26,9 @@
       <div>
         <h3>Repositories</h3>
         <div id="results"></div>
+          <p>
+            <a href="#" onclick="searchRepositories()">Search Repositories</a>
+          </p>
       </div>
       <div>
         <h3>Details</h3>
@@ -34,5 +37,12 @@
     </div>
     <script src="jquery-3.1.0.min.js"></script>
     <script src="index.js"></script>
+    <div id="mocha"></div>
+    <script src="node_modules/mocha/mocha.js"></script>
+    <script src="node_modules/expect/umd/expect.min.js"></script>
+    <script src="node_modules/sinon/pkg/sinon.js"></script>
+    <script>
+      mocha.setup('bdd');
+    </script>
   </body>
 </html>
