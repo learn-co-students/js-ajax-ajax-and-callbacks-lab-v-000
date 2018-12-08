@@ -1,8 +1,5 @@
 
-
-
-
-var renderSearchResult = (result) => {
+let renderSearchResult = (result) => {
     return `
         <div>
           <h2><a href="${result.html_url}">${result.name}</a></h2>
@@ -13,6 +10,7 @@ var renderSearchResult = (result) => {
       `
 }
 
+let renderSearchResults = (data) => data.items.map( result => renderSearchResult(result))
 
 let searchRepositories = () => {
     const searchTerms = $('#searchTerms').val()
@@ -22,6 +20,9 @@ let searchRepositories = () => {
         displayError()
       })
 }
+
+
+
 // curl https://api.github.com/search/repositories?q=tetris+language:assembly&sort=stars&order=desc
 
 //   jQuery .. parentheses when it's a value and angle brackets when it's a variable?
