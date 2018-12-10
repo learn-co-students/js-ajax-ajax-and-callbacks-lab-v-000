@@ -16,7 +16,7 @@ $.get(url).done(function(data){
     const repos = data.items;
     const repoList = `<ul>${repos.map(repo =>
 
-    `<li>Repo Name: ${repo.name} <br>
+    `<li>Repo Name: <a href="${repo.html_url}">${repo.name}</a> <br>
     Repo Owner: ${repo.owner.login}<br><br>
     Owner Avator: <img src= ${repo.owner.avatar_url} style="width=30px; height:30px;"/> <br><br>
     Description: ${repo.description}<br><br>
