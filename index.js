@@ -37,7 +37,9 @@ const url = `https://api.github.com/repos/${owner}/${repoName}/commits`;
 $.get(url).done(function(data){
   const commits = data;
   const commitsList = `<ul>${commits.map(commit =>
+
   `<li> SHA:${commit.sha}<br>
+
   Commit Message: ${commit.commit.message} <br>
   Commit Date: ${commit.commit.committer.date}<br>
   Author: ${commit.commit.author.name}<br>
