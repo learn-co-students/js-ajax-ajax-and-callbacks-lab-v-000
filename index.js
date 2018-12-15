@@ -9,37 +9,32 @@ function searchRepositories () {
   }
 
   function showRepositories(repos) {
-    console.log(repos);
-    const repoList = `<ul>${repos.items
-    .map(
-      r =>
-        '<li>' +
-        r.name +
-        ' - <a href="#" data-repo="' +
-        r.name +
-        '" onclick="getCommits(this)">Get Commits</a></li>'
+
+    const repoList = repos.items
+    .map(r =>
+        `<li>${r.name} - <a href="#" data-repository="${r.name}" data-owner="${r.owner.login}"
+         onclick="showCommits(this)">Show Commits</a></li>`
     )
-    .join('')}</ul>`;
+    .join('');
     document.getElementById('results').innerHTML = repoList;
   }
 
-  function getCommits(el) {
-    const owner = this.name;
-    const repo = el.dataset.repo;
-      $.get(`https://api.github.com/repos/${owner}/${repo}/commits/)`, function (data){
-        $("#details").html(showCommits(data));
+  function showCommits(el) { //object from a href
+    const owner = el.dataset.owner;
+    const repo = el.dataset.repository;
+      $.get(`https://api.github.com/repos/${owner}/${repo}/commits`, function (data){
+        $("#details").html(renderCommits(data));
       }).fail(error => displayError())
     }
 
-    function showCommits(commits) {
-      debugger
-      const commitsList = `<ul>${commits.map(commit =>
-         '<li><strong>' +
+    function renderCommits(commits) {
+      const commitsList = `${commits.map(commit =>
+         '<li>' +
          commit.commit.author.name + commit.url +
-        '</strong> - ' +
+        '-' +
          commit.commit.message +
          '</li>'
-      ).join('')}</ul>`;
+      ).join('')}`;
     document.getElementById('details').innerHTML = commitsList;
   }
 
