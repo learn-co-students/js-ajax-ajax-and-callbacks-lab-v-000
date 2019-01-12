@@ -23,11 +23,11 @@ function searchRepositories() {
 }
 
 function showCommits(el) {
-  const name = el.dataset.repo
+  const name = el.dataset.repository
   const user = el.dataset.owner
   $.get(`https://api.github.com/repos/${user}/${name}/commits`, function(response) {
-    $('details').html("<ul>" +
-      response.items.map(function(r) {
+    $('#details').html("<ul>" +
+      response.map(function(r) {
         return '<li>' +
         r.sha +
         '</li>'
