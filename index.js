@@ -27,8 +27,27 @@ function searchRepositories(){
 }
 
 //display in details, listing the SHA, author, authors login, and avatar as an image
-function showCommits(){
-
+function showCommits(i) {
+  const repo = i.dataset.repository;
+  const owner = i.dataset.owner;
+  $.get(`https://api.github.com/repos/${owner}/${repo}/commits`, function(data) {
+    const commits = data;
+    let commitsHTML = "";
+    console.log(data);
+    for (let i=0; i < commits.length; i++) {
+      const commit = commits[i];
+      commitsHTML += `
+        <div>
+          <p>${commit.sha}</p>
+          <p>${commit.author.login}</p>
+          <p>${commit.commit.author.name}</p>
+          <img src="${commit.author.avatar_url}" width="25px">
+        </div>`
+    }
+    $('#details').html(commitsHTML);
+  }).fail(function(error){
+    displayError();
+  });
 }
 
 function displayError(){
