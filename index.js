@@ -30,7 +30,6 @@ function showCommits(element){
 	const username = element.dataset.username
 	const url = `https://api.github.com/repos/${username}/${repoName}/commits`
 	$.get(url, function(data) {
-		console.log(data);
 		displayCommits(data);
 	});
 }
@@ -39,8 +38,7 @@ function displayCommits(data){
 	const commitInfo = data.map( r =>
 		`<li>SHA: ${r.sha}</li>
 		<img src="${r.author.avatar_url}" height="3%" width="3%">
-		${r.commit.author.name} - ${r.author.login}
-		`
+		${r.commit.author.name} - ${r.author.login}`
 		).join('');
 	const returnHTML = '<ul>' + commitInfo + '</ul>'
 	document.getElementById('details').innerHTML = returnHTML
