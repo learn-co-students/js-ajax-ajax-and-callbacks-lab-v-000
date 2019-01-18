@@ -14,14 +14,14 @@ function searchRepositories(){
   let url = 'https://api.github.com/search/repositories?q=' + document.getElementById('searchTerms').value
   $.get(url, function(response){
     // debugger
-    let templateFn = Handlebars.compile(document.getElementById('repo-template').innerHTML)
-    let templateHtml = templateFn(response.items)
-    $('#results').html(templateHtml)
-    // let namehtml = ''
-    // for (const el of response.items){
-    //   namehtml += `<p>${el.name}</p>`
-    //   $('#results').html(namehtml)
-    // }
+    // let templateFn = Handlebars.compile(document.getElementById('repo-template').innerHTML)
+    // let templateHtml = templateFn(response.items)
+    // $('#results').html(templateHtml)
+    let namehtml = ''
+    for (const el of response.items){
+      namehtml += `<p>${el.name}</p>`
+      $('#results').html(namehtml)
+    }
   })
 }
 
