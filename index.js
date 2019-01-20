@@ -1,6 +1,6 @@
 var displayError = () => $('#errors').html("I'm sorry, there's been an error. Please try again.")
 
-var renderCommit = (commit) => {
+function renderCommit(commit) {
   return `<li><h3>${commit.sha}</h3><p>${commit.commit.message}</p></li>`
 }
 
@@ -20,6 +20,7 @@ var renderSearchResult = (result) => {
   return `
       <div>
         <h2><a href="${result.html_url}">${result.name}</a></h2>
+        <p><img src="${result.avatar_url}"></p>
         <p><a href="#" data-repository="${result.name}" data-owner="${result.owner.login}" onclick="showCommits(this)">Show Commits</a></p>
         <p>${result.description}</p>
       </div>
