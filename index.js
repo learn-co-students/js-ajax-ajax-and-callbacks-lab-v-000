@@ -1,3 +1,7 @@
+// var cb = () => {
+//   $(#details).text('/6dcb09b5b57875f334f61aebed695e2e4193db5e/') 
+// }
+
 function showCommits(el) {
   $.get(`https://api.github.com/repos/${el.dataset.owner}/${el.dataset.repository}/commits`, cb)
 }
