@@ -21,10 +21,16 @@
   <body>
     <main id="main">
       <div id="errors"></div>
+      <!-- search box for repositories -->
+      <div id="search">
+        <input type="text" id="searchTerms">
+        <a href="#" onclick="searchRepositories()">Search</a>
+    </div>
     </main>
     <div class="flexbox-container">
       <div>
         <h3>Repositories</h3>
+        <!-- display repository results from search -->
         <div id="results"></div>
       </div>
       <div>
