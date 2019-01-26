@@ -9,7 +9,8 @@ function searchRepositories() {
         r =>
           `<h4><a href="${r.html_url}">${r.name}</a></h4>
           <li>${r.description}</li>
-          <li>Owner: <a href="${r.owner.html_url}">${r.owner.login}</a></li>
+          <img src="${r.owner.avatar_url}" width="75" height="75">
+          <p>Owner: <a href="${r.owner.html_url}">${r.owner.login}</a></p>
           <a href="#" data-repository=${r.name} data-owner=${r.owner.login}
           onclick="showCommits(this)">Show Commits</a>`
       )
@@ -19,11 +20,9 @@ function searchRepositories() {
 }
 
 function showCommits(el) {
-  // GET /repos/:owner/:repo/commits
   const repo = el.dataset.repository;
   const owner = el.dataset.owner;
   let URI = `https://api.github.com/repos/${owner}/${repo}/commits`;
-  console.log(URI);
   $.get(URI, function(response) {
     let data = response
       .map(
