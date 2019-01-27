@@ -18,7 +18,6 @@ $(document).ready(function (){
       $('#results').html(result);
     }).fail(error => {
       displayError()
-
     });
   }
 
