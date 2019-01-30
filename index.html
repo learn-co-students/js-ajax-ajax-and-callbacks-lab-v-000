@@ -23,6 +23,11 @@
       <div id="errors"></div>
     </main>
     <div class="flexbox-container">
+      <a onclick="searchRepositories()">Search Repositories</a>
+      <form onsubmit="searchRepositories(); return false;">
+        <input type="text" id="searchTerms">
+        <input type="submit">
+      </form>
       <div>
         <h3>Repositories</h3>
         <div id="results"></div>
@@ -33,6 +38,7 @@
       </div>
     </div>
     <script src="jquery-3.1.0.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="index.js"></script>
   </body>
 </html>
