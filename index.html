@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Ajax Lab</title>
-
+    <meta charset="UTF-8">
     <style>
       .flexbox-container {
         display: -ms-flex;
@@ -20,6 +20,10 @@
   </head>
   <body>
     <main id="main">
+      <label for='searchTerms'>Search for: </label>
+      <input type="text" id="searchTerms">
+      <a href="#" onclick="searchRepositories();">Search Repositories</a>
+
       <div id="errors"></div>
     </main>
     <div class="flexbox-container">
