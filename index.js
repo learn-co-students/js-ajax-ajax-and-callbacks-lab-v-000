@@ -42,7 +42,7 @@ function searchRepositories() {
     //    #iterate through this.repsonseText
     //    append to result div
     //const repoList = repos.map(r => `<li><a href=${r.html_url}>${r.name}</a></li>`).join('')
-    //document.getElementsByTagName('result').innerHTML = "<ul>" + repoList + "</ul>";
+    //document.getElementByTagId('#results').innerHTML = "<ul>" + repoList + "</ul>";
   }
 
 
@@ -50,5 +50,5 @@ function searchRepositories() {
 //     const repos = JSON.parse(this.responseText);
 //     const src = document.getElementById('results').innerHTML;
 
-//     document.getElementById('repositories')
+//     document.getElementById('#repositories')
 //   }
