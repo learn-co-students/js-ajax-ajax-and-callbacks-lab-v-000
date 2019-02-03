@@ -25,7 +25,24 @@
     <div class="flexbox-container">
       <div>
         <h3>Repositories</h3>
-        <div id="results"></div>
+        <a href="#" onclick="searchRepositories()">Search Repositories</a>
+        
+        <div id="results" type="text/x-handlebars-template"></div>
+        <!-- <script id="results" type="text/x-handlebars-template"></script> -->
+          <ul>
+           {{#each this}}
+             <li>
+               <h2><a href="{{html_url}}">{{name}}</a></h2>
+               <p>name: {{watchers_count}}</p>
+               <p>description: {{forks_count}}</p>
+               <p>login: {{forks_count}}</p>
+               <p>avatar: {{forks_count}}</p>
+               <p>Issues: {{open_issues_count}}</p>
+             </li>
+            {{/each}}
+          </ul>
+        <!-- </script> -->
+
       </div>
       <div>
         <h3>Details</h3>
@@ -34,5 +51,7 @@
     </div>
     <script src="jquery-3.1.0.min.js"></script>
     <script src="index.js"></script>
+
+    
   </body>
 </html>
