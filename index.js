@@ -8,29 +8,40 @@ $(document).ready(function(){
      $('#errors').html("Im sorry, there's been an error.Please try again.");
  }
 function searchRepositories() {
-    var data = document.querySelector("#searchTerms").value
-    const req = new XMLHttpRequest();
-    req.addEventListener('load', showRepos);
-    req.open('GET', `https://api.github.com/search/repositories?q=${data}`);
-    req.send();
+    var data = $("#searchTerms").val()
+    // #val is a method..
 
+    // $.get(`https://api.github.com/search/repositories?q=${data}`,function(P){
+    //     var result = `<ul>${P.items.map(p => '<li>' + p.name + `</li><a href="#" data-owner="${data}" data-result="${p}" onclick="showCommits(this)">Show Commits</a>`)}</ul>`
+       
+        $.get(`https://api.github.com/users/${data}/repos`,function(P){
+            
+           dataList =  Object.entries(P).map(([keys]) => keys)
+
+            var result = `<ul>${dataList.map(p => '<li>' + p.name + 
+            `</li><a href="#" data-owner="${data}" data-result="${p}" onclick="showCommits(this)">Show Commits</a>`)}</ul>`
+
+        $("#results").html(result)
+     //$("#results").html(P.item);
+
+    }    
+   ) .fail(function(error){
+       console.log(displayError)
+   })
   }
 
-  function showRepos(){
-        const repos = JSON.parse(this.responseText).items
-    const repoList = repos.map(r => `<li><a href=${r.html_url}>${r.name} </a> <a href="#" onclick="showCommits(this)" data-name=${r.name} data-owner=${r.owner.login}> show commits</p></p></li>`).join('')
-    
-    // const showRepos = repos.map(r => `<li><a href=${r.html_url}>${r.name}</a></li>`).join('')
 
-    document.getElementById('results').innerHTML = "<ul>" + repoList + "</ul>";
-  }
-
+//  in  showCommits, function that gets the repository's 
+// commits from the GitHub API and display them in the details div.
+//list the SHA, the author, the author's login, and the author's avatar as an image.
 
   function showCommits(element) {
+      console.log(element)
+      debugger
+
     document.getElementById('#repositories')
-    
-       $.get(`https://api.github.com/repos/${element.dataset.owner}/${element.name}/commits`,data => {
-        //    debugger
+       $.get(`https://api.github.com/repos/${element.dataset.owner}/${element.dataset.result}/commits`,data => {
+           
            const commitsList = `<ul>${data.
         map(
             data => 
