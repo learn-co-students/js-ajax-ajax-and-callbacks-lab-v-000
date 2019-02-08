@@ -7,20 +7,13 @@ $(document).ready(function(){
  function displayError() {
      $('#errors').html("Im sorry, there's been an error.Please try again.");
  }
-function searchRepositories() {
-    var data = $("#searchTerms").val()
-    // #val is a method..
+function searchRepositories(){
+    let data = $("#searchTerms").val();
 
-    // $.get(`https://api.github.com/search/repositories?q=${data}`,function(P){
-    //     var result = `<ul>${P.items.map(p => '<li>' + p.name + `</li><a href="#" data-owner="${data}" data-result="${p}" onclick="showCommits(this)">Show Commits</a>`)}</ul>`
+   let url = `https://api.github.com/search/repositories?q=${data}/`
+    $.get(url,function(response){
+        var result = `<ul>${response.items.map(r => '<li>' + r.name + `</li><a href="#" data-owner="${r.owner.login}", data-result="${r.name}" onclick="showCommits(this)">Show Commits</a>`)}</ul>`
        
-        $.get(`https://api.github.com/users/${data}/repos`,function(P){
-            
-           dataList =  Object.entries(P).map(([keys]) => keys)
-
-            var result = `<ul>${dataList.map(p => '<li>' + p.name + 
-            `</li><a href="#" data-owner="${data}" data-result="${p}" onclick="showCommits(this)">Show Commits</a>`)}</ul>`
-
         $("#results").html(result)
      //$("#results").html(P.item);
 
@@ -37,15 +30,16 @@ function searchRepositories() {
 
   function showCommits(element) {
       console.log(element)
-      debugger
+    //   debugger
 
     document.getElementById('#repositories')
+
        $.get(`https://api.github.com/repos/${element.dataset.owner}/${element.dataset.result}/commits`,data => {
-           
+           debugger
            const commitsList = `<ul>${data.
         map(
             data => 
-             '<li><h3>' + data.commit.author.name + ' (' + data.author.login + ') </h3>' +
+             '<li><h3>' + data.commit.author.name + ' (' + data.author + ') </h3>' +
             data.sha + "+  +"+'</li>' ).join('') }</ul>`
         });
     }
