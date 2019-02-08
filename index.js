@@ -32,15 +32,16 @@ function searchRepositories(){
 //list the SHA, √
 // the author, √
 // the author's login, √
-the author's avatar as an image.
+// the author's avatar as an image.
 
   function showCommits(element) {
       console.log(element)
     //   
 
-    document.getElementById('#repositories')
-        let commitURL = `https://api.github.com/repos/${element.dataset.owner}/${element.dataset.result}/commits`
-       
+    document.getElementById('#results')
+    
+        let commitURL = `https://api.github.com/repos/${element.dataset.owner}/${element.dataset.repo}/commits`
+       debugger
         $.get(commitURL,data => {
             
             let commitsList = `<ul>${data.map(commit => '<li><h3>' + commit.commit.author.name + ' (' + commit.author.login + ') </h3>' + 
