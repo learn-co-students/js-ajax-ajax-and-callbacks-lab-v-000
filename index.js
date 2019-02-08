@@ -12,7 +12,7 @@ function searchRepositories(){
    let url = `https://api.github.com/search/repositories?q=${data}/`
 
     $.get(url,function(response){
-        debugger
+        
         var result = `<ul>${response.items.map(r => '<li>' + r.name +
                         `</li><a href="#" data-owner="${r.owner.login}",
                             data-result="${r.name}" onclick="showCommits(this)">
@@ -29,23 +29,27 @@ function searchRepositories(){
 
 //  in  showCommits, function that gets the repository's 
 // commits from the GitHub API and display them in the details div.
-//list the SHA, the author, the author's login, and the author's avatar as an image.
+//list the SHA, √
+// the author, √
+// the author's login, √
+the author's avatar as an image.
 
   function showCommits(element) {
       console.log(element)
     //   
 
     document.getElementById('#repositories')
-        let commitURL = `https://api.github.com/repos/${element.dataset.owner}/${element.dataset.repository}/commits`
+        let commitURL = `https://api.github.com/repos/${element.dataset.owner}/${element.dataset.result}/commits`
        
         $.get(commitURL,data => {
             
-            let commitsList = `<ul>${data.map( data => '<li><h3>' + data.commit.author.name + ' (' + data.author + ') </h3>' + 
-            data.sha + "+  +"+'</li>' ).join('') }</ul>`
-            $("#details").html(commitsList) 
-          }
-        
-           ).fail(function(error){
+            let commitsList = `<ul>${data.map(commit => '<li><h3>' + commit.commit.author.name + ' (' + commit.author.login + ') </h3>' + 
+            commit.sha + ' (' + commit.author.avatar_url + ')'+'</li>' ).join('') }</ul>`
+
+//     redefined.
+
+            $("#details").html(renderCommits(data)) 
+          }).fail(function(error){
              console.log(displayError)
         });
     }
