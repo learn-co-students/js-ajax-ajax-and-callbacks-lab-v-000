@@ -40,17 +40,18 @@ function searchRepositories(){
 
     document.getElementById('#results')
     
-        let commitURL = `https://api.github.com/repos/${element.dataset.owner}/${element.dataset.repo}/commits`
-       debugger
+        let commitURL = `https://api.github.com/repos/${element.dataset.owner}/${element.dataset.result}/commits`
+       
         $.get(commitURL,data => {
             
-            let commitsList = `<ul>${data.map(commit => '<li><h3>' + commit.commit.author.name + ' (' + commit.author.login + ') </h3>' + 
-            commit.sha + ' (' + commit.author.avatar_url + ')'+'</li>' ).join('') }</ul>`
-
-//     redefined.
+            let commitsList = `${data.map(commit => commit.author.login + `<br>`+ 
+                                                    commit.sha + `<br>` +
+                                                    `<img src=` + commit.author.avatar_url + `>`
+                )}`
 
             $("#details").html(commitsList) 
-          }).fail(function(error){
+          }
+            ).fail(function(error){
              console.log(displayError())
         });
     }
