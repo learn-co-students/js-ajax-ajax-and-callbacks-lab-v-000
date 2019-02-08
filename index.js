@@ -12,12 +12,13 @@ function searchRepositories(){
    let url = `https://api.github.com/search/repositories?q=${data}/`
 
     $.get(url,function(response){
+        debugger
         var result = `<ul>${response.items.map(r => '<li>' + r.name +
                         `</li><a href="#" data-owner="${r.owner.login}",
                             data-result="${r.name}" onclick="showCommits(this)">
                                Show Commits</a>`)}</ul>`
        
-        $("#results").html(result)
+                               $("#results").html(result)
 
     }    
    ) .fail(function(error){
