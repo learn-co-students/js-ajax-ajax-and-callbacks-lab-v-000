@@ -22,7 +22,7 @@ function searchRepositories(){
 
     }    
    ) .fail(function(error){
-       console.log(displayError)
+       console.log(displayError())
    })
   }
 
@@ -48,9 +48,9 @@ the author's avatar as an image.
 
 //     redefined.
 
-            $("#details").html(renderCommits(data)) 
+            $("#details").html(commitsList) 
           }).fail(function(error){
-             console.log(displayError)
+             console.log(displayError())
         });
     }
 
