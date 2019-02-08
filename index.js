@@ -39,9 +39,7 @@ function searchRepositories(){
     //   
 
     document.getElementById('#results')
-    
-        // let commitURL = `https://api.github.com/repos/${element.dataset.owner}/${element.dataset.result}/commits`
-       
+           
         let commitURL = `https://api.github.com/repos/${element.dataset.owner}/${element.dataset.repository}/commits`
         
         $.get(commitURL,data => {
