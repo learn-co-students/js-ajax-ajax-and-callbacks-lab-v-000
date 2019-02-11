@@ -19,6 +19,14 @@
     </style>
   </head>
   <body>
+    <!-- <a href="#" onclick="searchRepositories">
+      <input type="text" id="searchTerms" val=${#searchTerms}><br>
+      <input type="submit">
+    </a> -->
+    <form onsubmit="searchRepositories();return false">
+      <input type="text" id="searchTerms" val=${#searchTerms}><br>
+      <input type="submit">
+    </form>
     <main id="main">
       <div id="errors"></div>
     </main>
