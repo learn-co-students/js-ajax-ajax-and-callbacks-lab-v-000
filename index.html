@@ -22,10 +22,27 @@
     <main id="main">
       <div id="errors"></div>
     </main>
+    <input type="text" id="searchTerms">
+    <a href="#" onclick="searchRepositories()">Search Repositories</a>
     <div class="flexbox-container">
       <div>
         <h3>Repositories</h3>
-        <div id="results"></div>
+        <div id="results">
+          <script id="repository-tamplate" type="text/x-handlebars-template">
+          <ul>
+          {{#each this}}
+          <li>
+           <h2>Name: {{name}}</h2>
+           <p>Html Url: <a href="{{html_url}}">{{name}}</a></p>
+           <p>Description: {{description}}</p>
+           <p>Owner Login: <a href={{owner.html_url}}>{{owner.login}}</a></p>
+           <p>Avatar: <img src="{{owner.avatar_url}}" height=32px width=32px></p>
+             <p> <a href='#' onclick="showCommits(this)" data-owner= {{owner.login}} data-repository= {{name}}> Show Commits</a></p>
+           </li>
+           {{/each}}
+           </ul>
+           </script>
+        </div>
       </div>
       <div>
         <h3>Details</h3>
@@ -34,5 +51,6 @@
     </div>
     <script src="jquery-3.1.0.min.js"></script>
     <script src="index.js"></script>
+    <script="node_modules/handlebars/dist/handlebars.min.js"></script>
   </body>
 </html>
