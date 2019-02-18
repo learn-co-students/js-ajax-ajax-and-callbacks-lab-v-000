@@ -1,8 +1,54 @@
+// Look at how they solved it, with such different Javascript:
+
+// var displayError = () => $('#errors').html("I'm sorry, there's been an error. Please try again.")
+//
+// var renderCommit = (commit) => {
+//   return `<li><h3>${commit.sha}</h3><p>${commit.commit.message}</p></li>`
+// }
+//
+// var renderCommits = (data) => {
+//   let result = data.map((commit)=>renderCommit(commit)).join('')
+//   return `<ul>${result}</ul>`
+// }
+//
+// var showCommits = (el) => {
+//   $.get(`https://api.github.com/repos/${el.dataset.owner}/${el.dataset.repository}/commits`, data => {
+//     $('#details').html(renderCommits(data))
+//   }).fail(error => {
+//     displayError()
+//   })
+// }
+//
+// var renderSearchResult = (result) => {
+//   return `
+//       <div>
+//         <h2><a href="${result.html_url}">${result.name}</a></h2>
+//         <p><a href="#" data-repository="${result.name}" data-owner="${result.owner.login}" onclick="showCommits(this)">Show Commits</a></p>
+//         <p>${result.description}</p>
+//       </div>
+//       <hr>
+//     `
+// }
+//
+// var renderSearchResults = (data) => data.items.map( result => renderSearchResult(result))
+//
+// var searchRepositories = () => {
+//   const searchTerms = $('#searchTerms').val()
+//   $.get(`https://api.github.com/search/repositories?q=${searchTerms}`, data => {
+//       $('#results').html(renderSearchResults(data))
+//     }).fail(error => {
+//       displayError()
+//     })
+// }
+//
+// $(document).ready(function (){
+// });
+
+// Here's mine:
 $(document).ready(function (){
 });
 
 function searchRepositories() {
-  // const resultsString = `resultsString`
   const searchTerms = document.getElementById("searchTerms").value;
   const searchURL = `https://api.github.com/search/repositories?q=${searchTerms}`;
   $.get(searchURL, function(data) {
@@ -27,17 +73,9 @@ function searchRepositories() {
   // xhr.send();
 }
 
-// function showRepositories() {
-//   const repos = JSON.parse(this.responseText);
-//   const repoList = repos;
-//   document.getElementById("results").innerHTML = repoList;
-// }
-
 function showCommits(r) {
   const owner = r.dataset.owner;
   const repo = r.dataset.repository;
-  // const owner = document.getElementById("results").getElementsByTagName("li")[0].innerText.split(": ")[3].split("\n")[1].split(":")[1];
-  // const repo = document.getElementById("results").getElementsByTagName("li")[0].innerText.split(": ")[1].split("\n")[0];
   const searchURL = `https://api.github.com/repos/${owner}/${repo}/commits`;
   $.get(searchURL, function(data) {
     const resultsString = data.map(c => `<li>
