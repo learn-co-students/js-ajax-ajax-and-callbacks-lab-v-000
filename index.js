@@ -6,25 +6,26 @@ function displayError() {
   $('#errors').html("I'm sorry, there's been an error. Please try again.");
 }
 
+function renderItems(item) {
+    return `<h1>${$('#searchTerms').val()}</h1>
+      <h2>${item.name}</h2>
+      <p>${item.description}</p>
+      <a href="${item.html_url}">View on Github</a>
+      <hr>`
+}
+
+function renderResults(data) {
+  return data.items.map(item => renderItems(item));
+}
+
 function searchRepositories() {
   const term = $('#searchTerms').val();
   // console.log(`https://api.github.com/search/repositories?q=${term}`)
   $.get(`https://api.github.com/search/repositories?q=${term}`, function(response) {
-    $('#results').html(renderResults(response));
+    $('#results').html(renderResults(response))
   }).fail(displayError());
 }
 
-function renderResults(response) {
-  response.items.map(data => renderItems(data));
-}
-
-function renderItems(item) {
-  return
-    `<h2>${item.name}</h2>
-    <p>${item.description}</p>
-    <a href="${item.html_url}>'View on Github'</a>"
-    <hr>`
-}
 
 //
 // $(document).ready(function() {
