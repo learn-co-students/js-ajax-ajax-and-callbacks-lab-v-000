@@ -7,10 +7,23 @@ function displayError() {
 }
 
 function searchRepositories() {
-  const term = $('#searchTerms').val()
-  $.get('https://api.github.com/search/repositories?q=' + term, function(response) {
-    $('#repositories').html(response);
+  const term = $('#searchTerms').val();
+  // console.log(`https://api.github.com/search/repositories?q=${term}`)
+  $.get(`https://api.github.com/search/repositories?q=${term}`, function(response) {
+    $('#results').html(renderResults(response));
   }).fail(displayError());
+}
+
+function renderResults(response) {
+  response.items.map(data => renderItems(data));
+}
+
+function renderItems(item) {
+  return
+    `<h2>${item.name}</h2>
+    <p>${item.description}</p>
+    <a href="${item.html_url}>'View on Github'</a>"
+    <hr>`
 }
 
 //
