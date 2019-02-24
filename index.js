@@ -11,6 +11,7 @@ function renderItems(item) {
       <h2>${item.name}</h2>
       <p>${item.description}</p>
       <a href="${item.html_url}">View on Github</a>
+      <a href="#" data-repository="${item.name}" data-owner="${item.owner.login}" onclick="showCommits(this)">View Commits</a>
       <hr>`
 }
 
@@ -20,23 +21,27 @@ function renderResults(data) {
 
 function searchRepositories() {
   const term = $('#searchTerms').val();
-  // console.log(`https://api.github.com/search/repositories?q=${term}`)
   $.get(`https://api.github.com/search/repositories?q=${term}`, function(response) {
     $('#results').html(renderResults(response))
   }).fail(displayError());
 }
 
+function renderCommit(data) {
+  return `
+    <p>${data.sha}</p>
+    <strong><p>${data.author.name}</p></strong>
+    <p>${data.author.login}</p>
+    <img src="${data.avatar_url}">
+    <hr>
+  `
+}
+function renderCommits(data) {
+  return data.map(item => renderCommit(item))
+}
 
-//
-// $(document).ready(function() {
-//     // $.get('sentence.html', function(response) {
-//     //     $('#sentences').html(response);
-//     // });
-//     $.get('this_doesnt_exist.html', function(data) {
-//         // This will not be called because the .html file request doesn't exist
-//         doSomethingGood();
-//     }).fail(function(error) {
-//         // This is called when an error occurs
-//         console.log('Something went wrong: ' + error.statusText);
-//     });
-// });
+function showCommits(item) {
+  console.log(item)
+  $.get(`https://api.github.com/repos/${item.dataset.owner}/${item.dataset.repository}/commits`, function(response) {
+    $('#details').html(renderCommits(response))
+  }).fail(displayError());
+}
