@@ -5,10 +5,10 @@ function searchRepositories() {
     const repoList = response.items.map(function(repo) {
       return `<div>${repo.name}</div><br>` +
       `<div>${repo.description}</div><br>` +
-      `<div><a href=# ${repo.html_url}</div><br>` +
-      `<div>${repo.name}</div><br>` +
-      `<div>${repo.name}</div><br>` +
-      `<div>${repo.name}</div><br>` +
+      `<div><a href=#${repo.html_url}</div><br>` +
+      `<div>${repo.owner.login}</div><br>` +
+      `<div><img src=#${repo.owner.avatar_url}</div><br>` +
+      `<div><a href=#$${repo.owner.profile_url}</div><br>` +
       '<div><a href="#" onclick="showCommits(this)">Show Commits</a></div>'
     })
     document.getElementById('results').innerHTML = repoList;
