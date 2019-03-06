@@ -21,6 +21,8 @@
   <body>
     <main id="main">
       <div id="errors"></div>
+      Search Repositories: <input type="text" id="searchTerms"><br>
+      <a href="#" onclick="searchRepositories(); return false;">Search</a>
     </main>
     <div class="flexbox-container">
       <div>
@@ -32,7 +34,36 @@
         <div id="details"></div>
       </div>
     </div>
+
+    <script id="repository-template" type="text/x-handlebars-template">
+      <ul>
+       {{#each this}}
+         <li>
+           <h2><a href="{{html_url}}">{{name}}</a></h2>
+           <section>
+             <header><h4>Created By <a href="{{owner.html_url}}">{{login}}</a></h4></header>
+             <img src="{{avatar_url}}" height="32" width="32">
+           </section>
+           <p>Description: {{description}}</p>
+           <p><a href="#" data-repository="{{name}}" data-owner="{{owner.login}}" onclick="showCommits(this); return false;">Show Commits</a></p>
+         </li>
+        {{/each}}
+      </ul>
+    </script>
+
+    <script id="commits-template" type="text/x-handlebars-template">
+      <ul>
+       {{#each this}}
+         <li>
+           <h2>{{commit.author.name}}</h2>
+           <p>SHA: {{sha}}</p>
+         </li>
+        {{/each}}
+      </ul>
+    </script>
+
     <script src="jquery-3.1.0.min.js"></script>
+    <script src="handlebars.js"></script>
     <script src="index.js"></script>
   </body>
 </html>
