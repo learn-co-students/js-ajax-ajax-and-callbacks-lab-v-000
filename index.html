@@ -20,6 +20,8 @@
   </head>
   <body>
     <main id="main">
+      <p>Search:<input type="text" id="searchTerms"/></p>
+      <a href="#">Search Repositories</a>
       <div id="errors"></div>
     </main>
     <div class="flexbox-container">
@@ -33,6 +35,14 @@
       </div>
     </div>
     <script src="jquery-3.1.0.min.js"></script>
+    <!--<script src="handlebars.js"></script>-->
     <script src="index.js"></script>
+    <!--<script id="repository-display-template" type="text/x-handlebars-template">
+      <ul>
+        {{#each repositories}}
+          <li>{{name}}</li>
+        {{/each}}
+      </ul>
+    </script>-->
   </body>
 </html>
