@@ -41,7 +41,7 @@ describe('index.js', () => {
     before(() => {
       xhr = sinon.useFakeXMLHttpRequest()
       window.XMLHttpRequest = xhr
-      xhr.onCreate = function (req) { requests.push(req); }
+      xhr.onCreate = function (req) { requests.push(req) }
     })
     beforeEach(() => {
       requests = []

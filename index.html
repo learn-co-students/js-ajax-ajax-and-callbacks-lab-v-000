@@ -17,21 +17,62 @@
         margin-right: 20px;
       }
     </style>
+
   </head>
   <body>
     <main id="main">
+      <div>
+        <br>
+        Search Terms: <input type="text" id="searchTerms"><br><br>
+      </div>
+      <a href="#" onclick="searchRepositories()">Search Repositories</a><br><br>
       <div id="errors"></div>
     </main>
     <div class="flexbox-container">
       <div>
         <h3>Repositories</h3>
-        <div id="results"></div>
-      </div>
+          <div id="results"></div>
+          <script id="repository-template" type="text/x-handlebars-template">
+            <ul>
+             {{#each this}}
+               <li>
+                 <h2><a href="{{html_url}}" target="_blank">{{name}}</a></h2>
+                 <h3>{{description}}</h3>
+                 <!-- Render the partial template -->
+                 {{> authorPartial owner }}
+                 <h3><a href="{{html_url}}" target="_blank">Profile</a></h3>
+                 <a href="#" onclick="showCommits('{{owner.login}}', '{{name}}')">Show Commits</a>
+               </li>
+              {{/each}}
+            </ul>
+          </script>
+        </div>
       <div>
         <h3>Details</h3>
         <div id="details"></div>
+        <script id="commits-template" type="text/x-handlebars-template">
+          <ul>
+           {{#each this}}
+             <li>
+               <p><b>SHA:</b> {{sha}}</p>
+               <p>{{commit.message}}</p>
+               <p><b>Author:</b> {{commit.author.name}}</p>
+               <!-- Render the partial template -->
+               {{> authorPartial author }}
+             </li>
+            {{/each}}
+          </ul>
+        </script>
+        <!-- This author Handlebars partial may be reused by multiple templates -->
+        <script id="author-partial-template" type="text/x-handlebars-template">
+          <section>
+            <h4>Login ID: {{login}}</h4>
+            <img src="{{avatar_url}}" height="32" width="32">
+          </section>
+        </script>
       </div>
     </div>
+    <script src="http://builds.handlebarsjs.com.s3.amazonaws.com/handlebars-v4.0.11.js"></script>
     <script src="jquery-3.1.0.min.js"></script>
     <script src="index.js"></script>
   </body>
