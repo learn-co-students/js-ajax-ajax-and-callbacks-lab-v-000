@@ -25,14 +25,54 @@
     <div class="flexbox-container">
       <div>
         <h3>Repositories</h3>
-        <div id="results"></div>
+        <input type="text" id="searchTerms">
+        <a href="#" onclick="searchRepositories()">Search</a>
+        <div id="results">
+          <script id="repository-template" type="text/x-handlebars-template">
+            <ul>
+             {{#each this}}
+             <!-- WHICH DATA?
+              name, description, and a link to the HTML URL.
+              Also include repository owner login, repository owner avatar as an image,
+              and a link to the owner's profile page. -->
+               <li>
+                 <p><a href="{{html_url}}">{{name}}</a></p>
+                 <p>Description: {{description}}</p>
+                 <p>Github username: {{owner.login}}</p>
+                 <img src= "{{avatar_url}}">
+                 <p> Link to user: {{owner.url}}</p>
+                 <a href="#" onclick="showCommits(this)" data-username = "{{owner.login}}" data-repo = "{{name}}" >Show Commits</a>
+               </li>
+              {{/each}}
+            </ul>
+          </script>
+        </div>
       </div>
+
       <div>
         <h3>Details</h3>
-        <div id="details"></div>
+        <div id="details">
+          <script id="commits-template" type="text/x-handlebars-template">
+            <ul>
+             {{#each this}}
+             <!-- WHICH DATA?
+              list the SHA, the author,
+              the author's login, and the author's avatar as an image. -->
+               <li>
+                 <p>SHA: {{sha}}</p>
+                 <p>Name: {{commit.author.name}}</p>
+                 <p>Username: {{author.login}} </p>
+                 <img src= "{{author.avatar_url}}" height="50 "width="50">
+               </li>
+              {{/each}}
+            </ul>
+          </script>
+        </div>
       </div>
     </div>
+
     <script src="jquery-3.1.0.min.js"></script>
+    <script src="handlebars.js"></script>
     <script src="index.js"></script>
   </body>
 </html>
