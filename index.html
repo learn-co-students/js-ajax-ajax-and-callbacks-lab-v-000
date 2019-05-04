@@ -25,6 +25,8 @@
     <div class="flexbox-container">
       <div>
         <h3>Repositories</h3>
+        <input type="text" id="searchTerms">
+        <a href="#" onclick="showRepositories()">Search</a>
         <div id="results"></div>
       </div>
       <div>
@@ -32,7 +34,38 @@
         <div id="details"></div>
       </div>
     </div>
+    <script src="handlebars.js"></script>
     <script src="jquery-3.1.0.min.js"></script>
     <script src="index.js"></script>
+    
+    <!-- Handlebars Templates -->
+    <script id="repository-template" type="text/x-handlebars-template">
+      <ul>
+        {{#each this.items}}
+        <li>
+          <h2><a href="{{html_url}}">{{name}}</a></h2>
+          <section>
+            <header><h4>Created By <a href="{{owner.url}}">{{owner.login}}</a></h4></header>
+            <img src="{{owner.avatar_url}}" height="32" width="32">
+          </section>
+          <p>Description: {{description}}</p>
+          <p><a href="#" data-repository="{{name}}" data-owner="{{owner.login}}" onclick="showCommits()"> Show Commits </a></p>
+        </li>
+        {{/each}}
+      </ul>
+    </script>
+    <script id="commits-template" type="text/x-handlebars-template">
+      <ul>
+        {{#each this}}
+        <li>
+          <section>
+            <h2>Commit by: {{commit.author.name}}</h2>
+            <p>SHA: {{sha}}</p>
+            <img src="{{author.avatar_url}}" height="32" width="32"> 
+          </section>
+        </li>
+        {{/each}}
+      </ul>
+    </script>
   </body>
 </html>
