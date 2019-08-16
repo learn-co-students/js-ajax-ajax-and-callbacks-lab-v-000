@@ -20,6 +20,10 @@
   </head>
   <body>
     <main id="main">
+      <div id="search">
+        <input type="text" id="searchTerms" placeholder="enter search terms"/><br/>
+        <input type="submit" value="Search Repositories" onclick="searchRepositories();">
+      </div>
       <div id="errors"></div>
     </main>
     <div class="flexbox-container">
@@ -32,7 +36,7 @@
         <div id="details"></div>
       </div>
     </div>
-    <script src="jquery-3.1.0.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="index.js"></script>
   </body>
 </html>
