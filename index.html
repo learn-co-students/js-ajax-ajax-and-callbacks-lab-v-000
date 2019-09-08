@@ -19,6 +19,8 @@
     </style>
   </head>
   <body>
+    <p>Search for: <input type="text" id="searchTerms"></p><br>
+    <a href="" onclick="searchRepositories(); return false;">Search Repositories</a>
     <main id="main">
       <div id="errors"></div>
     </main>
@@ -33,6 +35,25 @@
       </div>
     </div>
     <script src="jquery-3.1.0.min.js"></script>
+    <script src="handlebars.js"></script>
     <script src="index.js"></script>
+    <script id="repository-template" type="text/x-handlebars-template">
+      <ul>
+       {{#each this}}
+         <li>
+           <h2><a href="{{html_url}}">{{name}}</a></h2>
+           {{> authorPartial owner }}
+           <p>Description: {{description}}</p>
+         </li>
+        {{/each}}
+      </ul>
+    </script>
+    <script id="author-partial-template" type="text/x-handlebars-template">
+      <section>
+        <header><h4>Created By {{login}}</h4></header>
+        <img src="{{avatar_url}}" height="32" width="32">
+      </section>
+    </script>
   </body>
+
 </html>
