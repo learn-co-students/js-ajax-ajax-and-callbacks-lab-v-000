@@ -4,6 +4,7 @@ const fs = require('fs')
 const jsdom = require('mocha-jsdom')
 const path = require('path')
 var sinon = require('sinon')
+// const Handlebars = require('handlebars');
 
 describe('index.js', () => {
   const html = fs.readFileSync(path.resolve(__dirname, '..', 'index.html'), 'utf-8')
@@ -37,6 +38,7 @@ describe('index.js', () => {
 
   describe('ajax functions', () => {
     let xhr, requests
+    let Handlebars;
 
     before(() => {
       xhr = sinon.useFakeXMLHttpRequest()
